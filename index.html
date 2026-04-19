@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Holzman AI & Automations — Boutique automation, built on rails.</title>
+<meta name="description" content="Boutique automation studio. We design, build, and quietly maintain the custom automations and integrations that run your business in the background." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F1EA;
+    --bg-2: #EFEAE0;
+    --ink: #1A1814;
+    --ink-2: #3C3830;
+    --ink-3: #6B6558;
+    --ink-4: #A8A294;
+    --rule: #D9D2C3;
+    --rule-2: #E6E0D1;
+    --accent: oklch(0.48 0.08 115);
+    --accent-ink: oklch(0.34 0.07 115);
+    --accent-soft: oklch(0.92 0.03 115);
+    --serif: "Newsreader", Georgia, serif;
+    --sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --mono: "Geist Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "ss02";
+  }
+  a { color: inherit; text-decoration: none; }
+  p { margin: 0; }
+
+  .wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  @media (max-width: 720px) {
+    .wrap { padding: 0 24px; }
+    body { font-size: 16px; }
+  }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in oklab, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease;
+  }
+  .nav.scrolled { border-color: var(--rule); }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .brand {
+    display: flex; align-items: baseline; gap: 14px;
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .brand .mono {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+  }
+  .nav-links {
+    display: flex; gap: 36px; align-items: center;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .nav-links a { transition: color .2s ease; }
+  .nav-links a:hover { color: var(--accent-ink); }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    transition: background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--bg); }
+  @media (max-width: 820px) {
+    .nav-links .link-hide { display: none; }
+  }
+  @media (max-width: 560px) {
+    .nav-links { gap: 18px; }
+    .nav-cta { display: none; }
+  }
+
+  /* SECTION FRAME */
+  section { padding: 120px 0; position: relative; }
+  @media (max-width: 720px) { section { padding: 80px 0; } }
+
+  .sec-label {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 48px;
+  }
+  .sec-label .num { color: var(--accent-ink); }
+  .sec-label::after {
+    content: ""; flex: 1; height: 1px; background: var(--rule);
+    max-width: 280px;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  h1, h2, h3 { margin: 0; font-weight: 400; }
+
+  /* HERO */
+  .hero {
+    padding: 96px 0 140px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+  .hero-head {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 7.2vw, 108px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 15ch;
+  }
+  .hero-head em {
+    font-style: italic;
+    color: var(--accent-ink);
+  }
+  .hero-sub {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .hero-sub-left {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--ink-3);
+    line-height: 1.4;
+  }
+  .hero-sub-right p {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 48ch;
+  }
+  .hero-cta-row {
+    display: flex; align-items: center; gap: 28px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 14px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 18px 28px;
+    border-radius: 999px;
+    font-size: 15px;
+    letter-spacing: -0.005em;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .btn-primary:hover { background: var(--accent-ink); transform: translateY(-1px); }
+  .btn-primary .arrow {
+    width: 18px; height: 18px; border-radius: 999px;
+    background: var(--bg); color: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    transition: transform .2s ease;
+  }
+  .btn-primary:hover .arrow { transform: translateX(2px); }
+  .secondary-note {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+  }
+  .secondary-note b { color: var(--ink); font-weight: 500; }
+
+  @media (max-width: 820px) {
+    .hero-sub { grid-template-columns: 1fr; gap: 32px; }
+    .hero { padding: 56px 0 80px; }
+  }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 96px;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+  }
+  .hero-meta .cell .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 10px;
+  }
+  .hero-meta .cell .v {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  @media (max-width: 820px) {
+    .hero-meta { grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 56px; }
+  }
+
+  /* WHAT WE BUILD */
+  .build-header {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: end; margin-bottom: 72px;
+  }
+  .build-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 4.8vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    max-width: 14ch;
+  }
+  .build-header p {
+    font-size: 18px; color: var(--ink-2); line-height: 1.55; max-width: 44ch;
+  }
+  @media (max-width: 820px) {
+    .build-header { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  .build-list {
+    border-top: 1px solid var(--rule);
+  }
+  .build-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 1.2fr 40px;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+    transition: background .25s ease, padding .25s ease;
+    cursor: default;
+  }
+  .build-row:hover { background: color-mix(in oklab, var(--bg-2) 60%, transparent); padding-left: 16px; padding-right: 16px; }
+  .build-row .idx {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    letter-spacing: 0.08em;
+    padding-top: 6px;
+  }
+  .build-row h3 {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+  .build-row .desc {
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .build-row .desc .examples {
+    display: flex; flex-wrap: wrap; gap: 6px 8px;
+    margin-top: 14px;
+  }
+  .build-row .desc .examples span {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    background: var(--bg-2);
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--rule-2);
+  }
+  .build-row .chevron {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--ink-4);
+    text-align: right;
+    padding-top: 4px;
+    transition: color .2s ease, transform .2s ease;
+  }
+  .build-row:hover .chevron { color: var(--accent-ink); transform: translateX(4px); }
+  @media (max-width: 820px) {
+    .build-row { grid-template-columns: 48px 1fr; }
+    .build-row .desc { grid-column: 2; }
+    .build-row .chevron { display: none; }
+    .build-row:hover { padding-left: 0; padding-right: 0; }
+  }
+
+  /* HOW WE WORK */
+  .how { background: var(--bg-2); }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-top: 16px;
+  }
+  .step {
+    position: relative;
+    padding-top: 28px;
+    border-top: 1px solid var(--ink);
+  }
+  .step .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    margin-bottom: 40px;
+  }
+  .step h3 {
+    font-family: var(--serif);
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .step p {
+    font-size: 16px; line-height: 1.6; color: var(--ink-2);
+    max-width: 34ch;
+  }
+  .step .meta {
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .step .meta b { color: var(--accent-ink); font-weight: 500; }
+  @media (max-width: 820px) {
+    .how-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .pricing-note {
+    margin-top: 96px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: start;
+    padding: 48px;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--bg);
+  }
+  .pricing-note .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .pricing-note h4 {
+    font-family: var(--serif);
+    font-size: 28px;
+    margin: 14px 0 0;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+  .pricing-note .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .pricing-note .split .item .t {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--accent-ink);
+    margin-bottom: 8px;
+  }
+  .pricing-note .split .item .d {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+  @media (max-width: 820px) {
+    .pricing-note { grid-template-columns: 1fr; padding: 28px; gap: 32px; margin-top: 56px; }
+    .pricing-note .split { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* WHO IT'S FOR */
+  .fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 8px;
+  }
+  .fit-col h3 {
+    font-family: var(--serif);
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: baseline; justify-content: space-between;
+  }
+  .fit-col h3 .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .fit-col.yes h3 .tag { color: var(--accent-ink); }
+  .fit-col ul {
+    list-style: none; padding: 0; margin: 0;
+  }
+  .fit-col li {
+    padding: 14px 0;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .fit-col li::before {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    margin-top: 9px;
+    border-radius: 2px;
+  }
+  .fit-col.yes li::before { background: var(--accent); }
+  .fit-col.no li::before  { background: var(--ink-4); transform: rotate(45deg); }
+  @media (max-width: 820px) {
+    .fit-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  .fit-pull {
+    margin-top: 96px;
+    font-family: var(--serif);
+    font-size: clamp(26px, 3vw, 40px);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    max-width: 24ch;
+    color: var(--ink);
+  }
+  .fit-pull em { color: var(--accent-ink); font-style: italic; }
+
+  /* ABOUT */
+  .about { background: var(--ink); color: var(--bg); }
+  .about .sec-label { color: var(--ink-4); }
+  .about .sec-label .num { color: var(--accent-soft); }
+  .about .sec-label::after { background: #2A2720; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 96px;
+    align-items: start;
+  }
+  .about-portrait {
+    aspect-ratio: 4 / 5;
+    background:
+      repeating-linear-gradient(
+        135deg,
+        #2A2720 0px, #2A2720 2px,
+        transparent 2px, transparent 10px
+      ),
+      #221F1A;
+    border-radius: 2px;
+    position: relative;
+    display: flex; align-items: flex-end; justify-content: flex-start;
+    padding: 28px;
+    overflow: hidden;
+  }
+  .about-portrait::before {
+    content: "";
+    position: absolute; inset: 20px;
+    border: 1px solid #3A3630;
+  }
+  .about-portrait .mono-label {
+    position: relative;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-4);
+    text-transform: uppercase;
+  }
+  .about-portrait .monogram {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: var(--serif);
+    font-size: clamp(140px, 22vw, 280px);
+    line-height: 1;
+    color: var(--bg);
+    font-style: italic;
+  }
+  .about-portrait .monogram sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--ink-4);
+    vertical-align: super;
+    margin-left: 4px;
+  }
+  .about-body h2 {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--bg);
+    margin-bottom: 32px;
+    max-width: 18ch;
+  }
+  .about-body h2 em { color: var(--accent-soft); font-style: italic; }
+  .about-body p {
+    font-size: 18px;
+    line-height: 1.65;
+    color: #C8C2B4;
+    margin-bottom: 20px;
+    max-width: 52ch;
+  }
+  .about-body p b { color: var(--bg); font-weight: 500; }
+  .about-facts {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 40px;
+    padding-top: 28px;
+    border-top: 1px solid #2A2720;
+  }
+  .about-facts .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 8px;
+  }
+  .about-facts .v {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--bg);
+    line-height: 1.3;
+  }
+  @media (max-width: 820px) {
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-portrait { aspect-ratio: 4 / 3; }
+  }
+
+  /* FUTURE WORK placeholder */
+  .selected {
+    border-top: 1px solid var(--rule);
+    padding-top: 48px;
+    margin-top: 0;
+  }
+  .selected-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 32px;
+  }
+  .selected-head h3 {
+    font-family: var(--serif);
+    font-size: 28px;
+    letter-spacing: -0.01em;
+  }
+  .selected-head .note {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .selected-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .case {
+    aspect-ratio: 4/3;
+    border: 1px dashed var(--rule);
+    border-radius: 3px;
+    padding: 20px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    background:
+      repeating-linear-gradient(135deg,
+        color-mix(in oklab, var(--rule-2) 40%, transparent) 0px,
+        color-mix(in oklab, var(--rule-2) 40%, transparent) 1px,
+        transparent 1px, transparent 12px);
+    color: var(--ink-3);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  .case .tag { text-transform: uppercase; }
+  .case .future { text-align: right; }
+  @media (max-width: 720px) {
+    .selected-grid { grid-template-columns: 1fr; }
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 140px 0 120px;
+  }
+  .contact-head {
+    font-family: var(--serif);
+    font-size: clamp(48px, 6.4vw, 96px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    max-width: 14ch;
+    margin-bottom: 56px;
+  }
+  .contact-head em { color: var(--accent-ink); font-style: italic; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-form {
+    display: grid;
+    gap: 20px;
+  }
+  .field {
+    display: grid; gap: 8px;
+  }
+  .field label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .field input, .field textarea, .field select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--ink);
+    padding: 10px 0;
+    font-size: 17px;
+    font-family: var(--sans);
+    color: var(--ink);
+    resize: vertical;
+    outline: none;
+    transition: border-color .2s ease;
+  }
+  .field textarea { min-height: 100px; }
+  .field input::placeholder, .field textarea::placeholder { color: var(--ink-4); }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--accent); }
+  .field-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  @media (max-width: 560px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+  .submit-row {
+    display: flex; align-items: center; gap: 24px; margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .submit-btn {
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    font-family: var(--sans);
+    font-size: 15px;
+    padding: 18px 28px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 14px;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .submit-btn:hover { background: var(--accent-ink); transform: translateY(-1px); }
+  .submit-btn:disabled { opacity: 0.6; cursor: wait; }
+  .submit-btn .arrow {
+    width: 18px; height: 18px; border-radius: 999px;
+    background: var(--bg); color: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px;
+  }
+  .submit-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+  }
+
+  .contact-aside {
+    padding-left: 48px;
+    border-left: 1px solid var(--rule);
+  }
+  .contact-aside h4 {
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .contact-aside p {
+    font-size: 16px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    margin-bottom: 28px;
+    max-width: 36ch;
+  }
+  .direct {
+    display: grid; gap: 16px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+  .direct .row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px;
+  }
+  .direct .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .direct .v {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+  }
+  .direct .v a { border-bottom: 1px solid var(--rule); transition: border-color .2s ease; }
+  .direct .v a:hover { border-color: var(--accent); }
+  @media (max-width: 820px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .contact-aside { padding-left: 0; border-left: none; border-top: 1px solid var(--rule); padding-top: 48px; }
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 40px 0 48px;
+  }
+  .foot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .foot .brand-small { font-family: var(--serif); font-size: 16px; letter-spacing: -0.01em; text-transform: none; color: var(--ink); }
+
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <span>Holzman</span>
+      <span class="mono">AI & Automations</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how" class="link-hide">How we work</a>
+      <a href="#fit" class="link-hide">Who it's for</a>
+      <a href="#about" class="link-hide">About</a>
+      <a href="#contact" class="nav-cta">Start a conversation</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="margin-bottom:40px;">
+      <span style="color:var(--accent-ink)">●</span>&nbsp;&nbsp;Boutique automation studio
+    </div>
+
+    <h1 class="hero-head reveal">
+      Put your operations on <em>rails</em>, not on someone's to-do list.
+    </h1>
+
+    <div class="hero-sub" style="margin-top: 72px;">
+      <div class="hero-sub-left reveal">
+        We design, build, and quietly maintain the automations that run your business in the background.
+      </div>
+      <div class="hero-sub-right reveal">
+        <p>
+          Custom automations, AI-assisted tools, and integrations between the software you already use.
+          You describe the work; we take the technical burden off your desk and keep it off.
+        </p>
+        <div class="hero-cta-row">
+          <a href="#contact" class="btn-primary">
+            Start a conversation <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- HOW WE WORK -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-label"><span class="num">01</span> · How we work</div>
+
+    <div class="build-header" style="margin-bottom:56px;">
+      <h2 class="reveal">Three phases.<br/>One fixed shape.</h2>
+      <p class="reveal">
+        Every engagement follows the same shape — from the first conversation to long after launch. Here's what working together actually looks like.
+      </p>
+    </div>
+
+    <div class="how-grid">
+      <div class="step reveal">
+        <div class="num">Phase 01</div>
+        <h3>Discovery</h3>
+        <p>We sit with you until we understand the workflow like someone inside your business would. Then we scope the build precisely — what it does, what it costs, what it won't do.</p>
+        <div class="meta">Output: <b>a written scope</b></div>
+      </div>
+
+      <div class="step reveal">
+        <div class="num">Phase 02</div>
+        <h3>Build</h3>
+        <p>We build the automation against the scope and hand it over. You watch it run against real data before it replaces anything — nothing goes live until you're confident it's right.</p>
+        <div class="meta">Output: <b>a live automation</b></div>
+      </div>
+
+      <div class="step reveal">
+        <div class="num">Phase 03</div>
+        <h3>Maintain</h3>
+        <p>Things break. APIs change. Your business evolves. We monitor every automation we've built, fix what breaks, and extend them as your needs shift — so you can stop thinking about it.</p>
+        <div class="meta">Output: <b>ongoing peace of mind</b></div>
+      </div>
+    </div>
+
+    <div class="pricing-note reveal">
+      <div>
+        <div class="label">The model</div>
+        <h4>Plain engagements. No surprise line items.</h4>
+      </div>
+      <div class="split">
+        <div class="item">
+          <div class="t">One-time build fee</div>
+          <div class="d">Scoped and quoted up front. Paid on delivery, not on kick-off. If we can't scope it cleanly, we say so.</div>
+        </div>
+        <div class="item">
+          <div class="t">Small monthly retainer</div>
+          <div class="d">Covers monitoring, maintenance, small improvements, and someone to call when something breaks.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section id="fit">
+  <div class="wrap">
+    <div class="sec-label"><span class="num">02</span> · Who it's for</div>
+
+    <div class="build-header">
+      <h2 class="reveal">An honest fit check,<br/>before the call.</h2>
+      <p class="reveal">
+        We only take on clients we can genuinely help. A quick read of both columns will tell you whether that's you — and save us both a meeting if it isn't.
+      </p>
+    </div>
+
+    <div class="fit-grid">
+      <div class="fit-col yes reveal">
+        <h3>You're a fit if <span class="tag">Likely yes</span></h3>
+        <ul>
+          <li>You know your own processes deeply, even if you aren't technical.</li>
+          <li>You already want automation. You're not asking "why."</li>
+          <li>You want someone to own the technical side so you don't have to.</li>
+          <li>You're okay with a short discovery before we commit to a build.</li>
+        </ul>
+      </div>
+      <div class="fit-col no reveal">
+        <h3>Probably not a fit if <span class="tag">Gracefully no</span></h3>
+        <ul>
+          <li>You need a single prompt tweaked or a one-off script run.</li>
+          <li>You want to hire us as staff or run an internal team.</li>
+          <li>You're early-stage and still figuring out what your process is.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="sec-label"><span class="num">03</span> · About</div>
+
+    <div class="about-grid">
+      <div class="about-portrait reveal">
+        <span class="mono-label">Shmuel Holzman &nbsp;·&nbsp; Founder</span>
+        <span class="monogram">H<sub>01</sub></span>
+      </div>
+      <div class="about-body">
+        <h2 class="reveal">A small practice, <em>on purpose.</em></h2>
+        <p class="reveal">
+          I'm <b>Shmuel Holzman</b>. I run Holzman AI & Automations as a solo operator with a deliberately small active client roster. Staying small is what makes the work good — I can hold every engagement in my head, know every workflow I've shipped, and pick up the phone when something misbehaves at 11pm.
+        </p>
+        <p class="reveal">
+          My background is in building things that quietly work. I care about the part after launch far more than the part before it. The automations I'm proudest of are the ones nobody on the client's team thinks about anymore.
+        </p>
+
+        <div class="about-facts reveal">
+          <div>
+            <div class="k">Team</div>
+            <div class="v">One operator. By design.</div>
+          </div>
+          <div>
+            <div class="k">Active clients</div>
+            <div class="v">A handful at any time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec-label"><span class="num">04</span> · Start a conversation</div>
+
+    <h2 class="contact-head reveal">
+      Tell me about<br/>the <em>workflow</em> on your mind.
+    </h2>
+
+    <div class="contact-grid">
+      <form class="contact-form reveal" id="contact-form">
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" placeholder="Jane Rothschild" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="jane@company.com" required />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" placeholder="Rothschild & Co." />
+          </div>
+          <div class="field">
+            <label for="referrer">Who referred you?</label>
+            <input id="referrer" name="referrer" type="text" placeholder="(we'd love to thank them)" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="about">What's the workflow?</label>
+          <textarea id="about" name="message" placeholder="A paragraph is plenty. What you're trying to automate, roughly how it works today, and what would be different if it ran itself."></textarea>
+        </div>
+
+        <!-- FormSubmit config (optional) -->
+        <input type="hidden" name="_subject" value="New inquiry from holzman-ai.com" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <!-- Honeypot to reduce spam -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div class="submit-row">
+          <button type="submit" class="submit-btn">
+            <span class="btn-label">Send message</span>
+            <span class="arrow">→</span>
+          </button>
+          <span class="submit-note" id="submit-note">I read every message.</span>
+        </div>
+      </form>
+
+      <aside class="contact-aside reveal">
+        <h4>Prefer email?</h4>
+        <p>That's fine too — the form just routes to the same inbox. Write as much or as little as you want; a single paragraph is often enough to know whether we should talk.</p>
+
+        <div class="direct">
+          <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:holzmanshmuel@gmail.com">holzmanshmuel@gmail.com</a></span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand-small">Holzman AI & Automations</span>
+    <span>© 2026 · Shmuel Holzman</span>
+    <span>holzman-ai.com</span>
+  </div>
+</footer>
+
+<script>
+  // Nav shadow on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Contact form — posts to FormSubmit's AJAX endpoint so submissions email you
+  // without the page navigating away. On first submit, FormSubmit sends you a
+  // confirmation email — click the link once and you're set.
+  const form = document.getElementById('contact-form');
+  const note = document.getElementById('submit-note');
+  const submitBtn = form.querySelector('.submit-btn');
+  const btnLabel = submitBtn.querySelector('.btn-label');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form._honey && form._honey.value) return; // honeypot tripped
+    submitBtn.disabled = true;
+    btnLabel.textContent = 'Sending…';
+    try {
+      const data = new FormData(form);
+      const res = await fetch('https://formsubmit.co/ajax/holzmanshmuel@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      });
+      if (!res.ok) throw new Error('Network error');
+      form.reset();
+      note.textContent = "Thanks — message received.";
+      btnLabel.textContent = 'Sent';
+    } catch (err) {
+      note.textContent = "Something went wrong. Email holzmanshmuel@gmail.com directly.";
+      btnLabel.textContent = 'Try again';
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
