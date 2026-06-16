@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Privacy Policy — Ledgerly · Holzman AI &amp; Automations</title>
+<meta name="description" content="Privacy Policy for Ledgerly, the Amazon Selling Partner API application built by Holzman AI & Automations — how seller data is collected, used, stored, protected, shared, and deleted." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F5F1EA;
+    --bg-2: #EFEAE0;
+    --ink: #1A1814;
+    --ink-2: #3C3830;
+    --ink-3: #6B6558;
+    --ink-4: #A8A294;
+    --rule: #D9D2C3;
+    --rule-2: #E6E0D1;
+    --accent: oklch(0.48 0.08 115);
+    --accent-ink: oklch(0.34 0.07 115);
+    --accent-soft: oklch(0.92 0.03 115);
+
+    --serif: "Newsreader", Georgia, serif;
+    --sans:  "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --mono:  "Geist Mono", ui-monospace, monospace;
+
+    --maxw: 1240px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.55;
+    font-weight:400;
+    letter-spacing:-0.005em;
+    color:var(--ink);
+    font-feature-settings: "ss01", "ss02";
+  }
+  a{color:inherit;text-decoration:none}
+  p{margin:0}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 48px}
+  @media (max-width: 720px){
+    body{font-size:16px}
+    .wrap{padding:0 24px}
+  }
+
+  /* ───────── Nav ───────── */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in oklab, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease;
+  }
+  .nav.scrolled { border-color: var(--rule); }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .brand {
+    display: flex; align-items: baseline; gap: 14px;
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .brand .mono {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+  }
+  .nav-links {
+    display: flex; gap: 36px; align-items: center;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .nav-links a { transition: color .2s ease; }
+  .nav-links a:hover { color: var(--accent-ink); }
+  .nav-links a.active { color: var(--accent-ink); }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    transition: background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--bg); }
+  @media (max-width: 820px) {
+    .nav-links .link-hide { display: none; }
+  }
+  @media (max-width: 560px) {
+    .nav-links { gap: 18px; }
+    .nav-cta { display: none; }
+  }
+
+  /* ───────── Eyebrow ───────── */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* ───────── Legal page ───────── */
+  .legal-hero{ padding: 80px 0 0; }
+  .legal-hero h1{
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(40px, 5.4vw, 76px);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 28px 0 0;
+    max-width: 16ch;
+  }
+  .legal-hero h1 em{ font-style: italic; color: var(--accent-ink); }
+  .legal-meta{
+    margin-top: 28px;
+    display:flex; gap: 22px; flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .legal-intro{
+    margin-top: 40px;
+    padding-top: 36px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--serif);
+    font-size: clamp(19px, 1.7vw, 23px);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+
+  .legal-body{
+    padding: 64px 0 120px;
+    max-width: 760px;
+  }
+  @media (max-width: 720px){ .legal-body{ padding: 48px 0 80px; } }
+  .legal-body section{ margin-top: 52px; }
+  .legal-body section:first-child{ margin-top: 0; }
+  .legal-body h2{
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(26px, 2.6vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 18px;
+    display:flex; align-items: baseline; gap: 14px;
+  }
+  .legal-body h2 .n{
+    font-family: var(--mono);
+    font-size: 12px; letter-spacing: 0.08em;
+    color: var(--accent-ink);
+  }
+  .legal-body h3{
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+    margin: 28px 0 8px;
+  }
+  .legal-body p{
+    font-size: 16.5px;
+    line-height: 1.68;
+    color: var(--ink-2);
+    margin: 0 0 16px;
+    max-width: 68ch;
+  }
+  .legal-body ul{
+    list-style: none; padding: 0; margin: 4px 0 20px;
+    display: flex; flex-direction: column; gap: 12px;
+    max-width: 68ch;
+  }
+  .legal-body li{
+    position: relative; padding-left: 22px;
+    font-size: 16.5px; line-height: 1.6; color: var(--ink-2);
+  }
+  .legal-body li::before{
+    content:""; position:absolute; left:0; top:10px;
+    width:7px; height:7px; background: var(--accent-ink);
+  }
+  .legal-body a.inline{ color: var(--accent-ink); border-bottom: 1px solid var(--rule); }
+  .legal-body a.inline:hover{ border-color: var(--accent-ink); }
+  .legal-body strong{ color: var(--ink); font-weight: 600; }
+  .legal-note{
+    margin-top: 8px;
+    padding: 22px 26px;
+    background: var(--bg-2);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    font-size: 15.5px; line-height: 1.6; color: var(--ink-2);
+  }
+
+  /* ───────── Footer ───────── */
+  footer { border-top: 1px solid var(--rule); padding: 40px 0 48px; }
+  .foot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-3);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .foot .brand-small {
+    font-family: var(--serif); font-size: 16px; letter-spacing: -0.01em;
+    text-transform: none; color: var(--ink);
+  }
+  .foot-links{ display:flex; gap: 22px; flex-wrap: wrap; }
+  .foot-links a:hover{ color: var(--accent-ink); }
+
+  ::selection{background:color-mix(in oklab, var(--accent) 28%, transparent);color:var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- ───────── Nav ───────── -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand">
+      <span>Holzman</span>
+      <span class="mono">AI &amp; Automations</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#how" class="link-hide">How we work</a>
+      <a href="/#fit" class="link-hide">Who it's for</a>
+      <a href="/ledgerly.html" class="link-hide">Ledgerly</a>
+      <a href="/ledgerly.html#contact" class="nav-cta">Start a conversation</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="legal-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span style="color:var(--accent-ink)">●</span>&nbsp;&nbsp;Ledgerly</div>
+    <h1>Privacy <em>Policy.</em></h1>
+    <div class="legal-meta">
+      <span>Effective: June 15, 2026</span>
+      <span>Last updated: June 15, 2026</span>
+    </div>
+    <p class="legal-intro">
+      Ledgerly is an Amazon Selling Partner API application built and operated by Holzman AI &amp; Automations. This policy explains, in plain terms, what data the application accesses, how we use it, how we protect it, and how it is deleted.
+    </p>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="legal-body">
+
+  <section>
+    <h2><span class="n">01</span> Who we are</h2>
+    <p>
+      <strong>Ledgerly</strong> ("the application," "the service") is a product of <strong>Holzman AI &amp; Automations</strong> ("Holzman AI," "we," "us," "our"), a New York-based automation consultancy. Ledgerly connects to a seller's Amazon account through Amazon's Selling Partner API (SP-API) to help that seller stay on top of their numbers — reconciling their Amazon account data and turning it into clear, ongoing reporting and monitoring.
+    </p>
+    <p>
+      This Privacy Policy applies to data we access and process through the Ledgerly application. It does not govern Amazon's own handling of your data, which is covered by Amazon's policies.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span> Data we access and collect</h2>
+    <p>We access only the data needed to provide the service, and only for the Amazon account that has authorized us. This may include:</p>
+    <h3>Amazon account data (via SP-API, with your authorization)</h3>
+    <ul>
+      <li>Orders, shipments, and inventory records</li>
+      <li>FBA inbound, shipment, and inventory adjustment records</li>
+      <li>Financial events, settlements, and fee data</li>
+      <li>Performance and account-health metrics</li>
+      <li>Listing and catalog information</li>
+    </ul>
+    <p>The exact data we can access is limited to the roles and permissions you grant when you authorize the application, and you can review or revoke that access at any time in Amazon Seller Central.</p>
+    <h3>Business contact information</h3>
+    <ul>
+      <li>Your name, business name, email address, and similar details you provide so we can set up and support your account.</li>
+    </ul>
+    <h3>Technical and usage data</h3>
+    <ul>
+      <li>Logs, timestamps, and error records generated when the application runs, used to operate, secure, and troubleshoot the service.</li>
+    </ul>
+    <div class="legal-note">
+      We do not seek out personally identifiable information about your end customers. Where order data made available by Amazon contains such information, we minimize it, restrict access to it, and handle it in accordance with Amazon's Data Protection Policy.
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span> How we use data</h2>
+    <p>We use the data we access solely to provide the service to the seller who authorized it. Specifically, to:</p>
+    <ul>
+      <li>Reconcile your Amazon records and surface discrepancies for your review;</li>
+      <li>Generate reports, summaries, and dashboards of your account activity and performance;</li>
+      <li>Monitor your account and flag issues that need attention;</li>
+      <li>Operate, maintain, secure, and improve the application; and</li>
+      <li>Provide support and communicate with you about your account.</li>
+    </ul>
+    <p><strong>We do not</strong> sell your data, share it with other sellers, use it for advertising, or use Amazon Information to train third-party or general-purpose AI models. Amazon Information is used only to provide services to the authorizing seller.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">04</span> Your authorization</h2>
+    <p>
+      Ledgerly accesses your Amazon account only after you grant access through Amazon's official authorization (OAuth) flow. You control that authorization, and you may withdraw it at any time from Amazon Seller Central. Withdrawing authorization stops any further access to your account data.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n">05</span> How we store and protect data</h2>
+    <ul>
+      <li><strong>Encryption.</strong> Data is encrypted in transit (TLS) and at rest.</li>
+      <li><strong>Credentials.</strong> Access tokens and credentials are held in a dedicated secrets store — never in plain-text scripts, spreadsheets, or source code.</li>
+      <li><strong>Least privilege.</strong> Each automation is scoped to the minimum access it needs, and we document what it reads and writes.</li>
+      <li><strong>Access control.</strong> Access to your data is restricted to authorized personnel who need it to operate or support the service.</li>
+      <li><strong>Infrastructure.</strong> The application runs on reputable, access-controlled cloud infrastructure.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="n">06</span> When we share data</h2>
+    <p>We do not sell your data. We share it only in these limited cases:</p>
+    <ul>
+      <li><strong>Service providers (subprocessors).</strong> Trusted infrastructure and tooling providers that help us run the service, bound by confidentiality and data-protection obligations and permitted to use the data only to provide their services to us.</li>
+      <li><strong>At your direction.</strong> When you ask us to share data with a system or person you designate.</li>
+      <li><strong>Legal requirements.</strong> When required by law or to protect rights, safety, or the integrity of the service.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="n">07</span> Data retention and deletion</h2>
+    <p>
+      We keep data only as long as needed to provide the service to you or as required by law (for example, basic records for tax or accounting). When you withdraw authorization or end the engagement, we delete or anonymize your Amazon account data within a reasonable period, and on request we will confirm deletion. Personally identifiable information sourced from Amazon is retained no longer than permitted by Amazon's Data Protection Policy unless a longer period is legally required.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n">08</span> Your rights and choices</h2>
+    <ul>
+      <li>Revoke the application's access to your Amazon account at any time in Seller Central;</li>
+      <li>Request a copy of the personal data we hold about you;</li>
+      <li>Request correction or deletion of your data; and</li>
+      <li>Ask questions about how your data is handled.</li>
+    </ul>
+    <p>To exercise any of these, contact us using the details below.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">09</span> Amazon policy compliance</h2>
+    <p>
+      Ledgerly is operated in accordance with the Amazon Solution Provider Agreement, the Amazon Acceptable Use Policy, and the Amazon Data Protection Policy. We use Amazon Information only as authorized by the relevant seller and only to provide the service described in this policy.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n">10</span> International data transfers</h2>
+    <p>
+      We are based in the United States and use cloud infrastructure that may process data across multiple regions. Where data is transferred across regions, we take steps to ensure it remains protected consistent with this policy and applicable law.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n">11</span> Children</h2>
+    <p>The service is intended for businesses and is not directed to children. We do not knowingly collect personal information from children.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">12</span> Changes to this policy</h2>
+    <p>We may update this policy from time to time. When we do, we will revise the "Last updated" date above and, where appropriate, notify you.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">13</span> Contact us</h2>
+    <p>
+      Questions about this policy or your data? Contact Holzman AI &amp; Automations at
+      <a class="inline" href="mailto:holzmanshmuel@gmail.com">holzmanshmuel@gmail.com</a>.
+    </p>
+  </section>
+
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand-small">Holzman AI &amp; Automations</span>
+    <span class="foot-links">
+      <a href="mailto:holzmanshmuel@gmail.com">holzmanshmuel@gmail.com</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var nav = document.getElementById('nav');
+  if (nav) {
+    var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 10); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+})();
+</script>
+
+</body>
+</html>
