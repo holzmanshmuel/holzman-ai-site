@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Monthly Amazon P&L Analyst — Holzman AI & Automations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F8FB;
+    --bg-2: #F4F6FB;
+    --ink: #14171C;
+    --ink-2: #4A515E;
+    --ink-3: #8A92A0;
+    --ink-4: #B6BCC6;
+    --rule: #E7EAF1;
+    --rule-2: #EEF0F5;
+    --accent: #1D4ED8;
+    --accent-ink: #1E40AF;
+    --accent-soft: #EEF3FE;
+
+    --serif: "Space Grotesk", Georgia, serif;
+    --sans:  "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --mono:  "IBM Plex Mono", ui-monospace, monospace;
+
+    --maxw: 1240px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.55;
+    font-weight:400;
+    letter-spacing:-0.005em;
+    color:var(--ink);
+    font-feature-settings: "ss01", "ss02";
+  }
+  a{color:inherit;text-decoration:none}
+  p{margin:0}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 48px}
+  @media (max-width: 720px){
+    body{font-size:16px}
+    .wrap{padding:0 24px}
+  }
+
+  section{padding:120px 0}
+  @media (max-width: 720px){ section{padding:80px 0} }
+
+  /* ───────── Nav ───────── */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in oklab, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease;
+  }
+  .nav.scrolled { border-color: var(--rule); }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .brand {
+    display: flex; align-items: baseline; gap: 14px;
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .brand .mono {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+  }
+  .nav-links {
+    display: flex; gap: 36px; align-items: center;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .nav-links a { transition: color .2s ease; }
+  .nav-links a:hover { color: var(--accent-ink); }
+  .nav-links a.active { color: var(--accent-ink); }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    transition: background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--bg); }
+  @media (max-width: 820px) {
+    .nav-links .link-hide { display: none; }
+  }
+  @media (max-width: 560px) {
+    .nav-links { gap: 18px; }
+    .nav-cta { display: none; }
+  }
+
+  /* ───────── Eyebrow / section label ───────── */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .sec-label {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 48px;
+  }
+  .sec-label .num { color: var(--accent-ink); }
+  .sec-label::after {
+    content: ""; flex: 1; height: 1px; background: var(--rule);
+    max-width: 280px;
+  }
+
+  /* ───────── Hero ───────── */
+  .hero { padding: 96px 0 140px; position: relative; overflow: hidden; }
+  .hero-head {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 7.2vw, 108px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 15ch;
+    margin: 0;
+  }
+  .hero-head em {
+    font-style: italic;
+    color: var(--accent-ink);
+  }
+  .hero-sub {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .hero-sub-left {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--ink-3);
+    line-height: 1.4;
+  }
+  .hero-sub-right p {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 48ch;
+  }
+  .hero-cta-row { display: flex; align-items: center; gap: 28px; margin-top: 32px; flex-wrap: wrap; }
+  @media (max-width: 820px) {
+    .hero-sub { grid-template-columns: 1fr; gap: 32px; }
+    .hero { padding: 56px 0 80px; }
+  }
+
+  /* ───────── Primary button ───────── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 14px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-family: var(--sans);
+    font-size: 15px;
+    padding: 18px 28px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .btn-primary:hover { background: var(--accent-ink); transform: translateY(-1px); }
+  .btn-primary .arrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    transition: transform .2s ease;
+  }
+  .btn-primary:hover .arrow { transform: translateX(2px); }
+
+  /* ───────── Typography primitives ───────── */
+  .h2{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(40px, 4.8vw, 68px);
+    line-height:1.02;
+    letter-spacing:-0.02em;
+    margin:0 0 20px;
+    max-width:20ch;
+  }
+  .h2 em{font-style:italic;color:var(--accent-ink)}
+  .lead{
+    font-family:var(--sans);
+    font-weight:400;
+    font-size:18px;
+    line-height:1.55;
+    color:var(--ink-2);
+    max-width:62ch;
+  }
+
+  /* ───────── Scroll reveal (matches homepage) ───────── */
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ───────── Section 01: services ───────── */
+  .services{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:1px;
+    background:var(--rule);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    margin-top:56px;
+  }
+  @media (max-width: 820px){.services{grid-template-columns:1fr}}
+  .svc{
+    background:var(--bg);
+    padding:36px 32px 40px;
+    display:flex;flex-direction:column;gap:20px;
+    min-height:280px;
+  }
+  .svc-head{
+    display:flex;align-items:baseline;gap:12px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--rule-2);
+  }
+  .svc-num{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:0.08em}
+  .svc-title{
+    font-family:var(--sans);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink);
+  }
+  .svc ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:18px}
+  .svc li{display:block}
+  .svc-item-name{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+    font-size:19px;
+    line-height:1.3;
+    color:var(--ink);
+    letter-spacing:-0.005em;
+  }
+  .svc-item-desc{
+    font-size:15px;
+    line-height:1.55;
+    color:var(--ink-3);
+    margin-top:6px;
+  }
+
+  .svc-callout{
+    margin-top:40px;
+    padding:28px 32px;
+    background:var(--bg-2);
+    border:1px solid var(--rule);
+    display:grid;
+    grid-template-columns: auto 1fr;
+    gap:22px;align-items:baseline;
+  }
+  @media (max-width:640px){.svc-callout{grid-template-columns:1fr;gap:8px}}
+  .svc-callout .plus{
+    font-family:var(--serif);font-weight:400;
+    font-size:32px;line-height:1;color:var(--accent-ink);
+  }
+  .svc-callout strong{font-family:var(--sans);font-weight:500;color:var(--ink)}
+  .svc-callout p{font-size:16px;line-height:1.55;color:var(--ink-2)}
+
+  /* ───────── Section 02: how ───────── */
+  .how{background:var(--bg-2)}
+  .steps{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:40px;
+    margin-top:8px;
+  }
+  @media (max-width: 820px){.steps{grid-template-columns:1fr}}
+  .step {
+    position: relative;
+    padding-top: 28px;
+    border-top: 1px solid var(--ink);
+  }
+  .step .num {
+    display:block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    margin-bottom: 40px;
+    text-transform:uppercase;
+  }
+  .step h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px;
+    color:var(--ink);
+  }
+  .step p {
+    font-size: 16px; line-height: 1.6; color: var(--ink-2);
+    max-width: 34ch;
+    margin:0;
+  }
+
+  .steps-closer{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:1px solid var(--rule);
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(18px,1.7vw,22px);
+    line-height:1.45;color:var(--ink-2);
+    max-width:62ch;
+  }
+
+  /* ───────── Section 03: cases ───────── */
+  .cases{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:28px;
+    margin-top:8px;
+  }
+  @media (max-width: 900px){.cases{grid-template-columns:1fr}}
+  .case{
+    background:var(--bg);
+    border:1px solid var(--rule);
+    border-radius:3px;
+    padding:36px 32px 32px;
+    display:flex;flex-direction:column;gap:20px;
+  }
+  .case-meta{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-3)}
+  .case-label{
+    font-family:var(--sans);font-weight:500;
+    font-size:21px;line-height:1.25;letter-spacing:-0.015em;color:var(--ink);
+    margin:-8px 0 0;
+  }
+  .case-body{font-size:16px;line-height:1.6;color:var(--ink-2);margin:0}
+  .case-quote{
+    margin:8px 0 0;
+    padding:4px 0 4px 20px;
+    border-left:1px solid var(--rule);
+    background:transparent;
+  }
+  .case-quote p{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:17px;line-height:1.5;color:var(--ink);
+    letter-spacing:-0.005em;
+    margin:0;
+  }
+  .case-attr{
+    margin-top:14px;
+    font-family:var(--sans);font-size:13px;color:var(--ink-3);letter-spacing:0.01em;
+  }
+  .case-attr strong{color:var(--ink);font-weight:500}
+
+  /* ───────── Section 04: approach ───────── */
+  .prose{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:48px;
+    margin-top:8px;
+  }
+  @media (max-width: 820px){.prose{grid-template-columns:1fr;gap:28px}}
+  .prose p{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(18px, 1.5vw, 21px);
+    line-height:1.5;
+    letter-spacing:-0.005em;
+    color:var(--ink);
+    max-width:48ch;
+    margin:0;
+  }
+
+  /* ───────── Section 05: who / fit ───────── */
+  .fit-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:0;
+    margin-top:8px;
+  }
+  @media (max-width: 820px){.fit-grid{grid-template-columns:1fr}}
+  .fit-col{
+    padding:8px 40px 8px 0;
+    border-right:1px solid var(--rule);
+  }
+  .fit-col + .fit-col{padding:8px 0 8px 40px;border-right:0}
+  @media (max-width: 820px){
+    .fit-col{border-right:0;border-bottom:1px solid var(--rule);padding:8px 0 32px}
+    .fit-col + .fit-col{padding:32px 0 8px;border-bottom:0}
+  }
+  .fit-col h3{
+    font-family:var(--serif);font-weight:400;
+    font-size:32px;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);
+    margin:0 0 28px;
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  }
+  .fit-col h3 .tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.12em;
+    color:var(--ink-3);text-transform:uppercase;font-weight:400;
+  }
+  .fit-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+  .fit-col li{
+    position:relative;padding-left:24px;
+    font-size:16px;line-height:1.55;color:var(--ink-2);
+    max-width:38ch;
+  }
+  .fit-col.yes li::before{
+    content:"";
+    position:absolute;left:0;top:9px;
+    width:8px;height:8px;background:var(--accent-ink);
+  }
+  .fit-col.no li::before{
+    content:"";
+    position:absolute;left:1px;top:9px;
+    width:7px;height:7px;background:transparent;border:1px solid var(--ink-3);
+    transform:rotate(45deg);
+  }
+
+  /* ───────── Section 06: closing ───────── */
+  .closing{
+    text-align:center;
+  }
+  .closing-h {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 6.4vw, 96px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    max-width: 14ch;
+    margin: 0 auto;
+    color:var(--ink);
+  }
+  .closing-h em { color: var(--accent-ink); font-style: italic; }
+  .closing-body{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(17px,1.5vw,20px);
+    line-height:1.5;color:var(--ink-2);
+    max-width:46ch;margin:22px auto 0;
+  }
+  .closing-cta{margin-top:40px;display:inline-flex}
+
+  /* ───────── Footer ───────── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 40px 0 48px;
+  }
+  .foot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .foot .brand-small {
+    font-family: var(--serif);
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--ink);
+  }
+
+  /* selection */
+  ::selection{background:color-mix(in oklab, var(--accent) 28%, transparent);color:var(--ink)}
+
+  /* ───────── Product page: pricing ───────── */
+  :root{ --lime:#BEF264; --lime-ink:#3F6212; --lime-soft:#F2FBDD; }
+  .pricing{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+  @media (max-width:720px){.pricing{grid-template-columns:1fr}}
+  .price-card{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:36px 32px;
+    box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+  .price-card.founding{border-color:var(--accent);border-width:1.5px}
+  .price-tag{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .price-badge{display:inline-block;background:var(--lime-soft);color:var(--lime-ink);border-radius:20px;
+    padding:3px 12px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;margin-left:8px}
+  .price-num{font-family:var(--serif);font-size:56px;font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-top:16px}
+  .price-num small{font-size:18px;font-weight:500;color:var(--ink-3)}
+  .price-card ul{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:12px}
+  .price-card li{padding-left:24px;position:relative;color:var(--ink-2);font-size:15.5px}
+  .price-card li::before{content:"—";position:absolute;left:0;color:var(--accent)}
+  .price-note{margin-top:20px;font-size:13.5px;color:var(--ink-3)}
+
+</style>
+</head>
+<body>
+
+<!-- ───────── Nav ───────── -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand">
+      <span>Holzman</span>
+      <span class="mono">AI &amp; Automations</span>
+    </a>
+    <div class="nav-links">
+      <a href="#what" class="link-hide">What you get</a>
+      <a href="#how" class="link-hide">How it works</a>
+      <a href="#pricing" class="link-hide">Pricing</a>
+      <a href="https://demo.holzman-ai.com" class="link-hide" target="_blank" rel="noopener">Live demo</a>
+      <a href="#contact" class="nav-cta">Become a founding customer</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ───────── Hero ───────── -->
+<header class="hero" id="top" data-screen-label="00 Hero">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="margin-bottom:40px;">
+      <span style="color:var(--accent-ink)">●</span>&nbsp;&nbsp;Monthly Amazon P&amp;L Report — done for you
+    </div>
+
+    <h1 class="hero-head reveal">
+      You already own the dashboards. This is <em>the analyst.</em>
+    </h1>
+
+    <div class="hero-sub" style="margin-top: 72px;">
+      <div class="hero-sub-left reveal">
+        A written month-over-month P&amp;L narrative for your Amazon business — what moved, why it moved, and what to watch — on your own private report site.
+      </div>
+      <div class="hero-sub-right reveal">
+        <p>
+          Sellerboard and Helium 10 give you forty columns of numbers. This gives you the three things that changed, explained in plain English, reconciled before you ever see them — and signed by a human.
+        </p>
+        <div class="hero-cta-row">
+          <a href="https://demo.holzman-ai.com" target="_blank" rel="noopener" class="btn-primary">
+            See a live report <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ───────── 01 What you get ───────── -->
+<section id="what" data-screen-label="01 What you get">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num">01</span> · What you get</div>
+
+    <h2 class="h2 reveal">An analyst's read, <em>not another dashboard.</em></h2>
+
+    <p class="lead reveal" style="margin-top:24px">
+      Every month, your numbers get the treatment a finance team would give them — movement decomposed, anomalies flagged, ratios recomputed — and you get the conclusions, not the homework.
+    </p>
+
+    <div class="services" role="list">
+      <article class="svc" role="listitem">
+        <header class="svc-head">
+          <span class="svc-num">A.</span>
+          <span class="svc-title">The written report</span>
+        </header>
+        <ul>
+          <li>
+            <div class="svc-item-name">What moved &amp; why</div>
+            <div class="svc-item-desc">A month-over-month narrative: your biggest gainers and losers, the driver behind each move, and margin shifts decomposed — volume vs price vs cost.</div>
+          </li>
+          <li>
+            <div class="svc-item-name">What to watch</div>
+            <div class="svc-item-desc">Hidden issues (products that look stable while the underlying signals deteriorate), stockout signatures, and ad-spend money-losers.</div>
+          </li>
+        </ul>
+      </article>
+      <article class="svc" role="listitem">
+        <header class="svc-head">
+          <span class="svc-num">B.</span>
+          <span class="svc-title">Your report site</span>
+        </header>
+        <ul>
+          <li>
+            <div class="svc-item-name">Private &amp; branded</div>
+            <div class="svc-item-desc">Your own hosted report site behind Google login — every month archived, every version kept, nothing lands in an inbox attachment.</div>
+          </li>
+        </ul>
+      </article>
+      <article class="svc" role="listitem">
+        <header class="svc-head">
+          <span class="svc-num">C.</span>
+          <span class="svc-title">Numbers you can trust</span>
+        </header>
+        <ul>
+          <li>
+            <div class="svc-item-name">Reconciled before published</div>
+            <div class="svc-item-desc">Every report passes a reconciliation gate against your source data, and data-quality flags surface anything suspicious — missing costs, implausible margins — instead of hiding it.</div>
+          </li>
+        </ul>
+      </article>
+      <article class="svc" role="listitem">
+        <header class="svc-head">
+          <span class="svc-num">D.</span>
+          <span class="svc-title">Ask your P&amp;L <span class="price-badge">add-on</span></span>
+        </header>
+        <ul>
+          <li>
+            <div class="svc-item-name">The analyst in your pocket</div>
+            <div class="svc-item-desc">Chat with your own numbers from Claude — "why did margin drop in March?", "show me the trend on my hero SKU" — answered from your live report database.</div>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 02 How it works ───────── -->
+<section id="how" class="how" data-screen-label="02 How it works">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num">02</span> · How it works</div>
+
+    <h2 class="h2 reveal">Onboard in days. <em>No dev work on your side.</em></h2>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="num">Step 01</span>
+        <h3>Connect</h3>
+        <p>You share a Sellerboard report link (or a simple cost sheet) — about an hour of your time, once. No code, no IT project.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">Step 02</span>
+        <h3>We reconcile</h3>
+        <p>Your history is loaded and checked month by month against your own source of truth. Your first report is reviewed by a human before you ever see it.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">Step 03</span>
+        <h3>Every month, on time</h3>
+        <p>Your report is published by the 5th business day. Questions about it are answered within 2 business days. That's the deal, in writing.</p>
+      </div>
+    </div>
+
+    <p class="steps-closer reveal">Concierge onboarding — we set everything up with you, by hand.</p>
+  </div>
+</section>
+
+<!-- ───────── 03 See it live ───────── -->
+<section id="demo" data-screen-label="03 Live demo">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num">03</span> · See it live</div>
+
+    <h2 class="h2 reveal">Read a real report <em>right now.</em></h2>
+
+    <div class="cases">
+      <article class="case reveal">
+        <div class="case-meta">Public demo — synthetic store, real engine</div>
+        <h3 class="case-label">Acme Outdoor Co. — May 2026 monthly report</h3>
+        <p class="case-body">This is the actual product running on demo data: the same engine, the same report site, the same analysis. Start with "What Matters Most" at the top, then look at the biggest movers — every change comes with its driver spelled out. What you're reading is what lands for your store every month.</p>
+        <div class="hero-cta-row" style="margin-top:28px">
+          <a href="https://demo.holzman-ai.com" target="_blank" rel="noopener" class="btn-primary">Open the live demo <span class="arrow">→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 04 Pricing ───────── -->
+<section id="pricing" data-screen-label="04 Pricing">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num">04</span> · Pricing</div>
+
+    <h2 class="h2 reveal">Less than a bookkeeper. <em>Sharper than a dashboard.</em></h2>
+
+    <div class="pricing">
+      <!-- DECISION Q-8: founding terms below use the recommended 12-months -> founders-for-life shape; confirm before deploy -->
+      <div class="price-card founding reveal">
+        <span class="price-tag">Founding seller</span><span class="price-badge">3 seats</span>
+        <div class="price-num">$199<small>/month</small></div>
+        <ul>
+          <li>Founding rate for your first 12 months, then a lifetime founders' rate of $399.</li>
+          <li>Everything in Standard — same report, same site, same SLA.</li>
+          <li>You shape the product: honest feedback, a testimonial at day 30, two introductions.</li>
+        </ul>
+        <p class="price-note">Three seats, then the founding rate closes.</p>
+      </div>
+      <div class="price-card reveal">
+        <span class="price-tag">Standard</span>
+        <div class="price-num">$599<small>/month</small></div>
+        <ul>
+          <li>The monthly written P&amp;L report + your private report site.</li>
+          <li>Report by the 5th business day; questions answered in 2 business days.</li>
+          <li>Ask-your-P&amp;L chat available as an add-on.</li>
+        </ul>
+        <p class="price-note">Compare: a fractional analyst runs $800–2,500/month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 05 Who it's for ───────── -->
+<section id="fit" data-screen-label="05 Who this is for">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num">05</span> · Who this is for</div>
+
+    <h2 class="h2 reveal">Built for sellers with <em>real money in motion.</em></h2>
+
+    <div class="fit-grid">
+      <div class="fit-col yes reveal">
+        <h3>Good fit <span class="tag">You're a fit if</span></h3>
+        <ul>
+          <li>You're an established Amazon seller and the P&amp;L actually moves month to month.</li>
+          <li>You use Sellerboard (or can export your numbers) — connection takes an hour.</li>
+          <li>You want conclusions and next moves, not another tool to learn.</li>
+        </ul>
+      </div>
+      <div class="fit-col no reveal">
+        <h3>Not a fit <span class="tag">Probably not if</span></h3>
+        <ul>
+          <li>You're brand new and don't have a year of history to analyze yet.</li>
+          <li>You enjoy living in the spreadsheets yourself (respect).</li>
+          <li>You want a cheap dashboard — those already exist and we'll happily point you to them.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 06 Closing CTA ───────── -->
+<section id="contact" class="closing" data-screen-label="06 Closing">
+  <div class="wrap">
+    <h2 class="closing-h reveal">See your own numbers <em>this month.</em></h2>
+    <p class="closing-body reveal">Three founding seats at $199. A short email is enough — we'll take it from there.</p>
+    <a href="mailto:holzmanshmuel@gmail.com?subject=Founding%20seller%20—%20Amazon%20P%26L%20Report" class="btn-primary closing-cta reveal">Claim a founding seat <span class="arrow">→</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand-small">Holzman AI &amp; Automations</span>
+    <span><a href="mailto:holzmanshmuel@gmail.com">holzmanshmuel@gmail.com</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="/terms.html">Terms</a></span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Scroll-triggered reveal (matches homepage)
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    // Fallback: just reveal everything
+    els.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Add border-bottom to nav once page is scrolled (matches homepage)
+  var nav = document.getElementById('nav');
+  if (nav) {
+    var onScroll = function () {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+})();
+</script>
+
+</body>
+</html>
