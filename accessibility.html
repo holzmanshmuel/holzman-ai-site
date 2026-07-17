@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Accessibility Statement — Holzman AI &amp; Automations</title>
+<meta name="description" content="Accessibility Statement (הצהרת נגישות) for holzman-ai.com — our commitment to IS 5568 and WCAG 2.0 Level AA, what we've done, and how to reach our accessibility contact." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F8FB;
+    --bg-2: #F4F6FB;
+    --ink: #14171C;
+    --ink-2: #4A515E;
+    --ink-3: #8A92A0;
+    --ink-4: #B6BCC6;
+    --rule: #E7EAF1;
+    --rule-2: #EEF0F5;
+    --accent: #1D4ED8;
+    --accent-ink: #1E40AF;
+    --accent-soft: #EEF3FE;
+
+    --serif: "Space Grotesk", Georgia, serif;
+    --sans:  "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --mono:  "IBM Plex Mono", ui-monospace, monospace;
+
+    --maxw: 1240px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.55;
+    font-weight:400;
+    letter-spacing:-0.005em;
+    color:var(--ink);
+    font-feature-settings: "ss01", "ss02";
+  }
+  a{color:inherit;text-decoration:none}
+  p{margin:0}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 48px}
+  @media (max-width: 720px){
+    body{font-size:16px}
+    .wrap{padding:0 24px}
+  }
+
+  /* ───────── Nav ───────── */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in oklab, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease;
+  }
+  .nav.scrolled { border-color: var(--rule); }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .brand {
+    display: flex; align-items: baseline; gap: 14px;
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .brand .mono {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+  }
+  .nav-links {
+    display: flex; gap: 36px; align-items: center;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .nav-links a { transition: color .2s ease; }
+  .nav-links a:hover { color: var(--accent-ink); }
+  .nav-links a.active { color: var(--accent-ink); }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    transition: background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--bg); }
+  @media (max-width: 820px) {
+    .nav-links .link-hide { display: none; }
+  }
+  @media (max-width: 560px) {
+    .nav-links { gap: 18px; }
+    .nav-cta { display: none; }
+  }
+
+  /* ───────── Eyebrow ───────── */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* ───────── Legal page ───────── */
+  .legal-hero{ padding: 80px 0 0; }
+  .legal-hero h1{
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(40px, 5.4vw, 76px);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 28px 0 0;
+    max-width: 20ch;
+  }
+  .legal-hero h1 em{ font-style: italic; color: var(--accent-ink); }
+  .legal-hero h1 .h1-he{
+    display: block;
+    font-size: 0.55em;
+    line-height: 1.2;
+    margin-top: 16px;
+    color: var(--ink-2);
+  }
+  .legal-meta{
+    margin-top: 28px;
+    display:flex; gap: 22px; flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .legal-intro{
+    margin-top: 40px;
+    padding-top: 36px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--serif);
+    font-size: clamp(19px, 1.7vw, 23px);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+
+  .legal-body{
+    padding: 64px 0 120px;
+    max-width: 760px;
+  }
+  @media (max-width: 720px){ .legal-body{ padding: 48px 0 80px; } }
+  .legal-body section{ margin-top: 52px; }
+  .legal-body section:first-child{ margin-top: 0; }
+  .legal-body h2{
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(26px, 2.6vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 18px;
+    display:flex; align-items: baseline; gap: 14px;
+    flex-wrap: wrap;
+  }
+  .legal-body h2 .n{
+    font-family: var(--mono);
+    font-size: 12px; letter-spacing: 0.08em;
+    color: var(--accent-ink);
+  }
+  .legal-body p{
+    font-size: 16.5px;
+    line-height: 1.68;
+    color: var(--ink-2);
+    margin: 0 0 16px;
+    max-width: 68ch;
+  }
+  .legal-body a.inline{ color: var(--accent-ink); border-bottom: 1px solid var(--rule); }
+  .legal-body a.inline:hover{ border-color: var(--accent-ink); }
+  .legal-body strong{ color: var(--ink); font-weight: 600; }
+
+  /* ───────── Footer ───────── */
+  footer { border-top: 1px solid var(--rule); padding: 40px 0 48px; }
+  .foot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-3);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .foot .brand-small {
+    font-family: var(--serif); font-size: 16px; letter-spacing: -0.01em;
+    text-transform: none; color: var(--ink);
+  }
+  .foot-links{ display:flex; gap: 22px; flex-wrap: wrap; }
+  .foot-links a:hover{ color: var(--accent-ink); }
+
+  ::selection{background:color-mix(in oklab, var(--accent) 28%, transparent);color:var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- ───────── Nav ───────── -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand">
+      <span>Holzman</span>
+      <span class="mono">AI &amp; Automations</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#how" class="link-hide">How we work</a>
+      <a href="/#fit" class="link-hide">Who it's for</a>
+      <a href="/ledgerly.html" class="link-hide">Ledgerly</a>
+      <a href="/#contact" class="nav-cta">Start a conversation</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="legal-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span style="color:var(--accent-ink)">●</span>&nbsp;&nbsp;holzman-ai.com</div>
+    <h1>
+      Accessibility <em>Statement</em>
+      <span class="h1-he">· <span lang="he" dir="rtl">הצהרת נגישות</span></span>
+    </h1>
+    <div class="legal-meta">
+      <span>Last updated: July 17, 2026</span>
+    </div>
+    <p class="legal-intro">
+      Holzman AI &amp; Automations is committed to making this website usable by everyone, in line with the Israeli accessibility standard (IS 5568) and WCAG 2.0 Level AA.
+    </p>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="legal-body">
+
+  <section>
+    <h2><span class="n">01</span> What we've done</h2>
+    <p>
+      The site is built with semantic HTML, labeled form fields, full keyboard navigability, sufficient color contrast, and no autoplaying media or flashing content.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span> Ongoing</h2>
+    <p>
+      Accessibility is reviewed as the site evolves. If you encounter anything that doesn't work well with a screen reader, keyboard, or any assistive technology, we genuinely want to know.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span> Accessibility contact (<span lang="he" dir="rtl">רכז נגישות</span>)</h2>
+    <p>
+      Shmuel Holzman · <a class="inline" href="mailto:holzmanshmuel@gmail.com">holzmanshmuel@gmail.com</a>. We aim to respond within 3 business days.
+    </p>
+  </section>
+
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand-small">Holzman AI &amp; Automations</span>
+    <span class="foot-links">
+      <a href="mailto:holzmanshmuel@gmail.com">holzmanshmuel@gmail.com</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/accessibility">Accessibility</a>
+    </span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var nav = document.getElementById('nav');
+  if (nav) {
+    var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 10); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+})();
+</script>
+
+</body>
+</html>
