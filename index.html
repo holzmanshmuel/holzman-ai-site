@@ -718,6 +718,17 @@
     color: var(--ink-3);
     text-transform: uppercase;
   }
+  .privacy-note {
+    font-size: 13px;
+    color: var(--ink-3);
+    margin-top: 8px;
+  }
+  .privacy-note a {
+    color: var(--ink-2);
+    border-bottom: 1px solid var(--rule);
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .privacy-note a:hover { color: var(--accent-ink); border-color: var(--accent); }
 
   .contact-aside {
     padding-left: 48px;
@@ -1008,6 +1019,8 @@
           </button>
           <span class="submit-note" id="submit-note">I read every message.</span>
         </div>
+
+        <p class="privacy-note">We use these details only to reply to you. <a href="/privacy-policy">Privacy policy</a></p>
       </form>
 
       <aside class="contact-aside reveal">
@@ -1025,7 +1038,7 @@
 <footer>
   <div class="wrap foot">
     <span class="brand-small">Holzman AI & Automations</span>
-    <span><a href="/privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="/terms.html">Terms</a></span>
+    <span><a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/accessibility">Accessibility</a> &nbsp;·&nbsp; <a href="/privacy.html">Ledgerly Privacy</a> &nbsp;·&nbsp; <a href="/terms.html">Ledgerly Terms</a></span>
     <span>© 2026 · Shmuel Holzman</span>
   </div>
 </footer>
