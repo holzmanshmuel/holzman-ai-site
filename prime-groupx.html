@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Prime GroupX — Case Study — Holzman AI &amp; Automations</title>
+<meta name="description" content="How Holzman AI automated Prime GroupX’s Amazon seller operations — reimbursement documentation and invoicing, end to end — buying the team’s time back." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F8FB;
+    --bg-2: #F4F6FB;
+    --ink: #14171C;
+    --ink-2: #4A515E;
+    --ink-3: #8A92A0;
+    --ink-4: #B6BCC6;
+    --rule: #E7EAF1;
+    --rule-2: #EEF0F5;
+    --accent: #1D4ED8;
+    --accent-ink: #1E40AF;
+    --accent-soft: #EEF3FE;
+
+    --serif: "Space Grotesk", Georgia, serif;
+    --sans:  "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --mono:  "IBM Plex Mono", ui-monospace, monospace;
+
+    --maxw: 1240px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.55;
+    font-weight:400;
+    letter-spacing:-0.005em;
+    color:var(--ink);
+    font-feature-settings: "ss01", "ss02";
+  }
+  a{color:inherit;text-decoration:none}
+  p{margin:0}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 48px}
+  @media (max-width: 720px){
+    body{font-size:16px}
+    .wrap{padding:0 24px}
+  }
+
+  section{padding:120px 0}
+  @media (max-width: 720px){ section{padding:80px 0} }
+
+  /* ───────── Nav ───────── */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in oklab, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease;
+  }
+  .nav.scrolled { border-color: var(--rule); }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .brand {
+    display: flex; align-items: baseline; gap: 14px;
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .brand .mono {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+  }
+  .nav-links {
+    display: flex; gap: 36px; align-items: center;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .nav-links a { transition: color .2s ease; }
+  .nav-links a:hover { color: var(--accent-ink); }
+  .nav-links a.active { color: var(--accent-ink); }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    transition: background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--bg); }
+  @media (max-width: 820px) {
+    .nav-links .link-hide { display: none; }
+  }
+  @media (max-width: 560px) {
+    .nav-links { gap: 18px; }
+    .nav-cta { display: none; }
+  }
+
+  /* ───────── Eyebrow / section label ───────── */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .sec-label {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 48px;
+  }
+  .sec-label .num { color: var(--accent-ink); }
+  .sec-label::after {
+    content: ""; flex: 1; height: 1px; background: var(--rule);
+    max-width: 280px;
+  }
+
+  /* ───────── Hero ───────── */
+  .hero { padding: 96px 0 140px; position: relative; overflow: hidden; }
+  .hero-head {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 7.2vw, 108px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 15ch;
+    margin: 0;
+  }
+  .hero-head em {
+    font-style: italic;
+    color: var(--accent-ink);
+  }
+  .hero-sub {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .hero-sub-left {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--ink-3);
+    line-height: 1.4;
+  }
+  .hero-sub-right p {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 48ch;
+  }
+  .hero-cta-row { display: flex; align-items: center; gap: 28px; margin-top: 32px; flex-wrap: wrap; }
+  @media (max-width: 820px) {
+    .hero-sub { grid-template-columns: 1fr; gap: 32px; }
+    .hero { padding: 56px 0 80px; }
+  }
+
+  /* ───────── Primary button ───────── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 14px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-family: var(--sans);
+    font-size: 15px;
+    padding: 18px 28px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .btn-primary:hover { background: var(--accent-ink); transform: translateY(-1px); }
+  .btn-primary .arrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    transition: transform .2s ease;
+  }
+  .btn-primary:hover .arrow { transform: translateX(2px); }
+
+  /* ───────── Typography primitives ───────── */
+  .h2{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(40px, 4.8vw, 68px);
+    line-height:1.02;
+    letter-spacing:-0.02em;
+    margin:0 0 20px;
+    max-width:20ch;
+  }
+  .h2 em{font-style:italic;color:var(--accent-ink)}
+  .lead{
+    font-family:var(--sans);
+    font-weight:400;
+    font-size:18px;
+    line-height:1.55;
+    color:var(--ink-2);
+    max-width:62ch;
+  }
+
+  /* ───────── Scroll reveal (matches homepage) ───────── */
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ───────── Section 01: services ───────── */
+  .services{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:1px;
+    background:var(--rule);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    margin-top:56px;
+  }
+  @media (max-width: 820px){.services{grid-template-columns:1fr}}
+  .svc{
+    background:var(--bg);
+    padding:36px 32px 40px;
+    display:flex;flex-direction:column;gap:20px;
+    min-height:280px;
+  }
+  .svc-head{
+    display:flex;align-items:baseline;gap:12px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--rule-2);
+  }
+  .svc-num{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:0.08em}
+  .svc-title{
+    font-family:var(--sans);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink);
+  }
+  .svc ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:18px}
+  .svc li{display:block}
+  .svc-item-name{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+    font-size:19px;
+    line-height:1.3;
+    color:var(--ink);
+    letter-spacing:-0.005em;
+  }
+  .svc-item-desc{
+    font-size:15px;
+    line-height:1.55;
+    color:var(--ink-3);
+    margin-top:6px;
+  }
+
+  .svc-callout{
+    margin-top:40px;
+    padding:28px 32px;
+    background:var(--bg-2);
+    border:1px solid var(--rule);
+    display:grid;
+    grid-template-columns: auto 1fr;
+    gap:22px;align-items:baseline;
+  }
+  @media (max-width:640px){.svc-callout{grid-template-columns:1fr;gap:8px}}
+  .svc-callout .plus{
+    font-family:var(--serif);font-weight:400;
+    font-size:32px;line-height:1;color:var(--accent-ink);
+  }
+  .svc-callout strong{font-family:var(--sans);font-weight:500;color:var(--ink)}
+  .svc-callout p{font-size:16px;line-height:1.55;color:var(--ink-2)}
+
+  /* ───────── Section 02: how ───────── */
+  .how{background:var(--bg-2)}
+  .steps{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:40px;
+    margin-top:8px;
+  }
+  @media (max-width: 820px){.steps{grid-template-columns:1fr}}
+  .step {
+    position: relative;
+    padding-top: 28px;
+    border-top: 1px solid var(--ink);
+  }
+  .step .num {
+    display:block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    margin-bottom: 40px;
+    text-transform:uppercase;
+  }
+  .step h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px;
+    color:var(--ink);
+  }
+  .step p {
+    font-size: 16px; line-height: 1.6; color: var(--ink-2);
+    max-width: 34ch;
+    margin:0;
+  }
+
+  .steps-closer{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:1px solid var(--rule);
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(18px,1.7vw,22px);
+    line-height:1.45;color:var(--ink-2);
+    max-width:62ch;
+  }
+
+  /* ───────── Section 03: cases ───────── */
+  .cases{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:28px;
+    margin-top:8px;
+  }
+  @media (max-width: 900px){.cases{grid-template-columns:1fr}}
+  .case{
+    background:var(--bg);
+    border:1px solid var(--rule);
+    border-radius:3px;
+    padding:36px 32px 32px;
+    display:flex;flex-direction:column;gap:20px;
+  }
+  .case-meta{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-3)}
+  .case-label{
+    font-family:var(--sans);font-weight:500;
+    font-size:21px;line-height:1.25;letter-spacing:-0.015em;color:var(--ink);
+    margin:-8px 0 0;
+  }
+  .case-body{font-size:16px;line-height:1.6;color:var(--ink-2);margin:0}
+  .case-quote{
+    margin:8px 0 0;
+    padding:4px 0 4px 20px;
+    border-left:1px solid var(--rule);
+    background:transparent;
+  }
+  .case-quote p{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:17px;line-height:1.5;color:var(--ink);
+    letter-spacing:-0.005em;
+    margin:0;
+  }
+  .case-attr{
+    margin-top:14px;
+    font-family:var(--sans);font-size:13px;color:var(--ink-3);letter-spacing:0.01em;
+  }
+  .case-attr strong{color:var(--ink);font-weight:500}
+
+  /* ───────── Section 04: approach ───────── */
+  .prose{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:48px;
+    margin-top:8px;
+  }
+  @media (max-width: 820px){.prose{grid-template-columns:1fr;gap:28px}}
+  .prose p{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(18px, 1.5vw, 21px);
+    line-height:1.5;
+    letter-spacing:-0.005em;
+    color:var(--ink);
+    max-width:48ch;
+    margin:0;
+  }
+
+  /* ───────── Section 05: who / fit ───────── */
+  .fit-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:0;
+    margin-top:8px;
+  }
+  @media (max-width: 820px){.fit-grid{grid-template-columns:1fr}}
+  .fit-col{
+    padding:8px 40px 8px 0;
+    border-right:1px solid var(--rule);
+  }
+  .fit-col + .fit-col{padding:8px 0 8px 40px;border-right:0}
+  @media (max-width: 820px){
+    .fit-col{border-right:0;border-bottom:1px solid var(--rule);padding:8px 0 32px}
+    .fit-col + .fit-col{padding:32px 0 8px;border-bottom:0}
+  }
+  .fit-col h3{
+    font-family:var(--serif);font-weight:400;
+    font-size:32px;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);
+    margin:0 0 28px;
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  }
+  .fit-col h3 .tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.12em;
+    color:var(--ink-3);text-transform:uppercase;font-weight:400;
+  }
+  .fit-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+  .fit-col li{
+    position:relative;padding-left:24px;
+    font-size:16px;line-height:1.55;color:var(--ink-2);
+    max-width:38ch;
+  }
+  .fit-col.yes li::before{
+    content:"";
+    position:absolute;left:0;top:9px;
+    width:8px;height:8px;background:var(--accent-ink);
+  }
+  .fit-col.no li::before{
+    content:"";
+    position:absolute;left:1px;top:9px;
+    width:7px;height:7px;background:transparent;border:1px solid var(--ink-3);
+    transform:rotate(45deg);
+  }
+
+  /* ───────── Section 06: closing ───────── */
+  .closing{
+    text-align:center;
+  }
+  .closing-h {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 6.4vw, 96px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    max-width: 14ch;
+    margin: 0 auto;
+    color:var(--ink);
+  }
+  .closing-h em { color: var(--accent-ink); font-style: italic; }
+  .closing-body{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(17px,1.5vw,20px);
+    line-height:1.5;color:var(--ink-2);
+    max-width:46ch;margin:22px auto 0;
+  }
+  .closing-cta{margin-top:40px;display:inline-flex}
+
+  /* ───────── Footer ───────── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 40px 0 48px;
+  }
+  .foot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .foot .brand-small {
+    font-family: var(--serif);
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--ink);
+  }
+
+  /* selection */
+  ::selection{background:color-mix(in oklab, var(--accent) 28%, transparent);color:var(--ink)}
+
+  /* ───────── Case study: feature quote + disclosure ───────── */
+  .feature-quote{margin:0;padding:0;border:0}
+  .feature-quote p{
+    font-family:var(--serif);font-weight:400;font-style:italic;
+    font-size:clamp(20px,2.2vw,28px);line-height:1.45;letter-spacing:-0.01em;
+    color:var(--ink);max-width:30ch;margin:0;
+  }
+  .feature-attr{
+    display:block;margin-top:32px;
+    font-family:var(--mono);font-size:12px;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--ink-3);font-style:normal;
+  }
+  .feature-attr strong{color:var(--accent-ink);font-weight:500}
+  .disclosure{
+    margin-top:44px;padding-top:22px;border-top:1px solid var(--rule);
+    font-size:14px;line-height:1.6;color:var(--ink-3);max-width:62ch;
+  }
+</style>
+</head>
+<body>
+
+<!-- ───────── Nav ───────── -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand">
+      <span>Holzman</span>
+      <span class="mono">AI &amp; Automations</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#how" class="link-hide">How we work</a>
+      <a href="/#fit" class="link-hide">Who it's for</a>
+      <a href="/case-studies" class="link-hide active">Case studies</a>
+      <a href="/ledgerly" class="link-hide">Ledgerly</a>
+      <a href="/#about" class="link-hide">About</a>
+      <a href="#contact" class="nav-cta">Start a conversation</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ───────── Hero ───────── -->
+<header class="hero" id="top" data-screen-label="00 Hero">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="margin-bottom:40px;">
+      <a href="/case-studies" style="color:var(--ink-3)">Case studies</a>&nbsp;&nbsp;/&nbsp;&nbsp;<span style="color:var(--accent-ink)">Prime GroupX</span>
+    </div>
+
+    <h1 class="hero-head reveal">
+      Prime GroupX bought its team&rsquo;s <em>time back.</em>
+    </h1>
+
+    <div class="hero-sub" style="margin-top: 72px;">
+      <div class="hero-sub-left reveal">
+        Amazon seller operations &middot; reimbursement documentation and invoicing, automated end to end.
+      </div>
+      <div class="hero-sub-right reveal">
+        <p>
+          A lean consulting firm ran almost entirely on skilled manual labor. We automated the repetitive core of the operation &mdash; so the team could stop doing by hand what a system does better.
+        </p>
+        <div class="hero-cta-row">
+          <a href="#contact" class="btn-primary">
+            Start a conversation <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ───────── 01 The firm ───────── -->
+<section id="firm" data-screen-label="01 The firm">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num">01</span> &middot; The firm</div>
+    <h2 class="h2 reveal">A lean team, <em>a mountain of manual work.</em></h2>
+    <p class="lead reveal" style="margin-top:24px">
+      Prime GroupX runs Amazon seller operations on behalf of its clients &mdash; approvals, reimbursements, invoicing, policy work. A high volume of detailed, recurring tasks, handled by a small team.
+    </p>
+  </div>
+</section>
+
+<!-- ───────── 02 The problem ───────── -->
+<section id="problem" class="how" data-screen-label="02 The problem">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num">02</span> &middot; The problem</div>
+    <h2 class="h2 reveal">Profitable work, <em>done entirely by hand.</em></h2>
+    <div class="prose">
+      <p class="reveal">Prime&rsquo;s operations ran on skilled manual labor. The work was profitable, but nearly every task was repeatable, detailed, and endless &mdash; reimbursement documentation cross-referenced by hand, invoices assembled one at a time.</p>
+      <p class="reveal">Which capped the whole business: the firm could only grow as fast as the team could add hours. More clients meant more people doing the same manual work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 03 What we built ───────── -->
+<section id="built" data-screen-label="03 What we built">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num">03</span> &middot; What we built</div>
+    <h2 class="h2 reveal">The repetitive core, <em>running on its own.</em></h2>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="num">01</span>
+        <h3>Automated</h3>
+        <p>The do-it-again-tomorrow tasks &mdash; reimbursement paperwork, invoicing &mdash; now run on their own, with a human check where it matters.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">02</span>
+        <h3>Connected</h3>
+        <p>The tools Prime already works in pass information between them automatically. No re-keying, no re-checking by hand.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">03</span>
+        <h3>Built to scale</h3>
+        <p>As new bottlenecks appear, we automate those too &mdash; so the firm can take on more clients without adding headcount.</p>
+      </div>
+    </div>
+    <p class="steps-closer reveal">Same quality, a fraction of the manual hours &mdash; the team freed to focus on clients instead of paperwork.</p>
+  </div>
+</section>
+
+<!-- ───────── 04 In their words ───────── -->
+<section id="result" class="how" data-screen-label="04 In their words">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num">04</span> &middot; In their words</div>
+    <h2 class="h2 reveal">In Mendy&rsquo;s <em>own words.</em></h2>
+    <blockquote class="feature-quote reveal">
+      <p>&ldquo;The most important thing to a business is a strong foundation and scalability built upon good processes. Shmuel brought automation and efficiencies to nearly all of our processes &mdash; literally buying our time back, from performing tasks to instead focusing on the big picture and growing our business to new heights. I highly recommend you &lsquo;buy back your time&rsquo; with Shmuel.&rdquo;</p>
+      <span class="feature-attr"><strong>Mendy Holtzman</strong> &mdash; CEO, Prime GroupX</span>
+    </blockquote>
+    <p class="disclosure reveal">Full disclosure: Prime GroupX is run by my brother, Mendy &mdash; which is how I earned the trust to go this deep into the operation. The work, and his words about it, stand on their own.</p>
+  </div>
+</section>
+
+<!-- ───────── 05 Closing CTA ───────── -->
+<section id="contact" class="closing" data-screen-label="05 Closing">
+  <div class="wrap">
+    <h2 class="closing-h reveal">Something your team does <em>by hand?</em></h2>
+    <p class="closing-body reveal">If your operation runs on repetitive, manual work, most of it can run itself. A short conversation is the fastest way to find out.</p>
+    <a href="mailto:holzmanshmuel@gmail.com" class="btn-primary closing-cta reveal">Start a conversation <span class="arrow">&rarr;</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand-small">Holzman AI &amp; Automations</span>
+    <span><a href="mailto:holzmanshmuel@gmail.com">holzmanshmuel@gmail.com</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a> &nbsp;·&nbsp; <a href="/privacy-policy">Site Privacy</a> &nbsp;·&nbsp; <a href="/accessibility">Accessibility</a></span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Scroll-triggered reveal (matches homepage)
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    // Fallback: just reveal everything
+    els.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Add border-bottom to nav once page is scrolled (matches homepage)
+  var nav = document.getElementById('nav');
+  if (nav) {
+    var onScroll = function () {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+})();
+</script>
+
+</body>
+</html>
