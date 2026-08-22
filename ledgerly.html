@@ -369,6 +369,13 @@
     font-family:var(--sans);font-size:13px;color:var(--ink-3);letter-spacing:0.01em;
   }
   .case-attr strong{color:var(--ink);font-weight:500}
+  .case-link{
+    display:inline-flex;align-items:center;gap:8px;margin-top:4px;
+    font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--accent-ink);transition:gap .2s ease;
+  }
+  .case-link .arrow{font-family:var(--mono);font-size:11px}
+  .case-link:hover{gap:12px}
 
   /* ───────── Section 04: approach ───────── */
   .prose{
@@ -495,7 +502,8 @@
     <div class="nav-links">
       <a href="/#how" class="link-hide">How we work</a>
       <a href="/#fit" class="link-hide">Who it's for</a>
-      <a href="/ledgerly.html" class="link-hide active">Ledgerly</a>
+      <a href="/case-studies" class="link-hide">Case studies</a>
+      <a href="/ledgerly" class="link-hide active">Ledgerly</a>
       <a href="/#about" class="link-hide">About</a>
       <a href="#contact" class="nav-cta">Start a conversation</a>
     </div>
@@ -652,13 +660,14 @@
 
     <div class="cases">
       <article class="case reveal">
-        <div class="case-meta">Amazon seller consulting firm</div>
-        <h3 class="case-label">Reimbursement documentation automation</h3>
-        <p class="case-body">A consulting firm serving Amazon sellers needed to cross-reference Amazon reimbursement reports against their internal case tracker — work that was eating hours of manual time every week. We built an automation that ingests the report, cross-references existing cases, and writes matched rows into the tracker automatically.</p>
+        <div class="case-meta">Prime GroupX · Amazon seller operations</div>
+        <h3 class="case-label">Reimbursement &amp; invoicing automation</h3>
+        <p class="case-body">Prime GroupX runs Amazon seller operations for its clients — profitable work, but nearly all of it done by hand. We automated the repetitive core: reimbursement documentation and invoicing, end to end, connected to the tools the team already works in, with a human check where it matters.</p>
         <blockquote class="case-quote">
-          <p>"We serve Amazon sellers, and Shmuel has built automations that touch some of our most sensitive client workflows. He handled it with the care and follow-through you'd want from someone with that level of access."</p>
+          <p>"Shmuel brought automation and efficiencies to nearly all of our processes — literally buying our time back. I highly recommend you 'buy back your time' with Shmuel."</p>
         </blockquote>
-        <div class="case-attr"><strong>Menachem</strong>, CEO</div>
+        <div class="case-attr"><strong>Mendy Holtzman</strong>, CEO, Prime GroupX</div>
+        <a class="case-link" href="/prime-groupx">Read the full story <span class="arrow">→</span></a>
       </article>
 
       <article class="case reveal">
@@ -730,7 +739,7 @@
 <footer>
   <div class="wrap foot">
     <span class="brand-small">Holzman AI &amp; Automations</span>
-    <span><a href="mailto:holzmanshmuel@gmail.com">holzmanshmuel@gmail.com</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="/terms.html">Terms</a> &nbsp;·&nbsp; <a href="/privacy-policy">Site Privacy</a> &nbsp;·&nbsp; <a href="/accessibility">Accessibility</a></span>
+    <span><a href="mailto:holzmanshmuel@gmail.com">holzmanshmuel@gmail.com</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a> &nbsp;·&nbsp; <a href="/privacy-policy">Site Privacy</a> &nbsp;·&nbsp; <a href="/accessibility">Accessibility</a></span>
     <span>© 2026</span>
   </div>
 </footer>
