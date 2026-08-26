@@ -1,0 +1,23 @@
+# Content signals — what automated clients may do with this site's content.
+# Spec: https://contentsignals.org/
+#
+# All three are yes, deliberately. This is a consultancy's public marketing
+# site: being read, quoted, cited and summarised by search engines and AI
+# assistants is the entire point of publishing it. Nothing here is gated or
+# proprietary, so there is nothing to reserve.
+#
+#   search   — indexing and returning links/excerpts in search results
+#   ai-input — feeding content into a model at answer time (RAG, AI search)
+#   ai-train — training or fine-tuning models
+#
+# Note these are a STATED PREFERENCE, not an enforcement mechanism. Crawlers
+# choose whether to honour them. Blocking, if it were ever wanted, happens at
+# the Cloudflare edge, not here.
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+# The full page list, so a crawler does not have to discover it by following
+# links. Absent until now, which is why this file exists at all.
+Sitemap: https://holzman-ai.com/sitemap.xml

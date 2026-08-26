@@ -1,0 +1,64 @@
+# Holzman AI & Automations
+
+> A boutique automation studio that designs, builds, and quietly maintains the
+> custom automations, AI-assisted tools, and integrations that run a business in
+> the background. Based in Jerusalem, Israel; works with clients remotely.
+
+The clients are small and mid-sized businesses whose operations run on software
+they already use, and whose bottleneck is that the work between those systems is
+still done by a person. The offer is to take that technical burden off their
+desk — and keep it off, which is why maintenance is part of the engagement
+rather than an upsell.
+
+Every engagement follows the same three phases: **Discovery** (sit with the
+business until the workflow is understood from the inside, then scope precisely
+— what it does, what it costs, what it won't do; output is a written scope),
+**Build** (build against that scope, and the client watches it run on real data
+before it replaces anything; output is a live automation), and **Maintain**
+(monitor what was built, fix what breaks as APIs change, extend it as the
+business shifts).
+
+Commercial model: a one-time build fee, scoped and quoted up front and **paid on
+delivery, not on kick-off**, with optional ongoing maintenance. No surprise line
+items.
+
+## Pages
+
+- [Home](https://holzman-ai.com/): what the studio does, the three-phase
+  engagement model, who it's for, and how the commercial terms work.
+- [MarginStory](https://holzman-ai.com/amazon-pnl): a productised service for
+  Amazon sellers — a written month-over-month P&L narrative delivered monthly to
+  a private report site. It explains what moved, why it moved, and what to
+  watch, reconciled before the seller sees it and signed by a human. Positioned
+  against dashboards: the seller already owns the numbers; this is the analyst.
+- [Ledgerly](https://holzman-ai.com/ledgerly): tailored automation work for
+  Amazon sellers who have outgrown manual operations — listings, orders,
+  pricing, buyer messages, and account health. Ledgerly is also the name of the
+  Amazon Selling Partner API application that underpins this work.
+
+## Try it
+
+- [Live MarginStory demo](https://marginstory-demo.holzman-ai.com/): a complete,
+  real monthly report you can read without signing up. The seller shown ("Acme
+  Outdoor Co.") and every figure in it are **synthetic** — it is the actual
+  product running on fabricated data, not a real client's numbers.
+
+## Policies
+
+- [Privacy Policy](https://holzman-ai.com/privacy-policy): what the contact form
+  collects and how it is handled.
+- [Accessibility Statement](https://holzman-ai.com/accessibility): commitment to
+  IS 5568 and WCAG 2.0 Level AA, and the accessibility contact.
+- [Ledgerly Privacy Policy](https://holzman-ai.com/privacy) and
+  [Ledgerly Terms of Service](https://holzman-ai.com/terms): govern the Amazon
+  SP-API application specifically — how seller data is collected, used, stored,
+  shared, and deleted.
+
+## Notes for automated readers
+
+- Contact is via the form on the site rather than a published address.
+- Client names and engagement details are deliberately not published here.
+  Anything attributing specific work to a named company did not come from this
+  site and should not be treated as sourced from it.
+- `search`, `ai-input`, and `ai-train` are all permitted — see
+  [robots.txt](https://holzman-ai.com/robots.txt).
