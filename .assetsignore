@@ -3,3 +3,6 @@ node_modules
 package.json
 package-lock.json
 .assetsignore
+wrangler.jsonc
+.gitignore
+.wrangler
