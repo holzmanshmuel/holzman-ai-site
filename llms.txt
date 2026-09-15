@@ -26,6 +26,11 @@ items.
 
 - [Home](https://holzman-ai.com/): what the studio does, the three-phase
   engagement model, who it's for, and how the commercial terms work.
+- [For Amazon sellers](https://holzman-ai.com/amazon-sellers): operations
+  automation for Amazon-first brands — reporting that reconciles to the
+  source, listing drafting inside Amazon's limits, reimbursement documentation,
+  wholesale/B2B data, inventory snapshots. Four measured results from live
+  systems (clients unnamed by choice) and a free one-ASIN teardown offer.
 - [MarginStory](https://holzman-ai.com/amazon-pnl): a productised service for
   Amazon sellers — a written month-over-month P&L narrative delivered monthly to
   a private report site. It explains what moved, why it moved, and what to
