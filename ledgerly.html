@@ -393,12 +393,16 @@
   /* ───────── Section 03: cases ───────── */
   .cases{
     display:grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* auto-fit so the roster reads right at any length: two cards sit side by
+       side, a single card keeps a comfortable measure instead of orphaning
+       half the row. */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
     gap:28px;
     margin-top:8px;
   }
   @media (max-width: 900px){.cases{grid-template-columns:1fr}}
   .case{
+    max-width:760px;
     background:var(--bg);
     border:1px solid var(--rule);
     border-radius:3px;
@@ -718,16 +722,6 @@
     <h2 class="h2 reveal">A small roster, <em>doing real work.</em></h2>
 
     <div class="cases">
-      <article class="case reveal">
-        <div class="case-meta">Amazon seller consulting firm</div>
-        <h3 class="case-label">Reimbursement documentation automation</h3>
-        <p class="case-body">A consulting firm serving Amazon sellers needed to cross-reference Amazon reimbursement reports against their internal case tracker — work that was eating hours of manual time every week. We built an automation that ingests the report, cross-references existing cases, and writes matched rows into the tracker automatically.</p>
-        <blockquote class="case-quote">
-          <p>"We serve Amazon sellers, and Shmuel has built automations that touch some of our most sensitive client workflows. He handled it with the care and follow-through you'd want from someone with that level of access."</p>
-        </blockquote>
-        <div class="case-attr"><strong>Menachem</strong>, CEO</div>
-      </article>
-
       <article class="case reveal">
         <div class="case-meta">Consumer electronics brand</div>
         <h3 class="case-label">Buyer message automation &amp; daily sales reporting</h3>
