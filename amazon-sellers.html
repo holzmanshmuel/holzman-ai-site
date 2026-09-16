@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Automation for Amazon sellers — Holzman AI & Automations</title>
-<meta name="description" content="Operations automation for Amazon-first brands: reporting that reconciles to the source, listings drafted inside Amazon's limits, reimbursement paperwork that files itself, wholesale data in one place. Send one ASIN and get a free one-page teardown." />
+<meta name="description" content="Operations automation for Amazon-first brands: reporting that explains why the numbers moved and what to do next, listings drafted in your account manager's own approach, wholesale data and inventory you can ask in chat. Send one ASIN and get a free one-page teardown." />
 <link rel="canonical" href="https://holzman-ai.com/amazon-sellers" />
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="https://holzman-ai.com/amazon-sellers" />
 <meta property="og:title" content="Automation for Amazon sellers — Holzman AI &amp; Automations" />
-<meta property="og:description" content="Operations automation for Amazon-first brands: reporting that reconciles to the source, listings drafted inside Amazon's limits, reimbursement paperwork that files itself, wholesale data in one place. Send one ASIN and get a free one-page teardown." />
+<meta property="og:description" content="Operations automation for Amazon-first brands: reporting that explains why the numbers moved and what to do next, listings drafted in your account manager's own approach, wholesale data and inventory you can ask in chat. Send one ASIN and get a free one-page teardown." />
 <meta property="og:image" content="https://holzman-ai.com/og-card.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -24,7 +24,7 @@
 <meta property="og:image:alt" content="Holzman AI &amp; Automations — Boutique automation, built on rails." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Automation for Amazon sellers — Holzman AI &amp; Automations" />
-<meta name="twitter:description" content="Operations automation for Amazon-first brands: reporting that reconciles to the source, listings drafted inside Amazon's limits, reimbursement paperwork that files itself, wholesale data in one place. Send one ASIN and get a free one-page teardown." />
+<meta name="twitter:description" content="Operations automation for Amazon-first brands: reporting that explains why the numbers moved and what to do next, listings drafted in your account manager's own approach, wholesale data and inventory you can ask in chat. Send one ASIN and get a free one-page teardown." />
 <meta name="twitter:image" content="https://holzman-ai.com/og-card.png" />
 <meta name="twitter:image:alt" content="Holzman AI &amp; Automations — Boutique automation, built on rails." />
 <script type="application/ld+json">
@@ -36,7 +36,7 @@
       "@id": "https://holzman-ai.com/amazon-sellers#webpage",
       "url": "https://holzman-ai.com/amazon-sellers",
       "name": "Automation for Amazon sellers — Holzman AI & Automations",
-      "description": "Operations automation for Amazon-first brands: reporting that reconciles to the source, listings drafted inside Amazon's limits, reimbursement paperwork that files itself, wholesale data in one place. Send one ASIN and get a free one-page teardown.",
+      "description": "Operations automation for Amazon-first brands: reporting that explains why the numbers moved and what to do next, listings drafted in your account manager's own approach, wholesale data and inventory you can ask in chat. Send one ASIN and get a free one-page teardown.",
       "inLanguage": "en",
       "isPartOf": { "@id": "https://holzman-ai.com/#website" },
       "about": { "@id": "https://holzman-ai.com/amazon-sellers#service" },
@@ -48,7 +48,7 @@
       "name": "Operations automation for Amazon sellers",
       "serviceType": "Business process automation",
       "url": "https://holzman-ai.com/amazon-sellers",
-      "description": "Custom-built reporting, listing drafting, reimbursement documentation, wholesale data and inventory systems for Amazon-first brands, built one seller at a time and maintained on a monthly retainer.",
+      "description": "Custom-built reporting, listing drafting, wholesale data and inventory systems for Amazon-first brands, built one seller at a time and maintained on a monthly retainer.",
       "provider": { "@id": "https://holzman-ai.com/#organization" },
       "areaServed": "Worldwide",
       "audience": { "@type": "BusinessAudience", "name": "Amazon-first consumer brands and Amazon seller-services firms" }
@@ -848,51 +848,6 @@
   /* ===== /amazon-sellers additions ===== */
   .build-row { cursor: default; }
   .build-row:hover { transform: none; }
-  .proof-sec { background: var(--bg-2); border-top: 1px solid var(--rule-2); border-bottom: 1px solid var(--rule-2); }
-  .proof-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-  }
-  .proof {
-    background: #fff;
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 36px 36px 30px;
-    display: flex; flex-direction: column; gap: 14px;
-    transition: border-color .2s ease, transform .2s ease;
-  }
-  .proof:hover { border-color: var(--ink-4); transform: translateY(-2px); }
-  .proof .num {
-    font-family: var(--serif);
-    font-size: clamp(44px, 5vw, 64px);
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: var(--accent);
-    font-variant-numeric: tabular-nums;
-  }
-  .proof .lbl {
-    font-family: var(--serif);
-    font-size: 21px;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    max-width: 30ch;
-  }
-  .proof .body { font-size: 15.5px; line-height: 1.6; color: var(--ink-2); flex: 1; }
-  .proof .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    padding-top: 16px;
-    border-top: 1px solid var(--rule-2);
-  }
-  @media (max-width: 860px) {
-    .proof-grid { grid-template-columns: 1fr; }
-    .proof { padding: 28px 24px 24px; }
-  }
 
   .build-row .desc a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
   .build-row .desc a:hover { text-decoration-color: var(--accent); }
@@ -976,11 +931,11 @@
 
     <div class="hero-sub" style="margin-top: 72px;">
       <div class="hero-sub-left reveal">
-        Reporting, listings, reimbursement paperwork, wholesale data. Built for one seller at a time, then quietly maintained.
+        Reporting, listings, wholesale data, inventory. Built for one seller at a time, then quietly maintained.
       </div>
       <div class="hero-sub-right reveal">
         <p>
-          Most Amazon brands run the back office on spreadsheets and whoever is free that day. We replace the parts that repeat with systems that run on their own, reconcile to the source, and tell you what moved. You keep the judgment. The machine does the paperwork.
+          Most Amazon brands run the back office on spreadsheets and whoever is free that day. We replace the parts that repeat with systems that run on their own and tell you what moved and why. You keep the judgment. The machine does the rest.
         </p>
         <div class="hero-cta-row">
           <a href="#teardown" class="btn-primary">
@@ -993,57 +948,13 @@
   </div>
 </header>
 
-<!-- PROOF -->
-<section class="proof-sec" id="proof">
-  <div class="wrap">
-    <div class="sec-label"><span class="num">01</span> · What it looks like when it works</div>
-
-    <div class="build-header" style="margin-bottom:56px;">
-      <h2 class="reveal">Four numbers from<br/>work that is live.</h2>
-      <p class="reveal">
-        No client names on this page, by choice. Every figure below was measured on a running system, not projected.
-      </p>
-    </div>
-
-    <div class="proof-grid">
-      <article class="proof reveal">
-        <div class="num">4 min</div>
-        <div class="lbl">to review and accept an AI-drafted Amazon listing, on a timer.</div>
-        <p class="body">Titles, bullets and highlights drafted inside Amazon's hard character limits, from the brand's own catalogue data. The account manager reviews, edits, accepts. By hand, comparable listings ran an estimated 10 to 15 minutes.</p>
-        <div class="tag">Consumer-electronics brand · 29 ASINs in the first batch</div>
-      </article>
-
-      <article class="proof reveal">
-        <div class="num">$113</div>
-        <div class="lbl">of difference from Sellerboard, on $1.56M of monthly gross sales.</div>
-        <p class="body">A reporting platform that reconciles to the source every month, then writes the weekly and monthly reports itself: what moved, why, what to watch. One pipeline, every Amazon marketplace the brand sells in, on a daily schedule.</p>
-        <div class="tag">Same brand · reconciliation measured on Amazon US</div>
-      </article>
-
-      <article class="proof reveal">
-        <div class="num">$12M</div>
-        <div class="lbl">of booked wholesale orders, 324 SKUs, 578 buyers, in one queryable place.</div>
-        <p class="body">B2B order lines from the order system joined to the Amazon P&amp;L, so the same SKU's cost and margin read the same in both channels. Ask it a question in chat. Get a table back.</p>
-        <div class="tag">Same brand · B2B wholesale + Amazon</div>
-      </article>
-
-      <article class="proof reveal">
-        <div class="num">33 sec</div>
-        <div class="lbl">to extract 146 claim rows from a 33,953-row Amazon report.</div>
-        <p class="body">Reimbursement documentation, assembled from Amazon's own reports and matched to the firm's trackers. 119 of the new rows matched only through a damage log that nobody would have cross-referenced by hand.</p>
-        <div class="tag">Amazon seller-services firm · runs on every report</div>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- WHAT WE BUILD -->
 <section id="build">
   <div class="wrap">
-    <div class="sec-label"><span class="num">02</span> · What we build for sellers</div>
+    <div class="sec-label"><span class="num">01</span> · What we build for sellers</div>
 
     <div class="build-header">
-      <h2 class="reveal">Five things that<br/>stop being someone's job.</h2>
+      <h2 class="reveal">Four things that<br/>stop being someone's job.</h2>
       <p class="reveal">
         Each of these runs today for a real seller. They are built one brand at a time, against your data and your tools, not resold as a template.
       </p>
@@ -1055,8 +966,8 @@
         <div>
           <h3>Reporting and P&amp;L</h3>
           <div class="desc">
-            Monthly and weekly reports that reconcile to Sellerboard or the Selling Partner API and explain the movement in plain English. The productised version is <a href="/amazon-pnl">MarginStory</a>.
-            <div class="examples"><span>Sellerboard</span><span>SP-API</span><span>Slack digest</span></div>
+            Monthly and weekly reports that go past the numbers. They say <em>why</em> a number moved, in plain English, and what we would do about it next — so the report is a decision, not a spreadsheet to interpret. The productised version is <a href="/amazon-pnl">MarginStory</a>.
+            <div class="examples"><span>Weekly &amp; monthly</span><span>Plain English</span><span>What to do next</span></div>
           </div>
         </div>
       </div>
@@ -1066,25 +977,15 @@
         <div>
           <h3>Listing drafting</h3>
           <div class="desc">
-            Titles, bullets and highlights drafted from your catalogue inside Amazon's limits, for a human to accept in minutes and publish.
-            <div class="examples"><span>75-character titles</span><span>Catalogue-fed</span><span>Human accept</span></div>
+            Drafted the way your account manager already works — their approach, their priorities, the patterns in the listings they have already written and approved — inside Amazon's limits. They review and accept in minutes instead of starting from a blank field.
+            <div class="examples"><span>Your manager's approach</span><span>Amazon's limits</span><span>Human accept</span></div>
           </div>
         </div>
       </div>
+
 
       <div class="build-row reveal">
         <div class="idx">03</div>
-        <div>
-          <h3>Reimbursement documentation</h3>
-          <div class="desc">
-            Claim rows pulled from inventory and returns reports, matched to your own trackers, converted where the currency differs, and filed as evidence packs.
-            <div class="examples"><span>FBA reports</span><span>Damage tracker</span><span>Currency</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="build-row reveal">
-        <div class="idx">04</div>
         <div>
           <h3>Wholesale and B2B data</h3>
           <div class="desc">
@@ -1095,12 +996,12 @@
       </div>
 
       <div class="build-row reveal">
-        <div class="idx">05</div>
+        <div class="idx">04</div>
         <div>
           <h3>Inventory snapshots</h3>
           <div class="desc">
-            Daily stock levels per SKU across FBA and your own warehouses, kept as history, so today's number has yesterday to stand against.
-            <div class="examples"><span>FBA</span><span>3PL</span><span>Daily</span></div>
+            Daily stock levels per SKU across FBA and your own warehouses, kept as history — and you ask it a question in chat instead of opening a spreadsheet. "What is under two weeks of cover?" You get the answer back, not a report to read.
+            <div class="examples"><span>FBA</span><span>3PL</span><span>Ask in chat</span></div>
           </div>
         </div>
       </div>
@@ -1111,13 +1012,13 @@
 <!-- TEARDOWN -->
 <section class="teardown" id="teardown">
   <div class="wrap">
-    <div class="sec-label"><span class="num">03</span> · The free teardown</div>
+    <div class="sec-label"><span class="num">02</span> · The free teardown</div>
 
     <div class="tear-grid">
       <div>
         <h2 class="tear-head reveal">Send me one ASIN.<br/>Get back what a <em>stranger</em> sees.</h2>
         <p class="tear-lead reveal">
-          Within a few days you get a one-page read of that product: what the negative reviews cluster around and roughly what it costs you a month, where the listing is missing for its own keyword, and one thing in the listing itself. Two findings open, the rest on a call if you want them. No pitch attached.
+          Within a few days you get a one-page read of that product: what the negative reviews cluster around and roughly what it costs you a month, where the listing is missing for its own keyword, and one thing in the listing itself.
         </p>
         <div class="hero-cta-row reveal">
           <a class="btn-primary" href="mailto:holzmanshmuel@gmail.com?subject=Teardown%20request&amp;body=ASIN%3A%20%0ABrand%3A%20%0AAnything%20specific%20you%27re%20wondering%20about%3A%20">
@@ -1133,7 +1034,7 @@
           <li>Logged-out search results for the product's own keywords.</li>
           <li>The listing exactly as a shopper sees it.</li>
         </ul>
-        <p class="fine">Nothing needs your login. I take on a handful of these at a time; if I can't get to yours this week, I'll say so.</p>
+        <p class="fine">Nothing needs your login.</p>
       </aside>
     </div>
   </div>
@@ -1142,7 +1043,7 @@
 <!-- ENGAGEMENT -->
 <section id="engage">
   <div class="wrap">
-    <div class="sec-label"><span class="num">04</span> · If we go further</div>
+    <div class="sec-label"><span class="num">03</span> · If we go further</div>
 
     <div class="pricing-note reveal" style="margin-top:0;">
       <div>
