@@ -20,4 +20,4 @@ Allow: /
 
 # The full page list, so a crawler does not have to discover it by following
 # links. Absent until now, which is why this file exists at all.
-Sitemap: https://holzman-ai.com/sitemap.xml
+Sitemap: https://holzman.ai/sitemap.xml
