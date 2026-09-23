@@ -2,7 +2,6 @@
 # Host-based rules (www -> apex) are NOT possible here: www.holzman-ai.com and
 # holzman-ai.com are the same Workers Custom Domain binding on this one service,
 # and _redirects sources are path-only. That one lives in a zone Redirect Rule.
-# The same is true for holzman.ai once it is wired to this service the same way.
 
 # The product is MarginStory; its page is /amazon-pnl, which is kept as the
 # canonical URL because it also carries the "amazon p&l" search intent.
