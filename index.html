@@ -1099,18 +1099,18 @@
         <div class="field-row">
           <div class="field">
             <label for="name">Your name</label>
-            <input id="name" name="name" type="text" placeholder="Jane Rothschild" required />
+            <input id="name" name="name" type="text" placeholder="First and last name" autocomplete="name" required />
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="jane@company.com" required />
+            <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
           </div>
         </div>
 
         <div class="field-row">
           <div class="field">
             <label for="company">Company</label>
-            <input id="company" name="company" type="text" placeholder="Rothschild & Co." />
+            <input id="company" name="company" type="text" placeholder="Your company" autocomplete="organization" />
           </div>
           <div class="field">
             <label for="referrer">Who referred you?</label>
@@ -1120,15 +1120,11 @@
 
         <div class="field">
           <label for="about">What's the workflow?</label>
-          <textarea id="about" name="message" placeholder="A paragraph is plenty. What you're trying to automate, roughly how it works today, and what would be different if it ran itself."></textarea>
+          <textarea id="about" name="message" maxlength="5000" placeholder="A paragraph is plenty. What you're trying to automate, roughly how it works today, and what would be different if it ran itself."></textarea>
         </div>
 
-        <!-- FormSubmit config (optional) -->
-        <input type="hidden" name="_subject" value="New inquiry from holzman.ai" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_template" value="table" />
-        <!-- Honeypot to reduce spam -->
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        <!-- Honeypot to reduce spam: hidden from people, bots fill it in -->
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
         <div class="submit-row">
           <button type="submit" class="submit-btn">
@@ -1174,9 +1170,8 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Contact form — posts to FormSubmit's AJAX endpoint so submissions email you
-  // without the page navigating away. On first submit, FormSubmit sends you a
-  // confirmation email — click the link once and you're set.
+  // Contact form — posts to this site's own /api/contact (worker/index.js), which
+  // emails the message to shmuel@holzman.ai. The page never navigates away.
   const form = document.getElementById('contact-form');
   const note = document.getElementById('submit-note');
   const submitBtn = form.querySelector('.submit-btn');
@@ -1184,16 +1179,22 @@
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (form._honey && form._honey.value) return; // honeypot tripped
+    if (form.elements.website && form.elements.website.value) return; // honeypot tripped
     submitBtn.disabled = true;
     btnLabel.textContent = 'Sending…';
     try {
       const data = new FormData(form);
-      const res = await fetch('https://formsubmit.co/ajax/holzmanshmuel@gmail.com', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: data
       });
+      if (res.status === 422) {
+        note.textContent = "Please check your name and email address.";
+        btnLabel.textContent = 'Try again';
+        submitBtn.disabled = false;
+        return;
+      }
       if (!res.ok) throw new Error('Network error');
       form.reset();
       note.textContent = "Thanks — message received.";
