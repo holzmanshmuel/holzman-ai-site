@@ -6,3 +6,4 @@ package-lock.json
 wrangler.jsonc
 .gitignore
 .wrangler
+worker

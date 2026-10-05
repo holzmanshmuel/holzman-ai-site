@@ -2,11 +2,15 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "holzman-ai-site",
   "compatibility_date": "2026-04-21",
+  // The Worker only answers POST /api/contact (the homepage form); every other
+  // request is served from the static assets below, as before.
+  "main": "worker/index.js",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS"
   },
   "compatibility_flags": [
     "nodejs_compat"
