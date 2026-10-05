@@ -47,11 +47,13 @@ async function handleContact(request, env, url) {
   } catch {
     return json({ ok: false, error: "bad_request" }, 400);
   }
-  if (!fields || typeof fields !== "object") {
+  if (!fields || typeof fields !== "object" || Array.isArray(fields)) {
     return json({ ok: false, error: "bad_request" }, 400);
   }
 
-  const field = (key) => String(fields[key] ?? "").trim().slice(0, LIMITS[key]);
+  // Only plain strings count; anything else (objects, numbers from crafted JSON) is empty.
+  const text = (value) => (typeof value === "string" ? value : "");
+  const field = (key) => text(fields[key]).trim().slice(0, LIMITS[key]);
   const inquiry = {
     name: field("name"),
     email: field("email"),
@@ -62,7 +64,7 @@ async function handleContact(request, env, url) {
 
   // Honeypot: a hidden "website" field people never see. Bots that fill it get a quiet
   // success and nothing is forwarded.
-  if (String(fields.website ?? "").trim()) return json({ ok: true });
+  if (text(fields.website).trim()) return json({ ok: true });
 
   if (!inquiry.name || !EMAIL_RE.test(inquiry.email)) {
     return json({ ok: false, error: "invalid" }, 422);
