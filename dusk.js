@@ -14,11 +14,33 @@
     reveals.forEach(function (el) { if (!el.classList.contains('in')) io.observe(el); });
     root.classList.add('js');
   }
-  // Seamless marquee: the track is duplicated once; the copy is hidden from screen readers.
+  // Seamless marquee: the track is copied until the copies cover the strip on any screen width
+  // (each copy moves by its own width plus the gap). Copies are hidden from screen readers.
   [].forEach.call(document.querySelectorAll('[data-marquee]'), function (track) {
-    var copy = track.cloneNode(true);
-    copy.setAttribute('aria-hidden', 'true'); copy.removeAttribute('data-marquee');
-    [].forEach.call(copy.querySelectorAll('a,button'), function (n) { n.setAttribute('tabindex', '-1'); });
-    track.parentNode.appendChild(copy);
+    var strip = track.parentNode, w = track.getBoundingClientRect().width || 1;
+    var n = Math.max(1, Math.ceil(strip.getBoundingClientRect().width / w));
+    for (var i = 0; i < n; i++) {
+      var copy = track.cloneNode(true);
+      copy.setAttribute('aria-hidden', 'true'); copy.removeAttribute('data-marquee');
+      [].forEach.call(copy.querySelectorAll('a,button'), function (el) { el.setAttribute('tabindex', '-1'); });
+      strip.appendChild(copy);
+    }
   });
+  // WCAG 2.2.2 (Pause, Stop, Hide): one switch in the footer pauses every looping animation.
+  // The label names the action (no aria-pressed, which would contradict a changing label).
+  // Hidden when the visitor's system already asks for reduced motion (nothing loops then).
+  var toggle = document.querySelector('.motion-toggle');
+  if (toggle && !reduce) {
+    var still = false;
+    try { still = localStorage.getItem('holzman-motion') === 'paused'; } catch (e) {}
+    var apply = function () {
+      root.classList.toggle('still', still);
+      toggle.textContent = still ? 'Play animations' : 'Pause animations';
+    };
+    toggle.hidden = false; apply();
+    toggle.addEventListener('click', function () {
+      still = !still; apply();
+      try { localStorage.setItem('holzman-motion', still ? 'paused' : 'playing'); } catch (e) {}
+    });
+  }
 })();

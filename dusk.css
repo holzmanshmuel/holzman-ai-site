@@ -65,7 +65,7 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 /* ---------- logo lockup (outlined SVG files; never live text) ---------- */
 .lockup { display: inline-flex; align-items: center; text-decoration: none; border-radius: 10px; }
 .lockup img { display: block; height: 38px; width: auto; }
-@media (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .lockup img { transition: transform .45s var(--spring); }
 }
 
@@ -76,7 +76,7 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
   padding: 14px 26px; min-height: 48px; border-radius: var(--r-ctl); border: 0; cursor: pointer;
   text-decoration: none; white-space: nowrap;
 }
-.btn-primary { background: var(--blue-600); color: #fff; box-shadow: 0 8px 22px rgba(0, 112, 234, .26); }
+.btn-primary { background: var(--blue-600); color: #fff; box-shadow: 0 8px 22px rgba(16, 40, 90, .2); }
 .btn-primary:hover { background: var(--blue-700); }
 .btn-white { background: #fff; color: var(--ink); box-shadow: 0 10px 28px rgba(0, 0, 0, .18); }
 .btn-ghost { background: rgba(255, 255, 255, .14); color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .34); }
@@ -116,8 +116,9 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 @media (max-width: 720px) { .sec { padding-block: 72px; } .sec-head { margin-bottom: 32px; } }
 
 /* ---------- dusk hero ---------- */
-.dusk { position: relative; background-color: #22389A; background-image: linear-gradient(180deg, #22389A 0px, #3B55C8 300px, #5D69D3 470px); color: #fff; overflow: hidden; isolation: isolate; }
-.dusk::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 430px; z-index: -1; background: linear-gradient(180deg, rgba(93,105,211,0) 0%, #7479D8 22%, #BE97D2 58%, #EEB4AE 100%); pointer-events: none; }
+.dusk { position: relative; background-color: #22389A; background-image: linear-gradient(180deg, #22389A 0px, #3B55C8 300px, #5D69D3 520px); color: #fff; overflow: hidden; isolation: isolate; }
+/* the horizon is exactly as tall as the bottom padding, so it starts below the last line of text however the copy wraps */
+.dusk::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--pb, 230px); z-index: -1; background: linear-gradient(180deg, rgba(93,105,211,0) 0%, #7479D8 22%, #BE97D2 58%, #EEB4AE 100%); pointer-events: none; }
 .dusk .stars { position: absolute; left: 0; top: 0; width: 100%; height: 62%; pointer-events: none; }
 .dusk .stars circle { fill: #fff; animation: twinkle 3.4s ease-in-out infinite; }
 .dusk .hills { position: absolute; left: 0; bottom: -1px; width: 100%; height: 190px; pointer-events: none; }
@@ -129,17 +130,15 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 .dusk-nav .btn { margin-left: 8px; }
 .dusk-copy { position: relative; z-index: 2; text-align: center; max-width: 840px; margin: 0 auto; padding-top: 64px; }
 .dusk-copy h1 { color: #fff; }
-.dusk-copy .lead { color: rgba(255, 255, 255, .92); max-width: 580px; margin: 22px auto 0; font-weight: 500; }
+.dusk-copy .lead { color: #fff; max-width: 580px; margin: 22px auto 0; font-weight: 500; }
 .dusk-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
-.dusk.home { padding-bottom: 230px; }
-.dusk.compact { padding-bottom: 170px; }
+.dusk.home { --pb: 320px; padding-bottom: var(--pb); }
+.dusk.compact { --pb: 230px; padding-bottom: var(--pb); }
 .dusk.compact .dusk-copy { padding-top: 40px; }
 .dusk.compact .hills { height: 150px; }
-.dusk.compact::before { height: 320px; }
-.dusk.mini { padding-bottom: 112px; }
+.dusk.mini { --pb: 140px; padding-bottom: var(--pb); }
 .dusk.mini .dusk-copy { padding-top: 24px; text-align: left; max-width: none; }
 .dusk.mini .hills { height: 104px; }
-.dusk.mini::before { height: 200px; }
 .over-dusk { position: relative; z-index: 4; margin-top: -170px; }
 .dusk.compact + .over-dusk { margin-top: -110px; }
 @media (max-width: 900px) {
@@ -147,13 +146,12 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 }
 @media (max-width: 520px) {
   .dusk-copy { padding-top: 40px; }
-  .dusk.home { padding-bottom: 170px; }
+  .dusk.home { --pb: 250px; }
   .dusk .hills { height: 120px; }
   .dusk-nav .btn { padding: 9px 14px; font-size: 14px; min-height: 40px; }
   .over-dusk { margin-top: -120px; }
   /* longer text column on phones: keep white text on the dark half of the sky */
   .dusk { background-image: linear-gradient(180deg, #22389A 0px, #3B55C8 420px, #5D69D3 620px); }
-  .dusk::before { height: 340px; }
 }
 
 /* floating sheet that sits on the hills */
@@ -183,6 +181,11 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 .site-foot nav a:hover { color: var(--blue-700); text-decoration: underline; }
 .site-foot .copy { font-size: 14px; color: var(--muted); }
 .site-foot .lockup img { height: 34px; }
+/* WCAG 2.2.2: one switch pauses the stars, marching lines and marquee (shown only when motion runs) */
+.motion-toggle { font: inherit; font-size: 14px; color: var(--body); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.motion-toggle:hover { color: var(--blue-700); text-decoration-color: currentColor; }
+.motion-toggle[hidden] { display: none; }
+html.still *, html.still *::before, html.still *::after { animation-play-state: paused !important; }
 
 /* ---------- prose (legal and long text) ---------- */
 .prose { max-width: 720px; }
@@ -201,13 +204,16 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 /* ---------- motion (Shmuel's pick: Direction A's spring, as drawn) ---------- */
 @keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: .95; } }
 @keyframes march { to { stroke-dashoffset: -14; } }
-@keyframes marquee { to { transform: translateX(-50%); } }
+/* each copy of the track moves by its own width plus the gap, so the loop has no jump */
+@keyframes marquee { to { transform: translateX(calc(-100% - var(--mq-gap, 14px))); } }
+/* touch: press feedback only, short and strong ease-out; the spring is for pointer hover */
+.btn { transition: transform .16s cubic-bezier(.23, 1, .32, 1); }
 .btn:active { transform: scale(.97); }
-@media (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .btn { transition: transform .45s var(--spring), box-shadow .35s ease, background-color .3s ease; }
   .btn:hover { transform: scale(1.05) translateY(-2px); }
   .btn:active { transform: scale(.97); transition-duration: .12s; }
-  .btn-primary:hover { box-shadow: 0 14px 32px rgba(0, 112, 234, .34); }
+  .btn-primary:hover { box-shadow: 0 14px 32px rgba(16, 40, 90, .26); }
   .btn-white:hover { box-shadow: 0 16px 36px rgba(0, 0, 0, .24); }
   .lift { transition: transform .45s var(--spring), box-shadow .35s ease; }
   .lift:hover { transform: translateY(-5px); box-shadow: 0 10px 24px rgba(0, 0, 0, .06), 0 24px 50px rgba(0, 0, 0, .07); }
@@ -216,13 +222,14 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 /* scroll reveal: only below the first screen, only when the page script is running, never hides content otherwise */
 .js .reveal { opacity: 0; translate: 0 26px; transition: opacity .8s ease, translate .8s var(--spring), transform .45s var(--spring), box-shadow .35s ease; }
 .js .reveal.in { opacity: 1; translate: none; }
-.js .reveal.d1 { transition-delay: .08s; } .js .reveal.d2 { transition-delay: .16s; } .js .reveal.d3 { transition-delay: .24s; }
+/* the stagger delays only the entrance (opacity, translate), never the hover lift */
+.js .reveal.d1 { transition-delay: .08s, .08s, 0s, 0s; } .js .reveal.d2 { transition-delay: .16s, .16s, 0s, 0s; } .js .reveal.d3 { transition-delay: .24s, .24s, 0s, 0s; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .reveal { opacity: 1; translate: none; }
-  .btn:hover, .btn:active, .lift:hover, .lockup:hover img { transform: none; }
+  .btn:active { transform: none; }
 }
 @media print {
   .dusk { background: #fff; color: var(--ink); padding-bottom: 0; }
