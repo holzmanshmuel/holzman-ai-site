@@ -26,6 +26,30 @@
       strip.appendChild(copy);
     }
   });
+  // A star on a letter reads as a typo: hide any star that lands on the hero's text lines,
+  // nav or buttons. Re-checked after fonts load and on resize, since the text re-wraps.
+  var skies = [].slice.call(document.querySelectorAll('.dusk'));
+  var clearStars = function () {
+    skies.forEach(function (sky) {
+      var boxes = [];
+      [].forEach.call(sky.querySelectorAll('.dusk-copy h1, .dusk-copy p'), function (el) {
+        var range = document.createRange(); range.selectNodeContents(el);
+        [].push.apply(boxes, [].slice.call(range.getClientRects()));
+      });
+      [].forEach.call(sky.querySelectorAll('.dusk-copy .btn, .dusk-nav a'), function (el) { boxes.push(el.getBoundingClientRect()); });
+      [].forEach.call(sky.querySelectorAll('.stars circle'), function (c) {
+        var r = c.getBoundingClientRect();
+        var hit = boxes.some(function (b) { return r.right > b.left - 8 && r.left < b.right + 8 && r.bottom > b.top - 6 && r.top < b.bottom + 6; });
+        c.style.visibility = hit ? 'hidden' : '';
+      });
+    });
+  };
+  if (skies.length) {
+    clearStars();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(clearStars);
+    var starTimer;
+    window.addEventListener('resize', function () { clearTimeout(starTimer); starTimer = setTimeout(clearStars, 150); });
+  }
   // WCAG 2.2.2 (Pause, Stop, Hide): one switch in the footer pauses every looping animation.
   // The label names the action (no aria-pressed, which would contradict a changing label).
   // Hidden when the visitor's system already asks for reduced motion (nothing loops then).
