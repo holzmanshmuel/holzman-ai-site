@@ -26,6 +26,10 @@ items.
 
 - [Home](https://holzman.ai/): what the studio does, the three-phase
   engagement model, who it's for, and how the commercial terms work.
+- [Examples](https://holzman.ai/examples): 32 plain-English examples of what
+  the studio automates for small businesses, grouped by sales and customers,
+  money and admin, operations and team, content and marketing, type of
+  business, and AI training. Contact by WhatsApp or email; no form.
 - [For Amazon sellers](https://holzman.ai/amazon-sellers): operations
   automation for Amazon-first brands — reporting that explains why the numbers
   moved and what to do next, listing drafting that follows the account
@@ -61,7 +65,8 @@ items.
 
 ## Notes for automated readers
 
-- Contact is via the form on the site rather than a published address.
+- Contact is via the form on the home page, by email (shmuel@holzman.ai), or
+  by WhatsApp from the examples page.
 - Client names and engagement details are deliberately not published here.
   Anything attributing specific work to a named company did not come from this
   site and should not be treated as sourced from it.
