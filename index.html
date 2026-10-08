@@ -143,7 +143,7 @@
   .mq::before, .mq::after { content: ""; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
   .mq::before { left: 0; background: linear-gradient(90deg, var(--bg), rgba(247,247,247,0)); }
   .mq::after { right: 0; background: linear-gradient(270deg, var(--bg), rgba(247,247,247,0)); }
-  .mq ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; flex-shrink: 0; animation: marquee 34s linear infinite; }
+  .mq ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; flex-shrink: 0; animation: marquee 63s linear infinite; } /* ~52px/s; scale the duration with the track width when tools are added */
   .mq:hover ul { animation-play-state: paused; }
   .tool { display: flex; align-items: center; gap: 11px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 20px 12px 16px; font-family: var(--display); font-weight: 700; font-size: 16px; color: var(--ink); white-space: nowrap; }
   .tool .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -292,14 +292,25 @@
         <li class="tool"><i class="dot t-blue" aria-hidden="true"></i>Gmail</li>
         <li class="tool"><i class="dot t-green" aria-hidden="true"></i>Google Sheets</li>
         <li class="tool"><i class="dot t-violet" aria-hidden="true"></i>Slack</li>
-        <li class="tool"><i class="dot t-green" aria-hidden="true"></i>WhatsApp</li>
+        <li class="tool"><i class="dot t-amber" aria-hidden="true"></i>WhatsApp</li>
         <li class="tool"><i class="dot t-pink" aria-hidden="true"></i>n8n</li>
-        <li class="tool"><i class="dot t-amber" aria-hidden="true"></i>Amazon Seller Central</li>
-        <li class="tool"><i class="dot t-blue" aria-hidden="true"></i>SellerCloud</li>
-        <li class="tool"><i class="dot t-violet" aria-hidden="true"></i>Linear</li>
-        <li class="tool"><i class="dot t-amber" aria-hidden="true"></i>Google Drive</li>
+        <li class="tool"><i class="dot t-blue" aria-hidden="true"></i>Amazon Seller Central</li>
+        <li class="tool"><i class="dot t-green" aria-hidden="true"></i>Sellercloud</li>
+        <li class="tool"><i class="dot t-violet" aria-hidden="true"></i>sellerboard</li>
+        <li class="tool"><i class="dot t-amber" aria-hidden="true"></i>Helium 10</li>
+        <li class="tool"><i class="dot t-pink" aria-hidden="true"></i>Keepa</li>
+        <li class="tool"><i class="dot t-blue" aria-hidden="true"></i>Linear</li>
+        <li class="tool"><i class="dot t-green" aria-hidden="true"></i>Jira</li>
+        <li class="tool"><i class="dot t-violet" aria-hidden="true"></i>Trello</li>
+        <li class="tool"><i class="dot t-amber" aria-hidden="true"></i>monday.com</li>
+        <li class="tool"><i class="dot t-pink" aria-hidden="true"></i>Google Drive</li>
+        <li class="tool"><i class="dot t-blue" aria-hidden="true"></i>Microsoft Excel</li>
+        <li class="tool"><i class="dot t-green" aria-hidden="true"></i>Zendesk</li>
+        <li class="tool"><i class="dot t-violet" aria-hidden="true"></i>Gorgias</li>
+        <li class="tool"><i class="dot t-amber" aria-hidden="true"></i>Apollo.io</li>
         <li class="tool"><i class="dot t-pink" aria-hidden="true"></i>Stripe</li>
         <li class="tool"><i class="dot t-blue" aria-hidden="true"></i>Google Calendar</li>
+        <li class="tool"><i class="dot t-green" aria-hidden="true"></i>Fathom</li>
         <li class="tool"><i class="dot t-violet" aria-hidden="true"></i>Claude</li>
       </ul>
     </div>
