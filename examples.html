@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Automation examples for small businesses — Holzman AI & Automations</title>
+<meta name="description" content="32 plain-English examples of what I can automate for a small business: lead follow-up, invoices and reminders, daily reports, onboarding, content and more." />
+<link rel="canonical" href="https://holzman.ai/examples" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Holzman AI &amp; Automations" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="https://holzman.ai/examples" />
+<meta property="og:title" content="What I can automate for your business — 32 examples" />
+<meta property="og:description" content="Lead follow-up, invoices and reminders, daily reports, onboarding, content and more. Skim for the ones that sound like your week." />
+<meta property="og:image" content="https://holzman.ai/og-examples.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="If it repeats, it can probably run itself. 32 examples of what I can automate for a small business." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What I can automate for your business — 32 examples" />
+<meta name="twitter:description" content="Lead follow-up, invoices and reminders, daily reports, onboarding, content and more. Skim for the ones that sound like your week." />
+<meta name="twitter:image" content="https://holzman.ai/og-examples.png" />
+<meta name="twitter:image:alt" content="If it repeats, it can probably run itself. 32 examples of what I can automate for a small business." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://holzman.ai/examples#webpage",
+  "url": "https://holzman.ai/examples",
+  "name": "Automation examples for small businesses",
+  "description": "32 plain-English examples of what Holzman AI & Automations can set up for a small business, grouped by area of the business.",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://holzman.ai/#website" },
+  "about": { "@id": "https://holzman.ai/#organization" },
+  "publisher": { "@id": "https://holzman.ai/#organization" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Holzman "Signal" brand */
+    --blue: #1D4ED8;
+    --blue-700: #1E40AF;
+    --blue-50: #EEF3FE;
+    --blue-100: #DCE6FB;
+    --lime: #BEF264;        /* the signature lime — one spark per screen */
+    --lime-ink: #3F6212;
+    --bg: #F7F8FB;
+    --surface: #FFFFFF;
+    --panel: #F4F6FB;
+    --ink: #14171C;
+    --body: #4A515E;
+    --muted: #68707E;
+    --line: #E7EAF1;
+    --line-2: #EEF0F5;
+    --on-dark: #F7F8FB;
+    --on-dark-2: #B9C0CC;
+    --dark-line: #2A2E37;
+    --radius: 14px;
+    --radius-sm: 9px;
+    --display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    background: var(--bg);
+    color: var(--body);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  p { margin: 0; }
+  h1, h2, h3 { margin: 0; font-family: var(--display); color: var(--ink); font-weight: 500; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+  @media (max-width: 720px) {
+    .wrap { padding: 0 20px; }
+    body { font-size: 16px; }
+  }
+
+  .mono-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* NAV — same shape as the other holzman.ai pages */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in oklab, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
+  }
+  .nav.scrolled { border-color: var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+  .brand { display: flex; align-items: baseline; gap: 14px; font-family: var(--display); font-size: 22px; letter-spacing: -0.01em; color: var(--ink); white-space: nowrap; }
+  .brand .mono-label { letter-spacing: 0.12em; }
+  .nav-links { display: flex; gap: 32px; align-items: center; font-size: 14px; color: var(--body); white-space: nowrap; }
+  .nav-links a:not(.btn) { transition: color .15s ease; }
+  .nav-links a[aria-current="page"] { color: var(--ink); }
+  @media (hover: hover) and (pointer: fine) {
+    .nav-links a:not(.btn):hover { color: var(--blue-700); }
+  }
+  @media (max-width: 860px) { .nav-links .link-hide { display: none; } }
+  @media (max-width: 460px) { .brand .mono-label { display: none; } }
+
+  /* BUTTONS — 9px control radius */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 16px 22px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .btn svg { width: 18px; height: 18px; flex: none; }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-ghost { background: transparent; color: var(--blue); border-color: var(--blue-100); }
+  .btn-sm { font-size: 14px; padding: 10px 14px; }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover { background: var(--blue-700); }
+    .btn-ghost:hover { background: var(--blue-50); border-color: var(--blue); }
+  }
+
+  /* HERO */
+  .hero { padding: 72px 0 64px; }
+  .hero h1 {
+    font-weight: 400;
+    font-size: clamp(42px, 6.2vw, 88px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    max-width: 14ch;
+  }
+  .hero h1 .spark {
+    color: var(--blue);
+    text-decoration: underline;
+    text-decoration-color: var(--lime);
+    text-decoration-thickness: 0.09em;
+    text-underline-offset: 0.08em;
+    text-decoration-skip-ink: none;
+  }
+  .hero-sub {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 64px;
+    align-items: start;
+    margin-top: 48px;
+  }
+  .hero-lead { font-size: 20px; line-height: 1.55; color: var(--body); max-width: 46ch; }
+  .hero-lead b { color: var(--ink); font-weight: 600; }
+  .hero-side > p { font-size: 16px; color: var(--body); max-width: 40ch; padding-top: 4px; }
+  .hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 24px; }
+  .hero-cta .or { font-size: 14px; color: var(--muted); }
+  .hero-cta .or .addr { color: var(--ink); font-weight: 500; user-select: all; -webkit-user-select: all; }
+  @media (max-width: 860px) {
+    .hero { padding: 48px 0 48px; }
+    .hero-sub { grid-template-columns: 1fr; gap: 28px; margin-top: 32px; }
+    .hero-lead { font-size: 18px; }
+  }
+
+  /* JUMP LINKS */
+  .jump { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .jump ul { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .jump a {
+    display: inline-flex; align-items: baseline; gap: 10px;
+    padding: 10px 14px;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .jump a .n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  @media (hover: hover) and (pointer: fine) {
+    .jump a:hover { border-color: var(--blue); color: var(--blue-700); }
+  }
+  @media (max-width: 720px) {
+    .jump { margin-top: 40px; }
+    .jump a { font-size: 14px; padding: 9px 12px; }
+  }
+
+  /* EXAMPLE GROUPS */
+  .group { padding: 72px 0; border-top: 1px solid var(--line); }
+  .group-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr);
+    gap: 64px;
+    align-items: start;
+  }
+  .group-head { position: sticky; top: 104px; }
+  .group-head h2 { font-size: clamp(30px, 3.2vw, 42px); line-height: 1.05; letter-spacing: -0.02em; }
+  .group-head .desc { margin-top: 16px; font-size: 16px; color: var(--body); max-width: 30ch; }
+  .items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 40px;
+  }
+  .items li { padding: 22px 0 24px; border-top: 1px solid var(--line); }
+  .items h3 { font-size: 19px; line-height: 1.3; letter-spacing: -0.01em; }
+  .items p { margin-top: 8px; font-size: 15.5px; line-height: 1.55; color: var(--body); }
+  .items p a { color: var(--blue); text-decoration: underline; text-decoration-color: var(--blue-100); text-underline-offset: 3px; transition: text-decoration-color .15s ease; }
+  @media (hover: hover) and (pointer: fine) {
+    .items p a:hover { text-decoration-color: var(--blue); }
+  }
+  @media (max-width: 960px) {
+    .group-grid { grid-template-columns: 1fr; gap: 28px; }
+    .group-head { position: static; }
+    .group-head .desc { max-width: 52ch; }
+  }
+  @media (max-width: 720px) {
+    .group { padding: 52px 0; }
+    .items { grid-template-columns: 1fr; }
+    .items li { padding: 18px 0 20px; }
+    .items h3 { font-size: 18px; }
+  }
+
+  /* FIT + HOW IT WORKS */
+  .fit { padding: 88px 0; background: var(--panel); border-top: 1px solid var(--line); }
+  .fit-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 56px;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(20, 23, 28, .04), 0 8px 24px rgba(20, 23, 28, .04);
+  }
+  .fit-quote {
+    font-family: var(--display);
+    font-size: clamp(24px, 2.6vw, 34px);
+    line-height: 1.32;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-top: 16px;
+  }
+  .fit-quote q { color: var(--blue); quotes: "\201C" "\201D"; }
+  .fit-card .aside { font-size: 19px; line-height: 1.55; color: var(--body); max-width: 30ch; }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
+    margin-top: 72px;
+  }
+  .steps h2 { grid-column: 1 / -1; font-size: clamp(28px, 3vw, 38px); letter-spacing: -0.02em; line-height: 1.1; }
+  .step { padding-top: 22px; border-top: 1px solid var(--ink); }
+  .step h3 { font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; }
+  .step .desc { margin-top: 10px; font-size: 16px; color: var(--body); max-width: 36ch; }
+  @media (max-width: 860px) {
+    .fit { padding: 60px 0; }
+    .fit-card { grid-template-columns: 1fr; gap: 24px; padding: 28px 24px; }
+    .steps { grid-template-columns: 1fr; gap: 28px; margin-top: 56px; }
+  }
+
+  /* CONTACT — the one dark block; its lime button is this screen's spark */
+  .contact { background: var(--ink); color: var(--on-dark-2); padding: 104px 0; }
+  .contact :focus-visible { outline-color: var(--lime); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 64px;
+    align-items: end;
+  }
+  .contact .mono-label { color: var(--on-dark-2); }
+  .contact h2 {
+    color: var(--on-dark);
+    font-weight: 400;
+    font-size: clamp(38px, 5vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    max-width: 13ch;
+  }
+  .contact-lead { margin-top: 24px; font-size: 18px; line-height: 1.6; color: var(--on-dark-2); max-width: 42ch; }
+  .contact-actions { display: grid; gap: 28px; }
+  .btn-spark { background: var(--lime); color: var(--lime-ink); font-weight: 600; padding: 18px 24px; font-size: 16px; justify-self: start; }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-spark:hover { background: #D4F79A; }
+  }
+  .email-row { padding-top: 24px; border-top: 1px solid var(--dark-line); }
+  .email-line { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 10px; }
+  .email-text {
+    font-family: var(--display);
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    color: var(--on-dark);
+    user-select: all; -webkit-user-select: all;
+  }
+  .btn-copy { background: transparent; color: var(--on-dark); border-color: #3A404B; }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-copy:hover { border-color: var(--on-dark-2); }
+  }
+  [hidden] { display: none !important; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  @media (max-width: 860px) {
+    .contact { padding: 72px 0; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .email-text { font-size: 21px; }
+  }
+
+  /* FOOTER — same as the other pages */
+  footer { border-top: 1px solid var(--line); padding: 40px 0 48px; }
+  .foot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .foot a { transition: color .15s ease; }
+  @media (hover: hover) and (pointer: fine) { .foot a:hover { color: var(--blue-700); } }
+  .foot .brand-small { font-family: var(--display); font-size: 16px; letter-spacing: -0.01em; text-transform: none; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand">
+      <span>Holzman</span>
+      <span class="mono-label">AI & Automations</span>
+    </a>
+    <div class="nav-links">
+      <a href="/examples" aria-current="page" class="link-hide">Examples</a>
+      <a href="/amazon-sellers" class="link-hide">Amazon sellers</a>
+      <a href="/#about" class="link-hide">About</a>
+      <a href="#contact" class="btn btn-ghost btn-sm">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<header class="hero" id="top">
+  <div class="wrap">
+    <h1>If it repeats, it can probably <span class="spark">run&nbsp;itself</span>.</h1>
+
+    <div class="hero-sub">
+      <p class="hero-lead">
+        Here are <b>32 examples</b> of what I can set up for a small business: the follow-ups, reminders, reports and copy-paste that quietly eat a team's week. Skim for the ones that sound like yours.
+      </p>
+      <div class="hero-side">
+        <p>Most of them run on tools you already use, like your email, spreadsheets and team chat. I build them, and I keep them maintained after launch.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" data-wa hidden href="https://wa.me/13472781357">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+            Message me on WhatsApp
+          </a>
+          <p class="or"><span data-wa hidden>or </span>email <span class="addr">shmuel@holzman.ai</span></p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="jump" aria-label="Jump to a group">
+      <p class="mono-label">Find your part of the business</p>
+      <ul>
+        <li><a href="#sales">Sales &amp; customers <span class="n">6<span class="sr-only"> examples</span></span></a></li>
+        <li><a href="#money">Money &amp; admin <span class="n">6<span class="sr-only"> examples</span></span></a></li>
+        <li><a href="#operations">Operations &amp; team <span class="n">6<span class="sr-only"> examples</span></span></a></li>
+        <li><a href="#content">Content &amp; marketing <span class="n">4<span class="sr-only"> examples</span></span></a></li>
+        <li><a href="#industry">By type of business <span class="n">8<span class="sr-only"> examples</span></span></a></li>
+        <li><a href="#ai">Your team and AI <span class="n">2<span class="sr-only"> examples</span></span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="group" id="sales" aria-labelledby="sales-h">
+  <div class="wrap group-grid">
+    <div class="group-head">
+      <h2 id="sales-h">Sales &amp; customers</h2>
+      <p class="desc">For when leads go cold and customers wait too long for an answer.</p>
+    </div>
+    <ul class="items">
+      <li>
+        <h3>Every new lead gets a reply in minutes</h3>
+        <p>An instant answer, then a follow-up a few days later, so nobody falls through the cracks.</p>
+      </li>
+      <li>
+        <h3>WhatsApp chats saved to your customer list</h3>
+        <p>Conversations with customers are saved to your customer list on their own, so anyone on the team can see the history.</p>
+      </li>
+      <li>
+        <h3>Quotes drafted from a few details</h3>
+        <p>Type in the job and get a ready-to-send quote or proposal in your own format.</p>
+      </li>
+      <li>
+        <h3>Reminders for no-shows and people who never booked</h3>
+        <p>People who booked and didn't come, or got the link and never booked, get a friendly reminder.</p>
+      </li>
+      <li>
+        <h3>Customer replies drafted for you to approve</h3>
+        <p>Answers written from the order details. Someone on your team checks them and hits send.</p>
+      </li>
+      <li>
+        <h3>An alert when reviews repeat a complaint</h3>
+        <p>Hear about the broken part or the slow delivery before it costs you sales.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="group" id="money" aria-labelledby="money-h">
+  <div class="wrap group-grid">
+    <div class="group-head">
+      <h2 id="money-h">Money &amp; admin</h2>
+      <p class="desc">For the paperwork that piles up at the end of every month.</p>
+    </div>
+    <ul class="items">
+      <li>
+        <h3>Invoices sent the moment a job is approved</h3>
+        <p>No more invoices waiting for someone to get around to them.</p>
+      </li>
+      <li>
+        <h3>Polite reminders for unpaid invoices</h3>
+        <p>Late payers get chased on a schedule, so you don't have to be the bad guy.</p>
+      </li>
+      <li>
+        <h3>Receipts pulled out of email into one sheet</h3>
+        <p>Every receipt and expense in one spreadsheet, ready for your bookkeeper.</p>
+      </li>
+      <li>
+        <h3>Profit per product, every month</h3>
+        <p>See which products actually make money once every cost is counted.</p>
+      </li>
+      <li>
+        <h3>Contracts filled in from a template</h3>
+        <p>Names, prices and dates go in; a clean, ready-to-sign document comes out in seconds.</p>
+      </li>
+      <li>
+        <h3>Supplier bills checked against the order</h3>
+        <p>Overcharges and missing items get flagged before you pay.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="group" id="operations" aria-labelledby="operations-h">
+  <div class="wrap group-grid">
+    <div class="group-head">
+      <h2 id="operations-h">Operations &amp; team</h2>
+      <p class="desc">For the questions, check-ins and chasing that fill your team's day.</p>
+    </div>
+    <ul class="items">
+      <li>
+        <h3>A sales summary every evening</h3>
+        <p>The day's numbers arrive on WhatsApp or your team chat, without anyone putting them together.</p>
+      </li>
+      <li>
+        <h3>Ask your data a question</h3>
+        <p>Type &ldquo;how much stock do we have of X?&rdquo; and get the answer. No spreadsheet digging.</p>
+      </li>
+      <li>
+        <h3>Meeting notes turned into tasks</h3>
+        <p>Every action item goes to the right person, with a due date.</p>
+      </li>
+      <li>
+        <h3>An inbox that sorts itself</h3>
+        <p>The important emails are flagged for you; the rest are filed where they belong.</p>
+      </li>
+      <li>
+        <h3>Onboarding that runs itself</h3>
+        <p>A new hire's accounts, documents and first-week checklist, each step on time.</p>
+      </li>
+      <li>
+        <h3>Shift schedules and reminders</h3>
+        <p>Staff get their schedule and a reminder before each shift, and swaps go through one place.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="group" id="content" aria-labelledby="content-h">
+  <div class="wrap group-grid">
+    <div class="group-head">
+      <h2 id="content-h">Content &amp; marketing</h2>
+      <p class="desc">For the writing that never gets done because something is always more urgent.</p>
+    </div>
+    <ul class="items">
+      <li>
+        <h3>Product descriptions pre-drafted in your brand's voice</h3>
+        <p>Every product page written the same way, in your style, and checked by a person before it goes live.</p>
+      </li>
+      <li>
+        <h3>Social posts from what you already have</h3>
+        <p>A finished project, a new product or a happy customer becomes a draft post.</p>
+      </li>
+      <li>
+        <h3>Hebrew and English, both ways</h3>
+        <p>Your website, catalog and emails translated properly and kept in sync.</p>
+      </li>
+      <li>
+        <h3>Training and demo videos from a screen recording</h3>
+        <p>Record yourself doing it once and get a clean, narrated video your team or customers can follow.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="group" id="industry" aria-labelledby="industry-h">
+  <div class="wrap group-grid">
+    <div class="group-head">
+      <h2 id="industry-h">By type of business</h2>
+      <p class="desc">A few by industry. If yours isn't here, the same ideas usually carry over.</p>
+    </div>
+    <ul class="items">
+      <li>
+        <h3>Recruiters</h3>
+        <p>Resumes summarized and matched to your open roles.</p>
+      </li>
+      <li>
+        <h3>Real estate</h3>
+        <p>Listing write-ups from your photos and notes, and a follow-up for every inquiry.</p>
+      </li>
+      <li>
+        <h3>Contractors and renovators</h3>
+        <p>Site photos turned into a client-ready progress report.</p>
+      </li>
+      <li>
+        <h3>Clinics and therapists</h3>
+        <p>Appointment reminders, intake paperwork done before the visit, and a follow-up message after.</p>
+      </li>
+      <li>
+        <h3>Accountants and lawyers</h3>
+        <p>Client documents requested, collected and chased until everything is in.</p>
+      </li>
+      <li>
+        <h3>Restaurants and caterers</h3>
+        <p>Event inquiries answered, orders turned into a prep list, and supplier orders sent on time.</p>
+      </li>
+      <li>
+        <h3>Shuls, schools and nonprofits</h3>
+        <p>Donor receipts, member reminders and parent updates that go out on their own.</p>
+      </li>
+      <li>
+        <h3>Online stores</h3>
+        <p>Competitor price tracking, low-stock alerts and sales reporting. Selling on Amazon? There's a <a href="/amazon-sellers">page for Amazon sellers</a>.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="group" id="ai" aria-labelledby="ai-h">
+  <div class="wrap group-grid">
+    <div class="group-head">
+      <h2 id="ai-h">Your team and AI</h2>
+      <p class="desc">Sometimes the best automation is a team that knows how to use the tools.</p>
+    </div>
+    <ul class="items">
+      <li>
+        <h3>Training your team to use AI well</h3>
+        <p>Hands-on sessions built around your real work, so AI tools become part of the day instead of a novelty.</p>
+      </li>
+      <li>
+        <h3>An assistant that knows your business</h3>
+        <p>Your prices, policies and past answers in one place, so anyone on the team gets the right answer fast.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="fit" id="how" aria-labelledby="fit-h">
+  <div class="wrap">
+    <div class="fit-card">
+      <div>
+        <h2 class="mono-label" id="fit-h">Who this is for</h2>
+        <p class="fit-quote">The best fit is an owner who knows their business inside out and keeps thinking, <q>there has to be a better way to do this.</q></p>
+      </div>
+      <div class="aside">
+        <p>You don't need to be technical. You know the work; I take care of the tech.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <h2>How it works</h2>
+      <div class="step">
+        <h3>Start with a chat</h3>
+        <p class="desc">Tell me about the task that eats your week. A short, no-pressure conversation is usually enough to know whether I can help.</p>
+      </div>
+      <div class="step">
+        <h3>A short paid discovery</h3>
+        <p class="desc">If it's a fit, I learn how the work is done today. You get a written plan: what each build will do, what it costs, and what it won't do.</p>
+      </div>
+      <div class="step">
+        <h3>Built, then looked after</h3>
+        <p class="desc">You watch it work on your real data before it replaces anything, and you pay for the build on delivery. A small monthly fee keeps it monitored and fixed when something breaks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap contact-grid">
+    <div>
+      <h2 id="contact-h">Sound like you?</h2>
+      <p class="contact-lead">Tell me which example sounds like your week. A couple of lines is plenty, and I answer every message myself.</p>
+    </div>
+    <div class="contact-actions">
+      <a class="btn btn-spark" data-wa hidden href="https://wa.me/13472781357">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+        Message me on WhatsApp
+      </a>
+      <div class="email-row">
+        <p class="mono-label">Email</p>
+        <div class="email-line">
+          <span class="email-text" id="email-text">shmuel@holzman.ai</span>
+          <button type="button" class="btn btn-copy btn-sm" id="copy-email">Copy</button>
+          <span class="sr-only" id="copy-status" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand-small">Holzman AI & Automations</span>
+    <span><a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/accessibility">Accessibility</a> &nbsp;·&nbsp; <a href="/privacy">Ledgerly Privacy</a> &nbsp;·&nbsp; <a href="/terms">Ledgerly Terms</a></span>
+    <span>© 2026 · Shmuel Holzman</span>
+  </div>
+</footer>
+
+<script>
+  // WhatsApp links open a chat with a first line already typed; the visitor edits it before sending.
+  // Fail closed: the buttons (and the "or" beside them) start hidden and only appear once the
+  // href holds a real number, so a placeholder or a visitor without JavaScript never sees a broken link.
+  const waText = "Hi Shmuel, I saw your examples page. I'd like to talk about ";
+  document.querySelectorAll('[data-wa]').forEach(a => {
+    if (a.tagName === 'A') {
+      const base = a.getAttribute('href');
+      if (!/^https:\/\/wa\.me\/[1-9][0-9]{7,14}$/.test(base)) return;
+      a.href = base + '?text=' + encodeURIComponent(waText);
+    } else if (!document.querySelector('a[data-wa]:not([hidden])')) {
+      return;
+    }
+    a.hidden = false;
+  });
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Copy the email address; if the clipboard is blocked, select it so the visitor can copy it by hand.
+  const copyBtn = document.getElementById('copy-email');
+  const emailText = document.getElementById('email-text');
+  const copyStatus = document.getElementById('copy-status');
+  let copyTimer;
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(emailText.textContent.trim());
+      copyBtn.textContent = 'Copied';
+      copyStatus.textContent = 'Email address copied';
+    } catch (err) {
+      const range = document.createRange();
+      range.selectNodeContents(emailText);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      copyBtn.textContent = 'Selected';
+      copyStatus.textContent = 'Email address selected';
+    }
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(() => { copyBtn.textContent = 'Copy'; copyStatus.textContent = ''; }, 2000);
+  });
+</script>
+</body>
+</html>
