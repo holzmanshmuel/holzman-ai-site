@@ -192,6 +192,8 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 .site-foot nav a:hover { color: var(--blue-700); text-decoration: underline; }
 .site-foot .copy { font-size: 14px; color: var(--muted); }
 .site-foot .lockup img { height: 34px; }
+/* trademark notice: legal small print, on its own line under the footer row */
+.site-foot .tm { flex-basis: 100%; max-width: 64ch; margin: 0; font-size: 12px; line-height: 1.5; color: var(--muted); }
 /* WCAG 2.2.2: one switch pauses the stars, marching lines and marquee (shown only when motion runs) */
 .motion-toggle { font: inherit; font-size: 14px; color: var(--body); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
 .motion-toggle:hover { color: var(--blue-700); text-decoration-color: currentColor; }
