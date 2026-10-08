@@ -130,7 +130,7 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 .dusk-nav .btn { margin-left: 8px; }
 .dusk-copy { position: relative; z-index: 2; text-align: center; max-width: 840px; margin: 0 auto; padding-top: 64px; }
 .dusk-copy h1 { color: #fff; }
-.dusk-copy .lead { color: #fff; max-width: 580px; margin: 22px auto 0; font-weight: 500; }
+.dusk-copy .lead { text-wrap: pretty; color: #fff; max-width: 580px; margin: 22px auto 0; font-weight: 500; }
 .dusk-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
 .dusk.home { --pb: 320px; padding-bottom: var(--pb); }
 .dusk.compact { --pb: 230px; padding-bottom: var(--pb); }
@@ -140,7 +140,7 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 .dusk.mini .dusk-copy { padding-top: 24px; text-align: left; max-width: none; }
 .dusk.mini .hills { height: 104px; }
 .over-dusk { position: relative; z-index: 4; margin-top: -170px; }
-.dusk.compact + .over-dusk { margin-top: -110px; }
+.dusk.compact + .over-dusk, .dusk.compact + main > .over-dusk:first-child { margin-top: -110px; }
 @media (max-width: 900px) {
   .dusk-nav .links a:not(.btn) { display: none; }
 }
@@ -188,7 +188,7 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 html.still *, html.still *::before, html.still *::after { animation-play-state: paused !important; }
 
 /* ---------- prose (legal and long text) ---------- */
-.prose { max-width: 720px; }
+.prose { max-width: 61ch; }
 .prose h2 { font-weight: 800; font-size: 26px; letter-spacing: -.02em; line-height: 1.2; margin: 44px 0 12px; }
 .prose h3 { font-weight: 700; font-size: 20px; letter-spacing: -.015em; margin: 30px 0 8px; }
 .prose p, .prose li { color: var(--body); }
@@ -199,7 +199,12 @@ html.still *, html.still *::before, html.still *::after { animation-play-state: 
 .prose table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 16px 0; }
 .prose th, .prose td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line-2); vertical-align: top; }
 .prose th { color: var(--ink); font-weight: 600; border-bottom: 1.5px solid var(--ink); }
-.table-scroll { overflow-x: auto; }
+/* on a phone a wide table scrolls sideways; the edge shadows say so (they scroll with the content) */
+.table-scroll { overflow-x: auto; background:
+  linear-gradient(90deg, var(--surface) 30%, rgba(255, 255, 255, 0)) left / 40px 100% no-repeat local,
+  linear-gradient(270deg, var(--surface) 30%, rgba(255, 255, 255, 0)) right / 40px 100% no-repeat local,
+  radial-gradient(farthest-side at 0 50%, rgba(17, 17, 17, .14), rgba(17, 17, 17, 0)) left / 14px 100% no-repeat scroll,
+  radial-gradient(farthest-side at 100% 50%, rgba(17, 17, 17, .14), rgba(17, 17, 17, 0)) right / 14px 100% no-repeat scroll; }
 
 /* ---------- motion (Shmuel's pick: Direction A's spring, as drawn) ---------- */
 @keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: .95; } }
