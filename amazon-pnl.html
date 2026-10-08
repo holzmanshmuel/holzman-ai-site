@@ -61,778 +61,275 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/dusk.css?v=2026-10">
 <style>
-  :root{
-    --bg: #F7F8FB;
-    --bg-2: #F4F6FB;
-    --ink: #14171C;
-    --ink-2: #4A515E;
-    --ink-3: #8A92A0;
-    --ink-4: #B6BCC6;
-    --rule: #E7EAF1;
-    --rule-2: #EEF0F5;
-    --accent: #1D4ED8;
-    --accent-ink: #1E40AF;
-    --accent-soft: #EEF3FE;
+  /* MarginStory page only; the system lives in /dusk.css */
+  .intro { display: grid; grid-template-columns: 1fr 1.15fr; gap: 32px; align-items: center; }
+  .intro .copy { display: grid; gap: 8px; }
+  .intro h2 { font-weight: 800; font-size: 24px; letter-spacing: -.02em; line-height: 1.2; }
+  .intro .copy p { font-family: var(--display); font-weight: 700; font-size: 18px; line-height: 1.35; letter-spacing: -.01em; color: var(--body); }
+  .intro .vs { font-size: 16px; }
 
-    --serif: "Space Grotesk", Georgia, serif;
-    --sans:  "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-    --mono:  "IBM Plex Mono", ui-monospace, monospace;
+  .get { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .get .card { display: grid; gap: 18px; align-content: start; }
+  .get .titled { flex-wrap: wrap; gap: 10px 14px; }
+  .get .item + .item { border-top: 1px solid var(--line-2); margin-top: 16px; padding-top: 16px; }
+  .get h4 { font-weight: 700; font-size: 18px; letter-spacing: -.01em; line-height: 1.3; }
+  .get .item p { font-size: 16px; margin-top: 6px; }
 
-    --maxw: 1240px;
-  }
+  .steps { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .steps::before { content: ""; position: absolute; top: 48px; left: 8%; right: 8%; border-top: 2px dotted #CFCFD4; }
+  .step { position: relative; display: grid; gap: 12px; align-content: start; }
+  .step .titled .data { color: var(--muted); }
+  .step h3 { font-weight: 800; font-size: 22px; letter-spacing: -.02em; line-height: 1.2; }
+  .step p { font-size: 16px; }
+  .closer { margin-top: 18px; }
+  .closer p { font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.35; letter-spacing: -.015em; color: var(--ink); }
 
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  html{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  body{
-    font-family:var(--sans);
-    font-size:17px;
-    line-height:1.55;
-    font-weight:400;
-    letter-spacing:-0.005em;
-    color:var(--ink);
-    font-feature-settings: "ss01", "ss02";
-  }
-  a{color:inherit;text-decoration:none}
-  p{margin:0}
+  .demo { display: grid; grid-template-columns: 1fr auto; gap: 28px 40px; align-items: end; }
+  .demo h3 { font-weight: 800; font-size: 22px; letter-spacing: -.02em; line-height: 1.25; }
+  .demo .caption { margin-top: 12px; font-size: 14px; font-weight: 500; }
+  .demo .body { margin-top: 12px; font-size: 16px; max-width: 64ch; }
 
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 48px}
-  @media (max-width: 720px){
-    body{font-size:16px}
-    .wrap{padding:0 24px}
-  }
+  .pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .price { display: grid; gap: 20px; align-content: start; }
+  .price.founding { border: 1.5px solid var(--blue-600); }
+  .price .head, .fit .head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .price h3, .fit h3 { font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+  .price .amount { font-family: var(--display); font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .price .amount small { font-family: var(--sans); font-weight: 500; font-size: 17px; letter-spacing: 0; color: var(--muted); margin-left: 4px; }
+  .nw { white-space: nowrap; }
+  .price .note { padding-top: 16px; border-top: 1px solid var(--line-2); font-size: 14px; color: var(--muted); }
 
-  section{padding:120px 0}
-  @media (max-width: 720px){ section{padding:80px 0} }
+  .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .fit .card { display: grid; gap: 18px; align-content: start; }
+  .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .ticks li { display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start; font-size: 16px; }
+  .ticks li svg { width: 20px; height: 20px; margin-top: 3px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .price .ticks li svg { stroke: var(--blue); }
+  .fit .yes li svg { stroke: var(--ok); }
+  .fit .no li svg { stroke: var(--muted); }
 
-  /* ───────── Nav ───────── */
-  .nav {
-    position: sticky; top: 0; z-index: 20;
-    background: color-mix(in oklab, var(--bg) 85%, transparent);
-    backdrop-filter: saturate(140%) blur(10px);
-    -webkit-backdrop-filter: saturate(140%) blur(10px);
-    border-bottom: 1px solid transparent;
-    transition: border-color .3s ease;
-  }
-  .nav.scrolled { border-color: var(--rule); }
-  .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 72px;
-  }
-  .brand {
-    display: flex; align-items: baseline; gap: 14px;
-    font-family: var(--serif);
-    font-size: 22px;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-  }
-  .brand .mono {
-    font-family: var(--mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink-3);
-  }
-  .nav-links {
-    display: flex; gap: 36px; align-items: center;
-    font-size: 14px;
-    color: var(--ink-2);
-  }
-  .nav-links a { transition: color .2s ease; }
-  .nav-links a:hover { color: var(--accent-ink); }
-  .nav-links a.active { color: var(--accent-ink); }
-  .nav-cta {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 10px 16px;
-    border: 1px solid var(--ink);
-    border-radius: 999px;
-    transition: background .2s ease, color .2s ease;
-  }
-  .nav-cta:hover { background: var(--ink); color: var(--bg); }
-  @media (max-width: 820px) {
-    .nav-links .link-hide { display: none; }
-  }
-  @media (max-width: 560px) {
-    .nav-links { gap: 18px; }
-    .nav-cta { display: none; }
-  }
+  .closing { display: grid; justify-items: center; }
+  .closing .sec-head { margin-bottom: 32px; }
 
-  /* ───────── Eyebrow / section label ───────── */
-  .eyebrow {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
+  @media (max-width: 900px) {
+    .intro, .get, .pricing, .fit { grid-template-columns: 1fr; }
+    .intro { gap: 16px; }
+    .steps { grid-template-columns: 1fr; }
+    .steps::before { display: none; }
+    .demo { grid-template-columns: 1fr; align-items: start; }
   }
-  .sec-label {
-    display: flex; align-items: center; gap: 14px;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 48px;
+  @media (max-width: 520px) {
+    .price .amount { font-size: 44px; }
   }
-  .sec-label .num { color: var(--accent-ink); }
-  .sec-label::after {
-    content: ""; flex: 1; height: 1px; background: var(--rule);
-    max-width: 280px;
-  }
-
-  /* ───────── Hero ───────── */
-  .hero { padding: 96px 0 140px; position: relative; overflow: hidden; }
-  .hero-head {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(48px, 7.2vw, 108px);
-    line-height: 0.98;
-    letter-spacing: -0.025em;
-    color: var(--ink);
-    max-width: 15ch;
-    margin: 0;
-  }
-  .hero-head em {
-    font-style: italic;
-    color: var(--accent-ink);
-  }
-  .hero-sub {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-  .hero-sub-left {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-style: italic;
-    color: var(--ink-3);
-    line-height: 1.4;
-  }
-  .hero-sub-right p {
-    font-size: 19px;
-    line-height: 1.55;
-    color: var(--ink-2);
-    max-width: 48ch;
-  }
-  .hero-cta-row { display: flex; align-items: center; gap: 28px; margin-top: 32px; flex-wrap: wrap; }
-  @media (max-width: 820px) {
-    .hero-sub { grid-template-columns: 1fr; gap: 32px; }
-    .hero { padding: 56px 0 80px; }
-  }
-
-  /* ───────── Primary button ───────── */
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 14px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    font-family: var(--sans);
-    font-size: 15px;
-    padding: 18px 28px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background .2s ease, transform .2s ease;
-  }
-  .btn-primary:hover { background: var(--accent-ink); transform: translateY(-1px); }
-  .btn-primary .arrow {
-    font-family: var(--mono);
-    font-size: 11px;
-    transition: transform .2s ease;
-  }
-  .btn-primary:hover .arrow { transform: translateX(2px); }
-
-  /* ───────── Typography primitives ───────── */
-  .h2{
-    font-family:var(--serif);
-    font-weight:400;
-    font-size:clamp(40px, 4.8vw, 68px);
-    line-height:1.02;
-    letter-spacing:-0.02em;
-    margin:0 0 20px;
-    max-width:20ch;
-  }
-  .h2 em{font-style:italic;color:var(--accent-ink)}
-  .lead{
-    font-family:var(--sans);
-    font-weight:400;
-    font-size:18px;
-    line-height:1.55;
-    color:var(--ink-2);
-    max-width:62ch;
-  }
-
-  /* ───────── Scroll reveal (matches homepage) ───────── */
-  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .8s ease, transform .8s ease; }
-  .reveal.in { opacity: 1; transform: none; }
-
-  /* ───────── Section 01: services ───────── */
-  .services{
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap:1px;
-    background:var(--rule);
-    border-top:1px solid var(--rule);
-    border-bottom:1px solid var(--rule);
-    margin-top:56px;
-  }
-  @media (max-width: 820px){.services{grid-template-columns:1fr}}
-  .svc{
-    background:var(--bg);
-    padding:36px 32px 40px;
-    display:flex;flex-direction:column;gap:20px;
-    min-height:280px;
-  }
-  .svc-head{
-    display:flex;align-items:baseline;gap:12px;
-    padding-bottom:16px;
-    border-bottom:1px solid var(--rule-2);
-  }
-  .svc-num{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:0.08em}
-  .svc-title{
-    font-family:var(--sans);
-    font-size:13px;
-    font-weight:500;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--ink);
-  }
-  .svc ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:18px}
-  .svc li{display:block}
-  .svc-item-name{
-    font-family:var(--serif);
-    font-style:italic;
-    font-weight:400;
-    font-size:19px;
-    line-height:1.3;
-    color:var(--ink);
-    letter-spacing:-0.005em;
-  }
-  .svc-item-desc{
-    font-size:15px;
-    line-height:1.55;
-    color:var(--ink-3);
-    margin-top:6px;
-  }
-
-  .svc-callout{
-    margin-top:40px;
-    padding:28px 32px;
-    background:var(--bg-2);
-    border:1px solid var(--rule);
-    display:grid;
-    grid-template-columns: auto 1fr;
-    gap:22px;align-items:baseline;
-  }
-  @media (max-width:640px){.svc-callout{grid-template-columns:1fr;gap:8px}}
-  .svc-callout .plus{
-    font-family:var(--serif);font-weight:400;
-    font-size:32px;line-height:1;color:var(--accent-ink);
-  }
-  .svc-callout strong{font-family:var(--sans);font-weight:500;color:var(--ink)}
-  .svc-callout p{font-size:16px;line-height:1.55;color:var(--ink-2)}
-
-  /* ───────── Section 02: how ───────── */
-  .how{background:var(--bg-2)}
-  .steps{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:40px;
-    margin-top:8px;
-  }
-  @media (max-width: 820px){.steps{grid-template-columns:1fr}}
-  .step {
-    position: relative;
-    padding-top: 28px;
-    border-top: 1px solid var(--ink);
-  }
-  .step .num {
-    display:block;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    color: var(--ink-3);
-    margin-bottom: 40px;
-    text-transform:uppercase;
-  }
-  .step h3 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin: 0 0 20px;
-    color:var(--ink);
-  }
-  .step p {
-    font-size: 16px; line-height: 1.6; color: var(--ink-2);
-    max-width: 34ch;
-    margin:0;
-  }
-
-  .steps-closer{
-    margin-top:64px;
-    padding-top:24px;
-    border-top:1px solid var(--rule);
-    font-family:var(--serif);font-style:italic;font-weight:400;
-    font-size:clamp(18px,1.7vw,22px);
-    line-height:1.45;color:var(--ink-2);
-    max-width:62ch;
-  }
-
-  /* ───────── Section 03: cases ───────── */
-  .cases{
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap:28px;
-    margin-top:8px;
-  }
-  @media (max-width: 900px){.cases{grid-template-columns:1fr}}
-  .case{
-    background:var(--bg);
-    border:1px solid var(--rule);
-    border-radius:3px;
-    padding:36px 32px 32px;
-    display:flex;flex-direction:column;gap:20px;
-  }
-  .case-meta{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-3)}
-  .case-label{
-    font-family:var(--sans);font-weight:500;
-    font-size:21px;line-height:1.25;letter-spacing:-0.015em;color:var(--ink);
-    margin:-8px 0 0;
-  }
-  .case-body{font-size:16px;line-height:1.6;color:var(--ink-2);margin:0}
-  .case-quote{
-    margin:8px 0 0;
-    padding:4px 0 4px 20px;
-    border-left:1px solid var(--rule);
-    background:transparent;
-  }
-  .case-quote p{
-    font-family:var(--serif);font-style:italic;font-weight:400;
-    font-size:17px;line-height:1.5;color:var(--ink);
-    letter-spacing:-0.005em;
-    margin:0;
-  }
-  .case-attr{
-    margin-top:14px;
-    font-family:var(--sans);font-size:13px;color:var(--ink-3);letter-spacing:0.01em;
-  }
-  .case-attr strong{color:var(--ink);font-weight:500}
-
-  /* ───────── Section 04: approach ───────── */
-  .prose{
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap:48px;
-    margin-top:8px;
-  }
-  @media (max-width: 820px){.prose{grid-template-columns:1fr;gap:28px}}
-  .prose p{
-    font-family:var(--serif);
-    font-weight:400;
-    font-size:clamp(18px, 1.5vw, 21px);
-    line-height:1.5;
-    letter-spacing:-0.005em;
-    color:var(--ink);
-    max-width:48ch;
-    margin:0;
-  }
-
-  /* ───────── Section 05: who / fit ───────── */
-  .fit-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap:0;
-    margin-top:8px;
-  }
-  @media (max-width: 820px){.fit-grid{grid-template-columns:1fr}}
-  .fit-col{
-    padding:8px 40px 8px 0;
-    border-right:1px solid var(--rule);
-  }
-  .fit-col + .fit-col{padding:8px 0 8px 40px;border-right:0}
-  @media (max-width: 820px){
-    .fit-col{border-right:0;border-bottom:1px solid var(--rule);padding:8px 0 32px}
-    .fit-col + .fit-col{padding:32px 0 8px;border-bottom:0}
-  }
-  .fit-col h3{
-    font-family:var(--serif);font-weight:400;
-    font-size:32px;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);
-    margin:0 0 28px;
-    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
-  }
-  .fit-col h3 .tag{
-    font-family:var(--mono);font-size:11px;letter-spacing:0.12em;
-    color:var(--ink-3);text-transform:uppercase;font-weight:400;
-  }
-  .fit-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
-  .fit-col li{
-    position:relative;padding-left:24px;
-    font-size:16px;line-height:1.55;color:var(--ink-2);
-    max-width:38ch;
-  }
-  .fit-col.yes li::before{
-    content:"";
-    position:absolute;left:0;top:9px;
-    width:8px;height:8px;background:var(--accent-ink);
-  }
-  .fit-col.no li::before{
-    content:"";
-    position:absolute;left:1px;top:9px;
-    width:7px;height:7px;background:transparent;border:1px solid var(--ink-3);
-    transform:rotate(45deg);
-  }
-
-  /* ───────── Section 06: closing ───────── */
-  .closing{
-    text-align:center;
-  }
-  .closing-h {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(48px, 6.4vw, 96px);
-    line-height: 1;
-    letter-spacing: -0.025em;
-    max-width: 14ch;
-    margin: 0 auto;
-    color:var(--ink);
-  }
-  .closing-h em { color: var(--accent-ink); font-style: italic; }
-  .closing-body{
-    font-family:var(--serif);font-style:italic;font-weight:400;
-    font-size:clamp(17px,1.5vw,20px);
-    line-height:1.5;color:var(--ink-2);
-    max-width:46ch;margin:22px auto 0;
-  }
-  .closing-cta{margin-top:40px;display:inline-flex}
-
-  /* ───────── Footer ───────── */
-  footer {
-    border-top: 1px solid var(--rule);
-    padding: 40px 0 48px;
-  }
-  .foot {
-    display: flex; justify-content: space-between; align-items: baseline;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    flex-wrap: wrap; gap: 16px;
-  }
-  .foot .brand-small {
-    font-family: var(--serif);
-    font-size: 16px;
-    letter-spacing: -0.01em;
-    text-transform: none;
-    color: var(--ink);
-  }
-
-  /* selection */
-  ::selection{background:color-mix(in oklab, var(--accent) 28%, transparent);color:var(--ink)}
-
-  /* ───────── Product page: pricing ───────── */
-  :root{ --lime:#BEF264; --lime-ink:#3F6212; --lime-soft:#F2FBDD; }
-  .pricing{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
-  @media (max-width:720px){.pricing{grid-template-columns:1fr}}
-  .price-card{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:36px 32px;
-    box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
-  .price-card.founding{border-color:var(--accent);border-width:1.5px}
-  .price-tag{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-  .price-badge{display:inline-block;background:var(--lime-soft);color:var(--lime-ink);border-radius:20px;
-    padding:3px 12px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;margin-left:8px}
-  .price-num{font-family:var(--serif);font-size:56px;font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-top:16px}
-  .price-num small{font-size:18px;font-weight:500;color:var(--ink-3)}
-  .price-card ul{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:12px}
-  .price-card li{padding-left:24px;position:relative;color:var(--ink-2);font-size:15.5px}
-  .price-card li::before{content:"—";position:absolute;left:0;color:var(--accent)}
-  .price-note{margin-top:20px;font-size:13.5px;color:var(--ink-3)}
-
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- ───────── Nav ───────── -->
-<nav class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a href="/" class="brand">
-      <span>Holzman</span>
-      <span class="mono">AI &amp; Automations</span>
-    </a>
-    <div class="nav-links">
-      <a href="#what" class="link-hide">What you get</a>
-      <a href="#how" class="link-hide">How it works</a>
-      <a href="#pricing" class="link-hide">Pricing</a>
-      <a href="https://marginstory-demo.holzman.ai" class="link-hide" target="_blank" rel="noopener">Live demo</a>
-      <a href="#contact" class="nav-cta">Become a founding customer</a>
-    </div>
-  </div>
-</nav>
-
-<main>
-
-<!-- ───────── Hero ───────── -->
-<header class="hero" id="top" data-screen-label="00 Hero">
+<header class="dusk compact" id="top">
+  <svg class="stars" aria-hidden="true" focusable="false"><circle cx="0.04%" cy="97.15%" r="0.54" opacity="0.50" style="animation-delay:0.80s;animation-duration:4.17s"/><circle cx="49.34%" cy="97.98%" r="0.50" opacity="0.62" style="animation-delay:1.11s;animation-duration:3.98s"/><circle cx="4.12%" cy="83.23%" r="1.25" opacity="0.39" style="animation-delay:1.94s;animation-duration:3.66s"/><circle cx="32.10%" cy="54.26%" r="0.61" opacity="0.55" style="animation-delay:0.73s;animation-duration:3.41s"/><circle cx="84.68%" cy="92.72%" r="1.29" opacity="0.68" style="animation-delay:0.16s;animation-duration:3.02s"/><circle cx="24.70%" cy="39.65%" r="1.32" opacity="0.61" style="animation-delay:0.04s;animation-duration:3.63s"/><circle cx="52.98%" cy="8.98%" r="0.97" opacity="0.53" style="animation-delay:0.32s;animation-duration:2.80s"/><circle cx="30.10%" cy="92.79%" r="0.98" opacity="0.78" style="animation-delay:1.62s;animation-duration:4.91s"/><circle cx="45.36%" cy="12.98%" r="1.06" opacity="0.51" style="animation-delay:2.05s;animation-duration:4.08s"/><circle cx="4.10%" cy="82.49%" r="1.21" opacity="0.64" style="animation-delay:0.64s;animation-duration:3.15s"/><circle cx="94.66%" cy="73.97%" r="0.83" opacity="0.80" style="animation-delay:0.99s;animation-duration:3.07s"/><circle cx="10.57%" cy="80.88%" r="0.71" opacity="0.80" style="animation-delay:1.83s;animation-duration:3.53s"/><circle cx="68.53%" cy="43.23%" r="0.57" opacity="0.66" style="animation-delay:2.96s;animation-duration:4.30s"/><circle cx="36.03%" cy="82.08%" r="1.29" opacity="0.67" style="animation-delay:2.86s;animation-duration:3.87s"/><circle cx="1.71%" cy="36.58%" r="0.52" opacity="0.57" style="animation-delay:3.30s;animation-duration:2.85s"/><circle cx="35.93%" cy="23.51%" r="1.04" opacity="0.45" style="animation-delay:1.12s;animation-duration:4.78s"/><circle cx="84.03%" cy="60.01%" r="0.75" opacity="0.36" style="animation-delay:1.62s;animation-duration:4.68s"/><circle cx="22.23%" cy="45.14%" r="0.63" opacity="0.50" style="animation-delay:1.79s;animation-duration:4.55s"/><circle cx="32.58%" cy="41.94%" r="1.07" opacity="0.68" style="animation-delay:1.34s;animation-duration:3.14s"/><circle cx="11.70%" cy="62.81%" r="0.92" opacity="0.49" style="animation-delay:2.99s;animation-duration:4.97s"/><circle cx="82.25%" cy="55.32%" r="0.64" opacity="0.83" style="animation-delay:1.44s;animation-duration:4.21s"/><circle cx="70.86%" cy="71.53%" r="1.03" opacity="0.76" style="animation-delay:0.04s;animation-duration:4.05s"/><circle cx="96.78%" cy="11.13%" r="0.90" opacity="0.62" style="animation-delay:1.65s;animation-duration:4.73s"/><circle cx="12.09%" cy="81.55%" r="0.75" opacity="0.67" style="animation-delay:1.62s;animation-duration:4.82s"/><circle cx="11.52%" cy="66.46%" r="0.96" opacity="0.82" style="animation-delay:1.23s;animation-duration:4.92s"/><circle cx="59.36%" cy="93.80%" r="1.11" opacity="0.64" style="animation-delay:3.13s;animation-duration:3.51s"/><circle cx="71.57%" cy="51.64%" r="1.35" opacity="0.63" style="animation-delay:0.46s;animation-duration:3.25s"/><circle cx="63.37%" cy="77.23%" r="0.95" opacity="0.74" style="animation-delay:2.05s;animation-duration:3.97s"/><circle cx="21.68%" cy="74.66%" r="1.36" opacity="0.82" style="animation-delay:3.01s;animation-duration:4.15s"/><circle cx="76.64%" cy="36.30%" r="0.87" opacity="0.43" style="animation-delay:1.72s;animation-duration:2.94s"/><circle cx="52.48%" cy="97.19%" r="1.29" opacity="0.54" style="animation-delay:1.83s;animation-duration:3.66s"/><circle cx="1.84%" cy="17.29%" r="0.73" opacity="0.66" style="animation-delay:3.32s;animation-duration:4.72s"/><circle cx="82.09%" cy="33.08%" r="0.55" opacity="0.60" style="animation-delay:1.44s;animation-duration:3.99s"/><circle cx="28.45%" cy="70.90%" r="0.96" opacity="0.46" style="animation-delay:1.08s;animation-duration:4.12s"/><circle cx="11.73%" cy="33.38%" r="0.94" opacity="0.48" style="animation-delay:1.64s;animation-duration:5.05s"/><circle cx="56.60%" cy="45.80%" r="0.79" opacity="0.69" style="animation-delay:0.24s;animation-duration:5.02s"/><circle cx="43.82%" cy="44.64%" r="0.78" opacity="0.36" style="animation-delay:3.26s;animation-duration:4.74s"/><circle cx="55.61%" cy="45.53%" r="1.23" opacity="0.81" style="animation-delay:1.32s;animation-duration:2.99s"/><circle cx="57.64%" cy="58.16%" r="1.30" opacity="0.44" style="animation-delay:2.82s;animation-duration:3.58s"/><circle cx="86.84%" cy="43.62%" r="0.88" opacity="0.67" style="animation-delay:2.49s;animation-duration:3.32s"/><circle cx="71.97%" cy="30.55%" r="1.20" opacity="0.73" style="animation-delay:1.20s;animation-duration:3.15s"/><circle cx="95.32%" cy="14.10%" r="0.87" opacity="0.68" style="animation-delay:0.11s;animation-duration:2.72s"/><circle cx="98.77%" cy="54.88%" r="1.32" opacity="0.42" style="animation-delay:0.59s;animation-duration:2.78s"/><circle cx="87.89%" cy="33.03%" r="1.02" opacity="0.81" style="animation-delay:0.04s;animation-duration:3.46s"/><circle cx="49.23%" cy="36.73%" r="0.80" opacity="0.51" style="animation-delay:1.01s;animation-duration:4.18s"/><circle cx="46.45%" cy="21.99%" r="1.10" opacity="0.48" style="animation-delay:2.33s;animation-duration:2.74s"/><circle cx="17.39%" cy="54.49%" r="0.85" opacity="0.83" style="animation-delay:0.95s;animation-duration:4.16s"/><circle cx="16.67%" cy="11.15%" r="1.34" opacity="0.57" style="animation-delay:0.79s;animation-duration:2.86s"/></svg>
   <div class="wrap">
-    <div class="eyebrow reveal" style="margin-bottom:40px;">
-      <span style="color:var(--accent-ink)">●</span>&nbsp;&nbsp;MarginStory — the monthly Amazon P&amp;L report, done for you
-    </div>
-
-    <h1 class="hero-head reveal">
-      You already own the dashboards. This is <em>the analyst.</em>
-    </h1>
-
-    <div class="hero-sub" style="margin-top: 72px;">
-      <div class="hero-sub-left reveal">
-        MarginStory is a written month-over-month P&amp;L narrative for your Amazon business — what moved, why it moved, and what to watch — on your own private report site.
+    <nav class="dusk-nav" aria-label="Main">
+      <a class="lockup" href="/" aria-label="Holzman AI &amp; Automations home"><img src="/logo-reverse.svg" alt="Holzman AI &amp; Automations" width="276" height="38"></a>
+      <div class="links">
+        <a class="nav-lo" href="/#how">How we work</a>
+        <a href="/examples">Examples</a>
+        <a href="/amazon-sellers">Amazon sellers</a>
+        <a href="/ledgerly">Ledgerly</a>
+        <a class="nav-lo" href="/#about">About</a>
+        <a class="btn btn-white btn-sm" href="/#contact">Start a conversation</a>
       </div>
-      <div class="hero-sub-right reveal">
-        <p>
-          Sellerboard and Helium 10 give you forty columns of numbers. This gives you the three things that changed, explained in plain English, reconciled before you ever see them — and signed by a human.
-        </p>
-        <div class="hero-cta-row">
-          <a href="https://marginstory-demo.holzman.ai" target="_blank" rel="noopener" class="btn-primary">
-            See a live report <span class="arrow">→</span>
-          </a>
-        </div>
+    </nav>
+    <div class="dusk-copy">
+      <h1 class="h-hero">You already own the dashboards. This is the analyst.</h1>
+      <p class="lead">MarginStory is a written month-over-month P&amp;L narrative for your Amazon business — what moved, why it moved, and what to watch — on your own private report site.</p>
+      <div class="dusk-ctas">
+        <a class="btn btn-white" href="https://marginstory-demo.holzman.ai" target="_blank" rel="noopener">See a live report <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#contact">Become a founding customer</a>
       </div>
     </div>
   </div>
+  <svg class="hills" viewBox="0 0 1440 190" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 96C110 70 210 52 330 70S560 118 700 86S940 40 1080 66S1320 108 1440 78V190H0Z" fill="#6E6FC9" opacity=".55"/><path d="M0 128C150 100 290 106 420 124S650 156 820 122S1100 98 1260 120S1400 140 1440 132V190H0Z" fill="#A894D8" opacity=".7"/><path d="M0 158C200 140 420 148 640 164S1000 156 1200 146S1380 154 1440 150V190H0Z" fill="#F7F7F7"/></svg>
 </header>
 
-<!-- ───────── 01 What you get ───────── -->
-<section id="what" data-screen-label="01 What you get">
-  <div class="wrap">
-    <div class="sec-label reveal"><span class="num">01</span> · What you get</div>
-
-    <h2 class="h2 reveal">An analyst's read, <em>not another dashboard.</em></h2>
-
-    <p class="lead reveal" style="margin-top:24px">
-      Every month, your numbers get the treatment a finance team would give them — movement decomposed, anomalies flagged, ratios recomputed — and you get the conclusions, not the homework.
-    </p>
-
-    <div class="services" role="list">
-      <article class="svc" role="listitem">
-        <header class="svc-head">
-          <span class="svc-num">A.</span>
-          <span class="svc-title">The written report</span>
-        </header>
-        <ul>
-          <li>
-            <div class="svc-item-name">What moved &amp; why</div>
-            <div class="svc-item-desc">A month-over-month narrative: your biggest gainers and losers, the driver behind each move, and margin shifts decomposed — volume vs price vs cost.</div>
-          </li>
-          <li>
-            <div class="svc-item-name">What to watch</div>
-            <div class="svc-item-desc">Hidden issues (products that look stable while the underlying signals deteriorate), stockout signatures, and ad-spend money-losers.</div>
-          </li>
-        </ul>
-      </article>
-      <article class="svc" role="listitem">
-        <header class="svc-head">
-          <span class="svc-num">B.</span>
-          <span class="svc-title">Your report site</span>
-        </header>
-        <ul>
-          <li>
-            <div class="svc-item-name">Private &amp; branded</div>
-            <div class="svc-item-desc">Your own hosted report site behind Google login — every month archived, every version kept, nothing lands in an inbox attachment.</div>
-          </li>
-        </ul>
-      </article>
-      <article class="svc" role="listitem">
-        <header class="svc-head">
-          <span class="svc-num">C.</span>
-          <span class="svc-title">Numbers you can trust</span>
-        </header>
-        <ul>
-          <li>
-            <div class="svc-item-name">Reconciled before published</div>
-            <div class="svc-item-desc">Every report passes a reconciliation gate against your source data, and data-quality flags surface anything suspicious — missing costs, implausible margins — instead of hiding it.</div>
-          </li>
-        </ul>
-      </article>
-      <article class="svc" role="listitem">
-        <header class="svc-head">
-          <span class="svc-num">D.</span>
-          <span class="svc-title">Ask your P&amp;L <span class="price-badge">add-on</span></span>
-        </header>
-        <ul>
-          <li>
-            <div class="svc-item-name">The analyst in your pocket</div>
-            <div class="svc-item-desc">Chat with your own numbers from Claude — "why did margin drop in March?", "show me the trend on my hero SKU" — answered from your live report database.</div>
-          </li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ───────── 02 How it works ───────── -->
-<section id="how" class="how" data-screen-label="02 How it works">
-  <div class="wrap">
-    <div class="sec-label reveal"><span class="num">02</span> · How it works</div>
-
-    <h2 class="h2 reveal">Onboard in days. <em>No dev work on your side.</em></h2>
-
-    <div class="steps">
-      <div class="step reveal">
-        <span class="num">Step 01</span>
-        <h3>Connect</h3>
-        <p>You share a Sellerboard report link (or a simple cost sheet) — about an hour of your time, once. No code, no IT project.</p>
-      </div>
-      <div class="step reveal">
-        <span class="num">Step 02</span>
-        <h3>We reconcile</h3>
-        <p>Your history is loaded and checked month by month against your own source of truth. Your first report is reviewed by a human before you ever see it.</p>
-      </div>
-      <div class="step reveal">
-        <span class="num">Step 03</span>
-        <h3>Every month, on time</h3>
-        <p>Your report usually lands around the 5th business day, and follow-up questions are answered within a couple of business days.</p>
-      </div>
-    </div>
-
-    <p class="steps-closer reveal">Concierge onboarding — we set everything up with you, by hand.</p>
-  </div>
-</section>
-
-<!-- ───────── 03 See it live ───────── -->
-<section id="demo" data-screen-label="03 Live demo">
-  <div class="wrap">
-    <div class="sec-label reveal"><span class="num">03</span> · See it live</div>
-
-    <h2 class="h2 reveal">Read a real report <em>right now.</em></h2>
-
-    <div class="cases">
-      <article class="case reveal">
-        <div class="case-meta">Public demo — synthetic store, real engine</div>
-        <h3 class="case-label">MarginStory: Acme Outdoor Co. — May 2026 monthly report</h3>
-        <p class="case-body">This is the actual product running on demo data: the same engine, the same report site, the same analysis. Start with "What Matters Most" at the top, then look at the biggest movers — every change comes with its driver spelled out. What you're reading is what lands for your store every month.</p>
-        <div class="hero-cta-row" style="margin-top:28px">
-          <a href="https://marginstory-demo.holzman.ai" target="_blank" rel="noopener" class="btn-primary">Open the MarginStory demo <span class="arrow">→</span></a>
+<main id="main">
+  <div class="over-dusk wrap">
+    <div class="float">
+      <div class="float-in intro">
+        <div class="copy">
+          <h2>MarginStory by Holzman AI</h2>
+          <p>The monthly Amazon P&amp;L report, done for you.</p>
         </div>
+        <p class="vs">Sellerboard and Helium 10 give you forty columns of numbers. This gives you the three things that changed, explained in plain English, reconciled before you ever see them — and signed by a human.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="sec" id="what" aria-labelledby="what-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="h-sec" id="what-h">What you get</h2>
+        <p class="lead-strong">An analyst's read, not another dashboard.</p>
+        <p>Every month, your numbers get the treatment a finance team would give them — movement decomposed, anomalies flagged, ratios recomputed — and you get the conclusions, not the homework.</p>
+      </div>
+      <div class="get">
+        <article class="card reveal">
+          <div class="titled"><span class="tile t-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span><h3 class="h-card">The written report</h3></div>
+          <div>
+            <div class="item"><h4>What moved &amp; why</h4><p>A month-over-month narrative: your biggest gainers and losers, the driver behind each move, and margin shifts decomposed — volume vs price vs cost.</p></div>
+            <div class="item"><h4>What to watch</h4><p>Hidden issues (products that look stable while the underlying signals deteriorate), stockout signatures, and ad-spend money-losers.</p></div>
+          </div>
+        </article>
+        <article class="card reveal d1">
+          <div class="titled"><span class="tile t-violet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><rect x="9" y="12.5" width="6" height="5" rx="1"/><path d="M10.5 12.5v-1a1.5 1.5 0 0 1 3 0v1"/></svg></span><h3 class="h-card">Your report site</h3></div>
+          <div>
+            <div class="item"><h4>Private &amp; branded</h4><p>Your own hosted report site behind Google login — every month archived, every version kept, nothing lands in an inbox attachment.</p></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="titled"><span class="tile t-green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.4 3 8.3 7 9.5 4-1.2 7-5.1 7-9.5V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></span><h3 class="h-card">Numbers you can trust</h3></div>
+          <div>
+            <div class="item"><h4>Reconciled before published</h4><p>Every report passes a reconciliation gate against your source data, and data-quality flags surface anything suspicious — missing costs, implausible margins — instead of hiding it.</p></div>
+          </div>
+        </article>
+        <article class="card reveal d1">
+          <div class="titled"><span class="tile t-amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.5-.7L3 21l1.8-5.5a8.4 8.4 0 1 1 16.2-4Z"/></svg></span><h3 class="h-card">Ask your P&amp;L</h3><span class="chip chip-blue">add-on</span></div>
+          <div>
+            <div class="item"><h4>The analyst in your pocket</h4><p>Chat with your own numbers from Claude — "why did margin drop in March?", "show me the trend on my hero SKU" — answered from your live report database.</p></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="h-sec" id="how-h">How it works</h2>
+        <p class="lead-strong">Onboard in days. No dev work on your side.</p>
+      </div>
+      <div class="steps">
+        <div class="card step lift reveal">
+          <div class="titled"><span class="tile t-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span class="data">Step 01</span></div>
+          <h3>Connect</h3>
+          <p>You share a Sellerboard report link (or a simple cost sheet) — about an hour of your time, once. No code, no IT project.</p>
+        </div>
+        <div class="card step lift reveal d1">
+          <div class="titled"><span class="tile t-green"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span><span class="data">Step 02</span></div>
+          <h3>We reconcile</h3>
+          <p>Your history is loaded and checked month by month against your own source of truth. Your first report is reviewed by a human before you ever see it.</p>
+        </div>
+        <div class="card step lift reveal d2">
+          <div class="titled"><span class="tile t-amber"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span class="data">Step 03</span></div>
+          <h3>Every month, on time</h3>
+          <p>Your report usually lands around the 5th business day, and follow-up questions are answered within a couple of business days.</p>
+        </div>
+      </div>
+      <div class="card-flat closer reveal">
+        <p>Concierge onboarding — we set everything up with you, by hand.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="demo" aria-labelledby="demo-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="h-sec" id="demo-h">See it live</h2>
+        <p class="lead-strong">Read a real report right now.</p>
+      </div>
+      <article class="card demo reveal">
+        <div>
+          <div class="titled"><span class="tile t-violet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg></span><h3>MarginStory: Acme Outdoor Co. — May 2026 monthly report</h3></div>
+          <p class="caption">Public demo — synthetic store, real engine</p>
+          <p class="body">This is the actual product running on demo data: the same engine, the same report site, the same analysis. Start with "What Matters Most" at the top, then look at the biggest movers — every change comes with its driver spelled out. What you're reading is what lands for your store every month.</p>
+        </div>
+        <a class="btn btn-primary" href="https://marginstory-demo.holzman.ai" target="_blank" rel="noopener">Open the MarginStory demo <span class="arr" aria-hidden="true">→</span></a>
       </article>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ───────── 04 Pricing ───────── -->
-<section id="pricing" data-screen-label="04 Pricing">
-  <div class="wrap">
-    <div class="sec-label reveal"><span class="num">04</span> · Pricing</div>
-
-    <h2 class="h2 reveal">Less than a bookkeeper. <em>Sharper than a dashboard.</em></h2>
-
-    <div class="pricing">
-      <!-- Q-8 DECIDED 2026-07-12: founding $399/mo x 12 months, then standard $599/mo -->
-      <div class="price-card founding reveal">
-        <span class="price-tag">Founding seller</span><span class="price-badge">A small founding cohort</span>
-        <div class="price-num">$399<small>/month</small></div>
-        <ul>
-          <li>Founding rate locked for your first 12 months, then the standard $599.</li>
-          <li>Everything in Standard — same report, same site, same service.</li>
-          <li>You shape the product: honest feedback, a testimonial at day 30, two introductions.</li>
-        </ul>
-        <p class="price-note">Six-month commitment, then month to month. This price won’t be offered again.</p>
+  <section class="sec" id="pricing" aria-labelledby="pricing-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="h-sec" id="pricing-h">Pricing</h2>
+        <p class="lead-strong">Less than a bookkeeper. Sharper than a dashboard.</p>
       </div>
-      <div class="price-card reveal">
-        <span class="price-tag">Standard</span>
-        <div class="price-num">$599<small>/month</small></div>
-        <ul>
-          <li>The monthly written P&amp;L report + your private report site.</li>
-          <li>Report usually around the 5th business day; follow-ups answered within a couple of business days.</li>
-          <li>Ask-your-P&amp;L chat available as an add-on.</li>
-        </ul>
-        <p class="price-note">Compare: a fractional analyst runs $800–2,500/month.</p>
+      <div class="pricing">
+        <div class="card price founding reveal">
+          <div class="head"><h3>Founding seller</h3><span class="chip chip-blue">A small founding cohort</span></div>
+          <p class="amount">$399<small>/month</small></p>
+          <ul class="ticks">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Founding rate locked for your first 12 months, then the standard $599.</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Everything in Standard — same report, same site, same service.</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>You shape the product: honest feedback, a testimonial at day 30, two introductions.</span></li>
+          </ul>
+          <p class="note">Six-month commitment, then month to month.</p>
+        </div>
+        <div class="card price reveal d1">
+          <div class="head"><h3>Standard</h3></div>
+          <p class="amount">$599<small>/month</small></p>
+          <ul class="ticks">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>The monthly written P&amp;L report + your private report site.</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Report usually around the 5th business day; follow-ups answered within a couple of business days.</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Ask-your-P&amp;L chat available as an add-on.</span></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ───────── 05 Who it's for ───────── -->
-<section id="fit" data-screen-label="05 Who this is for">
-  <div class="wrap">
-    <div class="sec-label reveal"><span class="num">05</span> · Who this is for</div>
-
-    <h2 class="h2 reveal">Built for sellers with <em>real money in motion.</em></h2>
-
-    <div class="fit-grid">
-      <div class="fit-col yes reveal">
-        <h3>Good fit <span class="tag">You're a fit if</span></h3>
-        <ul>
-          <li>You're an established Amazon seller and the P&amp;L actually moves month to month.</li>
-          <li>You use Sellerboard (or can export your numbers) — connection takes an hour.</li>
-          <li>You want conclusions and next moves, not another tool to learn.</li>
-        </ul>
+  <section class="sec" id="fit" aria-labelledby="fit-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="h-sec" id="fit-h">Who this is for</h2>
+        <p class="lead-strong">Built for sellers with real money in motion.</p>
       </div>
-      <div class="fit-col no reveal">
-        <h3>Not a fit <span class="tag">Probably not if</span></h3>
-        <ul>
-          <li>You're brand new and don't have a year of history to analyze yet.</li>
-          <li>You enjoy living in the spreadsheets yourself (respect).</li>
-          <li>You want a cheap dashboard — those already exist and we'll happily point you to them.</li>
-        </ul>
+      <div class="fit">
+        <div class="card yes reveal">
+          <div class="head"><h3>Good fit</h3><span class="chip chip-ok">You're a fit if</span></div>
+          <ul class="ticks">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>You're an established Amazon seller and the P&amp;L actually moves month to month.</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>You use Sellerboard (or can export your numbers) — connection takes an hour.</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>You want conclusions and next moves, not another tool to learn.</span></li>
+          </ul>
+        </div>
+        <div class="card no reveal d1">
+          <div class="head"><h3>Not a fit</h3><span class="chip chip-neutral">Probably not if</span></div>
+          <ul class="ticks">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg><span>You're brand new and don't have a year of history to analyze yet.</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg><span>You enjoy living in the spreadsheets yourself (respect).</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg><span>You want a cheap dashboard — those already exist and we'll happily point you to them.</span></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ───────── 06 Closing CTA ───────── -->
-<section id="contact" class="closing" data-screen-label="06 Closing">
-  <div class="wrap">
-    <h2 class="closing-h reveal">See your own numbers <em>this month.</em></h2>
-    <p class="closing-body reveal">Three founding seats at $399. A short email is enough — we'll take it from there.</p>
-    <a href="mailto:shmuel@holzman.ai?subject=Founding%20seller%20—%20Amazon%20P%26L%20Report" class="btn-primary closing-cta reveal">Claim a founding seat <span class="arrow">→</span></a>
-  </div>
-</section>
-
+  <section class="sec" id="contact" aria-labelledby="contact-h">
+    <div class="wrap closing">
+      <div class="sec-head center reveal">
+        <h2 class="h-sec" id="contact-h">Become a founding customer</h2>
+        <p class="lead-strong">See your own numbers this month.</p>
+        <p>A small founding cohort at $399/month. A short email is enough — we'll take it from there.</p>
+      </div>
+      <div class="reveal d1"><a class="btn btn-primary" href="mailto:shmuel@holzman.ai?subject=Founding%20seller%20—%20Amazon%20P%26L%20Report">Claim a founding seat <span class="arr" aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
 </main>
 
-<footer>
-  <div class="wrap foot">
-    <span class="brand-small">Holzman AI &amp; Automations</span>
-    <span><a href="mailto:shmuel@holzman.ai">shmuel@holzman.ai</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a> &nbsp;·&nbsp; <a href="/privacy-policy">Site Privacy</a> &nbsp;·&nbsp; <a href="/accessibility">Accessibility</a></span>
-    <span>© 2026</span>
+<footer class="site-foot">
+  <div class="wrap row">
+    <a class="lockup" href="/" aria-label="Holzman AI &amp; Automations home"><img src="/logo.svg" alt="Holzman AI &amp; Automations" width="247" height="34"></a>
+    <nav aria-label="Legal"><a href="/privacy-policy">Privacy Policy</a><a href="/accessibility">Accessibility</a><a href="/privacy">Ledgerly Privacy</a><a href="/terms">Ledgerly Terms</a></nav>
+    <button class="motion-toggle" type="button" hidden>Pause animations</button>
+    <span class="copy">© 2026 · Shmuel Holzman</span>
+    <p class="tm">Product names are trademarks of their respective owners. Listing them doesn't imply endorsement or partnership.</p>
   </div>
 </footer>
 
-<script>
-(function () {
-  // Scroll-triggered reveal (matches homepage)
-  var els = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    els.forEach(function (el) { io.observe(el); });
-  } else {
-    // Fallback: just reveal everything
-    els.forEach(function (el) { el.classList.add('in'); });
-  }
-
-  // Add border-bottom to nav once page is scrolled (matches homepage)
-  var nav = document.getElementById('nav');
-  if (nav) {
-    var onScroll = function () {
-      nav.classList.toggle('scrolled', window.scrollY > 10);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-})();
-</script>
-
+<script src="/dusk.js?v=2026-10" defer></script>
 </body>
 </html>

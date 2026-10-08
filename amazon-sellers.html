@@ -58,1035 +58,197 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/dusk.css?v=2026-10">
 <style>
-  :root {
-    /* Holzman "Signal" brand */
-    --bg: #F7F8FB;
-    --bg-2: #F4F6FB;
-    --ink: #14171C;
-    --ink-2: #4A515E;
-    --ink-3: #8A92A0;
-    --ink-4: #B6BCC6;
-    --rule: #E7EAF1;
-    --rule-2: #EEF0F5;
-    --accent: #1D4ED8;
-    --accent-ink: #1E40AF;
-    --accent-soft: #EEF3FE;
-    --spark: #BEF264;       /* the signature lime — one spark per view */
-    --spark-ink: #3F6212;
-    --serif: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-    --sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, monospace;
-  }
+  /* /amazon-sellers only; the system lives in /dusk.css */
+  .dusk-copy .lead { text-wrap: pretty; }
+  .hero-note { margin-top: 18px; font-size: 15px; color: #fff; }
+  .hero-note b { font-weight: 600; }
 
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "ss01", "ss02";
-  }
-  a { color: inherit; text-decoration: none; }
-  p { margin: 0; }
+  /* compact hero: the sheet overlaps the hills less than on the homepage */
+  main > .over-dusk:first-child { margin-top: -110px; }
+  .intro { display: grid; grid-template-columns: 1fr 1.7fr; gap: 32px; align-items: center; }
+  .intro h2 { font-weight: 800; font-size: 24px; letter-spacing: -.02em; line-height: 1.2; }
+  .intro p { font-size: 17px; }
+  main > .over-dusk + .sec { padding-top: 88px; }
 
-  .wrap {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 48px;
+  .build { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .build .card { display: grid; gap: 14px; align-content: start; }
+  .build h3 { font-weight: 800; font-size: 22px; letter-spacing: -.02em; line-height: 1.2; }
+  .build p { font-size: 16px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 4px 0 0; padding: 0; }
+
+  .tear { display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; align-items: start; }
+  .tear .sec-head { margin-bottom: 0; }
+  .tear-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 28px; }
+  .tear-cta .note { font-size: 14px; color: var(--muted); }
+  .tear-cta .note b { color: var(--ink); font-weight: 600; }
+  .look { display: grid; gap: 18px; align-content: start; }
+  .look h3 { font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+  .look ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .look li { display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start; font-size: 16px; color: var(--ink); }
+  .look li svg { width: 20px; height: 20px; margin-top: 3px; fill: none; stroke: var(--blue); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .look .fine { border-top: 1px solid var(--line-2); padding-top: 16px; font-size: 14px; color: var(--muted); }
+
+  .model { display: grid; grid-template-columns: 1.15fr 1fr 1fr 1fr; gap: 28px; align-items: start; }
+  .model h3 { font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+  .model .lead-strong { font-size: 18px; line-height: 1.4; margin-top: 6px; color: var(--body); }
+  .model .titled { gap: 12px; }
+  .model .t { font-family: var(--display); font-weight: 800; font-size: 18px; color: var(--ink); letter-spacing: -.01em; }
+  .model .d { font-size: 15.5px; margin-top: 10px; }
+  .more { margin-top: 24px; }
+  .more .btn { white-space: normal; text-align: left; }
+
+  @media (max-width: 900px) {
+    .intro, .tear { grid-template-columns: 1fr; }
+    .intro { gap: 12px; }
+    .model { grid-template-columns: 1fr 1fr; }
+    .model > :first-child { grid-column: 1 / -1; }
   }
   @media (max-width: 720px) {
-    .wrap { padding: 0 24px; }
-    body { font-size: 16px; }
+    main > .over-dusk + .sec { padding-top: 64px; }
+    .build { grid-template-columns: 1fr; }
   }
-
-  /* NAV */
-  .nav {
-    position: sticky; top: 0; z-index: 20;
-    background: color-mix(in oklab, var(--bg) 85%, transparent);
-    backdrop-filter: saturate(140%) blur(10px);
-    -webkit-backdrop-filter: saturate(140%) blur(10px);
-    border-bottom: 1px solid transparent;
-    transition: border-color .3s ease;
+  @media (max-width: 520px) {
+    .model { grid-template-columns: 1fr; }
   }
-  .nav.scrolled { border-color: var(--rule); }
-  .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 72px;
-  }
-  .brand {
-    display: flex; align-items: baseline; gap: 14px;
-    font-family: var(--serif);
-    font-size: 22px;
-    letter-spacing: -0.01em;
-  }
-  .brand .mono {
-    font-family: var(--mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink-3);
-  }
-  .nav-links {
-    display: flex; gap: 36px; align-items: center;
-    font-size: 14px;
-    color: var(--ink-2);
-  }
-  .nav-links a { transition: color .2s ease; }
-  .nav-links a:hover { color: var(--accent-ink); }
-  .nav-cta {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 10px 16px;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: 999px;
-    transition: background .2s ease, color .2s ease;
-  }
-  .nav-cta:hover { background: var(--accent); color: #fff; }
-  @media (max-width: 820px) {
-    .nav-links .link-hide { display: none; }
-  }
-  @media (max-width: 560px) {
-    .nav-links { gap: 18px; }
-    .nav-cta { display: none; }
-  }
-
-  /* SECTION FRAME */
-  section { padding: 120px 0; position: relative; }
-  @media (max-width: 720px) { section { padding: 80px 0; } }
-
-  .sec-label {
-    display: flex; align-items: center; gap: 14px;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 48px;
-  }
-  .sec-label .num { color: var(--accent-ink); }
-  .sec-label::after {
-    content: ""; flex: 1; height: 1px; background: var(--rule);
-    max-width: 280px;
-  }
-
-  .eyebrow {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-
-  h1, h2, h3 { margin: 0; font-weight: 400; }
-
-  /* HERO */
-  .hero {
-    padding: 96px 0 140px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 80px;
-  }
-  .hero-head {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(48px, 7.2vw, 108px);
-    line-height: 0.98;
-    letter-spacing: -0.025em;
-    color: var(--ink);
-    max-width: 15ch;
-  }
-  .hero-head em {
-    font-style: normal;
-    color: var(--accent);
-    text-decoration: underline;
-    text-decoration-color: var(--spark);
-    text-decoration-thickness: 8px;
-    text-underline-offset: 6px;
-  }
-  .hero-sub {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-  .hero-sub-left {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-style: italic;
-    color: var(--ink-3);
-    line-height: 1.4;
-  }
-  .hero-sub-right p {
-    font-size: 19px;
-    line-height: 1.55;
-    color: var(--ink-2);
-    max-width: 48ch;
-  }
-  .hero-cta-row {
-    display: flex; align-items: center; gap: 28px;
-    margin-top: 40px;
-    flex-wrap: wrap;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 14px;
-    background: var(--accent);
-    color: #fff;
-    padding: 18px 28px;
-    border-radius: 999px;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: -0.005em;
-    transition: transform .2s ease, background .2s ease;
-  }
-  .btn-primary:hover { background: var(--accent-ink); transform: translateY(-1px); }
-  .btn-primary .arrow {
-    width: 18px; height: 18px; border-radius: 999px;
-    background: #fff; color: var(--accent);
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 11px;
-    transition: transform .2s ease;
-  }
-  .btn-primary:hover .arrow { transform: translateX(2px); }
-  .secondary-note {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--ink-3);
-    letter-spacing: 0.04em;
-  }
-  .secondary-note b { color: var(--ink); font-weight: 500; }
-
-  @media (max-width: 820px) {
-    .hero-sub { grid-template-columns: 1fr; gap: 32px; }
-    .hero { padding: 56px 0 80px; }
-  }
-
-  .hero-meta {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    margin-top: 96px;
-    padding-top: 40px;
-    border-top: 1px solid var(--rule);
-  }
-  .hero-meta .cell .k {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 10px;
-  }
-  .hero-meta .cell .v {
-    font-family: var(--serif);
-    font-size: 22px;
-    line-height: 1.25;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-  }
-  @media (max-width: 820px) {
-    .hero-meta { grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 56px; }
-  }
-
-  /* WHAT WE BUILD */
-  .build-header {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-    align-items: end; margin-bottom: 72px;
-  }
-  .build-header h2 {
-    font-family: var(--serif);
-    font-size: clamp(40px, 4.8vw, 68px);
-    line-height: 1.02;
-    letter-spacing: -0.02em;
-    max-width: 14ch;
-  }
-  .build-header p {
-    font-size: 18px; color: var(--ink-2); line-height: 1.55; max-width: 44ch;
-  }
-  @media (max-width: 820px) {
-    .build-header { grid-template-columns: 1fr; gap: 24px; }
-  }
-
-  .build-list {
-    border-top: 1px solid var(--rule);
-  }
-  .build-row {
-    display: grid;
-    grid-template-columns: 80px 1fr 1.2fr 40px;
-    gap: 40px;
-    padding: 36px 0;
-    border-bottom: 1px solid var(--rule);
-    align-items: start;
-    transition: background .25s ease, padding .25s ease;
-    cursor: default;
-  }
-  .build-row:hover { background: color-mix(in oklab, var(--bg-2) 60%, transparent); padding-left: 16px; padding-right: 16px; }
-  .build-row .idx {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--ink-3);
-    letter-spacing: 0.08em;
-    padding-top: 6px;
-  }
-  .build-row h3 {
-    font-family: var(--serif);
-    font-size: 30px;
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-  }
-  .build-row .desc {
-    color: var(--ink-2);
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  .build-row .desc .examples {
-    display: flex; flex-wrap: wrap; gap: 6px 8px;
-    margin-top: 14px;
-  }
-  .build-row .desc .examples span {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    color: var(--ink-3);
-    background: var(--bg-2);
-    padding: 4px 10px;
-    border-radius: 4px;
-    border: 1px solid var(--rule-2);
-  }
-  .build-row .chevron {
-    font-family: var(--serif);
-    font-size: 28px;
-    color: var(--ink-4);
-    text-align: right;
-    padding-top: 4px;
-    transition: color .2s ease, transform .2s ease;
-  }
-  .build-row:hover .chevron { color: var(--accent-ink); transform: translateX(4px); }
-  @media (max-width: 820px) {
-    .build-row { grid-template-columns: 48px 1fr; }
-    .build-row .desc { grid-column: 2; }
-    .build-row .chevron { display: none; }
-    .build-row:hover { padding-left: 0; padding-right: 0; }
-  }
-
-  /* HOW WE WORK */
-  .how { background: var(--bg-2); }
-  .how-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
-    margin-top: 16px;
-  }
-  .step {
-    position: relative;
-    padding-top: 28px;
-    border-top: 1px solid var(--ink);
-  }
-  .step .num {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    color: var(--ink-3);
-    margin-bottom: 40px;
-  }
-  .step h3 {
-    font-family: var(--serif);
-    font-size: 40px;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin-bottom: 20px;
-  }
-  .step p {
-    font-size: 16px; line-height: 1.6; color: var(--ink-2);
-    max-width: 34ch;
-  }
-  .step .meta {
-    margin-top: 28px;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .step .meta b { color: var(--accent-ink); font-weight: 500; }
-  @media (max-width: 820px) {
-    .how-grid { grid-template-columns: 1fr; gap: 40px; }
-  }
-
-  .pricing-note {
-    margin-top: 96px;
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 64px;
-    align-items: start;
-    padding: 48px;
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    background: var(--bg);
-  }
-  .pricing-note .label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .pricing-note h4 {
-    font-family: var(--serif);
-    font-size: 28px;
-    margin: 14px 0 0;
-    line-height: 1.2;
-    letter-spacing: -0.015em;
-  }
-  .pricing-note .split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-  .pricing-note .split .item .t {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-style: italic;
-    color: var(--accent-ink);
-    margin-bottom: 8px;
-  }
-  .pricing-note .split .item .d {
-    font-size: 15px;
-    color: var(--ink-2);
-    line-height: 1.55;
-  }
-  @media (max-width: 820px) {
-    .pricing-note { grid-template-columns: 1fr; padding: 28px; gap: 32px; margin-top: 56px; }
-    .pricing-note .split { grid-template-columns: 1fr; gap: 24px; }
-  }
-
-  /* WHO IT'S FOR */
-  .fit-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    margin-top: 8px;
-  }
-  .fit-col h3 {
-    font-family: var(--serif);
-    font-size: 28px;
-    letter-spacing: -0.01em;
-    margin-bottom: 28px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--rule);
-    display: flex; align-items: baseline; justify-content: space-between;
-  }
-  .fit-col h3 .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .fit-col.yes h3 .tag { color: var(--accent-ink); }
-  .fit-col ul {
-    list-style: none; padding: 0; margin: 0;
-  }
-  .fit-col li {
-    padding: 14px 0;
-    font-size: 17px;
-    line-height: 1.5;
-    color: var(--ink-2);
-    display: grid;
-    grid-template-columns: 24px 1fr;
-    gap: 14px;
-    align-items: start;
-  }
-  .fit-col li::before {
-    content: "";
-    display: inline-block;
-    width: 10px; height: 10px;
-    margin-top: 9px;
-    border-radius: 2px;
-  }
-  .fit-col.yes li::before { background: var(--accent); }
-  .fit-col.no li::before  { background: var(--ink-4); transform: rotate(45deg); }
-  @media (max-width: 820px) {
-    .fit-grid { grid-template-columns: 1fr; gap: 32px; }
-  }
-
-  .fit-pull {
-    margin-top: 96px;
-    font-family: var(--serif);
-    font-size: clamp(26px, 3vw, 40px);
-    line-height: 1.25;
-    letter-spacing: -0.015em;
-    max-width: 24ch;
-    color: var(--ink);
-  }
-  .fit-pull em { color: var(--accent-ink); font-style: italic; }
-
-  /* ABOUT */
-  .about { background: var(--ink); color: var(--bg); }
-  .about .sec-label { color: var(--ink-4); }
-  .about .sec-label .num { color: var(--accent-soft); }
-  .about .sec-label::after { background: #2A2E37; }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 96px;
-    align-items: start;
-  }
-  .about-portrait {
-    aspect-ratio: 4 / 5;
-    background:
-      repeating-linear-gradient(
-        135deg,
-        #2A2E37 0px, #2A2E37 2px,
-        transparent 2px, transparent 10px
-      ),
-      #1A1D24;
-    border-radius: 2px;
-    position: relative;
-    display: flex; align-items: flex-end; justify-content: flex-start;
-    padding: 28px;
-    overflow: hidden;
-  }
-  .about-portrait::before {
-    content: "";
-    position: absolute; inset: 20px;
-    border: 1px solid #353B45;
-  }
-  .about-portrait .mono-label {
-    position: relative;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    color: var(--ink-4);
-    text-transform: uppercase;
-  }
-  .about-portrait .monogram {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    font-family: var(--serif);
-    font-size: clamp(140px, 22vw, 280px);
-    line-height: 1;
-    color: var(--bg);
-    font-style: italic;
-  }
-  .about-portrait .monogram sub {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    color: var(--ink-4);
-    vertical-align: super;
-    margin-left: 4px;
-  }
-  .about-body h2 {
-    font-family: var(--serif);
-    font-size: clamp(34px, 4vw, 56px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--bg);
-    margin-bottom: 32px;
-    max-width: 18ch;
-  }
-  .about-body h2 em { color: var(--spark); font-style: normal; }
-  .about-body p {
-    font-size: 18px;
-    line-height: 1.65;
-    color: #AEB6C4;
-    margin-bottom: 20px;
-    max-width: 52ch;
-  }
-  .about-body p b { color: var(--bg); font-weight: 500; }
-  .about-facts {
-    margin-top: 44px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px 40px;
-    padding-top: 28px;
-    border-top: 1px solid #2A2E37;
-  }
-  .about-facts .k {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-4);
-    margin-bottom: 8px;
-  }
-  .about-facts .v {
-    font-family: var(--serif);
-    font-size: 20px;
-    color: var(--bg);
-    line-height: 1.3;
-  }
-  @media (max-width: 820px) {
-    .about-grid { grid-template-columns: 1fr; gap: 48px; }
-    .about-portrait { aspect-ratio: 4 / 3; }
-  }
-
-  /* FUTURE WORK placeholder */
-  .selected {
-    border-top: 1px solid var(--rule);
-    padding-top: 48px;
-    margin-top: 0;
-  }
-  .selected-head {
-    display: flex; justify-content: space-between; align-items: baseline;
-    margin-bottom: 32px;
-  }
-  .selected-head h3 {
-    font-family: var(--serif);
-    font-size: 28px;
-    letter-spacing: -0.01em;
-  }
-  .selected-head .note {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .selected-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .case {
-    aspect-ratio: 4/3;
-    border: 1px dashed var(--rule);
-    border-radius: 3px;
-    padding: 20px;
-    display: flex; flex-direction: column; justify-content: space-between;
-    background:
-      repeating-linear-gradient(135deg,
-        color-mix(in oklab, var(--rule-2) 40%, transparent) 0px,
-        color-mix(in oklab, var(--rule-2) 40%, transparent) 1px,
-        transparent 1px, transparent 12px);
-    color: var(--ink-3);
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-  }
-  .case .tag { text-transform: uppercase; }
-  .case .future { text-align: right; }
-  @media (max-width: 720px) {
-    .selected-grid { grid-template-columns: 1fr; }
-  }
-
-  /* CONTACT */
-  .contact {
-    padding: 140px 0 120px;
-  }
-  .contact-head {
-    font-family: var(--serif);
-    font-size: clamp(48px, 6.4vw, 96px);
-    line-height: 1;
-    letter-spacing: -0.025em;
-    max-width: 14ch;
-    margin-bottom: 56px;
-  }
-  .contact-head em { color: var(--accent-ink); font-style: italic; }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-  .contact-form {
-    display: grid;
-    gap: 20px;
-  }
-  .field {
-    display: grid; gap: 8px;
-  }
-  .field label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .field input, .field textarea, .field select {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--ink);
-    padding: 10px 0;
-    font-size: 17px;
-    font-family: var(--sans);
-    color: var(--ink);
-    resize: vertical;
-    outline: none;
-    transition: border-color .2s ease;
-  }
-  .field textarea { min-height: 100px; }
-  .field input::placeholder, .field textarea::placeholder { color: var(--ink-4); }
-  .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--accent); }
-  .field-row {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-  }
-  @media (max-width: 560px) {
-    .field-row { grid-template-columns: 1fr; }
-  }
-  .submit-row {
-    display: flex; align-items: center; gap: 24px; margin-top: 16px;
-    flex-wrap: wrap;
-  }
-  .submit-btn {
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    font-family: var(--sans);
-    font-size: 15px;
-    padding: 18px 28px;
-    border-radius: 999px;
-    cursor: pointer;
-    display: inline-flex; align-items: center; gap: 14px;
-    transition: background .2s ease, transform .2s ease;
-  }
-  .submit-btn:hover { background: var(--accent-ink); transform: translateY(-1px); }
-  .submit-btn:disabled { opacity: 0.6; cursor: wait; }
-  .submit-btn .arrow {
-    width: 18px; height: 18px; border-radius: 999px;
-    background: var(--bg); color: var(--ink);
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 11px;
-  }
-  .submit-note {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: var(--ink-3);
-    text-transform: uppercase;
-  }
-  .privacy-note {
-    font-size: 13px;
-    color: var(--ink-3);
-    margin-top: 8px;
-  }
-  .privacy-note a {
-    color: var(--ink-2);
-    border-bottom: 1px solid var(--rule);
-    transition: color .2s ease, border-color .2s ease;
-  }
-  .privacy-note a:hover { color: var(--accent-ink); border-color: var(--accent); }
-
-  .contact-aside {
-    padding-left: 48px;
-    border-left: 1px solid var(--rule);
-  }
-  .contact-aside h4 {
-    font-family: var(--serif);
-    font-size: 22px;
-    letter-spacing: -0.01em;
-    margin: 0 0 14px;
-  }
-  .contact-aside p {
-    font-size: 16px;
-    color: var(--ink-2);
-    line-height: 1.55;
-    margin-bottom: 28px;
-    max-width: 36ch;
-  }
-  .direct {
-    display: grid; gap: 16px;
-    padding-top: 20px;
-    border-top: 1px solid var(--rule);
-  }
-  .direct .row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    gap: 12px;
-  }
-  .direct .k {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .direct .v {
-    font-family: var(--serif);
-    font-size: 17px;
-    color: var(--ink);
-  }
-  .direct .v a { border-bottom: 1px solid var(--rule); transition: border-color .2s ease; }
-  .direct .v a:hover { border-color: var(--accent); }
-  @media (max-width: 820px) {
-    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-    .contact-aside { padding-left: 0; border-left: none; border-top: 1px solid var(--rule); padding-top: 48px; }
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--rule);
-    padding: 40px 0 48px;
-  }
-  .foot {
-    display: flex; justify-content: space-between; align-items: baseline;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    flex-wrap: wrap; gap: 16px;
-  }
-  .foot .brand-small { font-family: var(--serif); font-size: 16px; letter-spacing: -0.01em; text-transform: none; color: var(--ink); }
-
-  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .8s ease, transform .8s ease; }
-  .reveal.in { opacity: 1; transform: none; }
-
-  /* ===== /amazon-sellers additions ===== */
-  .build-row { cursor: default; }
-  .build-row:hover { transform: none; }
-
-  .build-row .desc a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
-  .build-row .desc a:hover { text-decoration-color: var(--accent); }
-
-  .teardown { background: var(--accent-soft); border-top: 1px solid var(--rule-2); border-bottom: 1px solid var(--rule-2); }
-  .tear-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-  .tear-head {
-    font-family: var(--serif);
-    font-size: clamp(36px, 4.6vw, 62px);
-    line-height: 1.02;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-  }
-  .tear-head em { font-style: normal; color: var(--accent); }
-  .tear-lead { margin-top: 32px; font-size: 18px; line-height: 1.6; color: var(--ink-2); max-width: 54ch; }
-  .tear-aside {
-    background: #fff;
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 32px;
-    margin-top: 12px;
-  }
-  .tear-aside h4 {
-    margin: 0 0 18px;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    font-weight: 500;
-  }
-  .tear-aside ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-  .tear-aside li { position: relative; padding-left: 22px; font-size: 15.5px; line-height: 1.5; color: var(--ink); }
-  .tear-aside li::before { content: ""; position: absolute; left: 0; top: 10px; width: 10px; height: 2px; background: var(--accent); }
-  .tear-aside .fine { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--rule-2); font-size: 13.5px; line-height: 1.55; color: var(--ink-3); }
-  @media (max-width: 860px) {
-    .tear-grid { grid-template-columns: 1fr; gap: 40px; }
-    .tear-aside { margin-top: 0; }
-  }
-
-  .pricing-note .split.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  @media (max-width: 860px) { .pricing-note .split.three { grid-template-columns: 1fr; } }
-  .engage-link { margin-top: 40px; font-size: 15px; }
-  .engage-link a { color: var(--accent); }
-  .engage-link a:hover { color: var(--accent-ink); }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a href="/" class="brand">
-      <span>Holzman</span>
-      <span class="mono">AI & Automations</span>
-    </a>
-    <div class="nav-links">
-      <a href="/#how" class="link-hide">How we work</a>
-      <a href="/amazon-pnl" class="link-hide">MarginStory</a>
-      <a href="/#about" class="link-hide">About</a>
-      <a href="#teardown" class="nav-cta">Send me an ASIN</a>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header class="hero" id="top">
+<header class="dusk compact" id="top">
+  <svg class="stars" aria-hidden="true" focusable="false"><circle cx="0.01%" cy="44.69%" r="0.78" opacity="0.37" style="animation-delay:2.93s;animation-duration:3.66s"/><circle cx="51.75%" cy="46.75%" r="0.93" opacity="0.49" style="animation-delay:0.74s;animation-duration:4.46s"/><circle cx="14.06%" cy="38.03%" r="1.03" opacity="0.76" style="animation-delay:1.30s;animation-duration:2.82s"/><circle cx="21.76%" cy="73.53%" r="1.03" opacity="0.63" style="animation-delay:1.63s;animation-duration:3.21s"/><circle cx="30.78%" cy="79.62%" r="0.51" opacity="0.45" style="animation-delay:1.96s;animation-duration:4.45s"/><circle cx="1.35%" cy="38.42%" r="1.30" opacity="0.61" style="animation-delay:0.33s;animation-duration:4.19s"/><circle cx="95.90%" cy="32.05%" r="1.31" opacity="0.36" style="animation-delay:2.44s;animation-duration:4.70s"/><circle cx="94.93%" cy="28.69%" r="0.65" opacity="0.75" style="animation-delay:3.22s;animation-duration:4.50s"/><circle cx="99.98%" cy="80.05%" r="0.89" opacity="0.48" style="animation-delay:2.09s;animation-duration:2.66s"/><circle cx="95.19%" cy="83.16%" r="0.82" opacity="0.79" style="animation-delay:0.00s;animation-duration:4.33s"/><circle cx="95.12%" cy="54.98%" r="1.11" opacity="0.60" style="animation-delay:2.90s;animation-duration:3.73s"/><circle cx="92.76%" cy="99.81%" r="0.88" opacity="0.76" style="animation-delay:1.73s;animation-duration:3.19s"/><circle cx="4.79%" cy="5.20%" r="1.24" opacity="0.40" style="animation-delay:1.19s;animation-duration:4.03s"/><circle cx="37.67%" cy="47.23%" r="0.60" opacity="0.54" style="animation-delay:0.59s;animation-duration:4.09s"/><circle cx="55.07%" cy="92.50%" r="0.59" opacity="0.84" style="animation-delay:3.38s;animation-duration:4.61s"/><circle cx="56.51%" cy="36.95%" r="1.28" opacity="0.67" style="animation-delay:1.71s;animation-duration:3.40s"/><circle cx="53.29%" cy="25.66%" r="1.37" opacity="0.63" style="animation-delay:3.10s;animation-duration:2.98s"/><circle cx="15.93%" cy="96.16%" r="1.12" opacity="0.49" style="animation-delay:2.81s;animation-duration:3.55s"/><circle cx="87.89%" cy="48.33%" r="0.96" opacity="0.47" style="animation-delay:0.34s;animation-duration:4.68s"/><circle cx="87.33%" cy="26.24%" r="1.18" opacity="0.52" style="animation-delay:2.93s;animation-duration:3.73s"/><circle cx="0.09%" cy="2.05%" r="0.53" opacity="0.63" style="animation-delay:1.01s;animation-duration:4.70s"/><circle cx="31.69%" cy="63.90%" r="1.39" opacity="0.60" style="animation-delay:2.57s;animation-duration:3.05s"/><circle cx="65.37%" cy="49.48%" r="0.72" opacity="0.48" style="animation-delay:1.69s;animation-duration:4.22s"/><circle cx="45.91%" cy="30.13%" r="0.94" opacity="0.60" style="animation-delay:0.40s;animation-duration:4.24s"/><circle cx="81.64%" cy="49.64%" r="1.00" opacity="0.46" style="animation-delay:2.63s;animation-duration:3.57s"/><circle cx="10.43%" cy="57.20%" r="0.85" opacity="0.45" style="animation-delay:1.74s;animation-duration:5.00s"/><circle cx="39.38%" cy="16.38%" r="1.25" opacity="0.77" style="animation-delay:2.47s;animation-duration:3.23s"/><circle cx="28.25%" cy="23.58%" r="0.78" opacity="0.81" style="animation-delay:2.35s;animation-duration:4.06s"/><circle cx="42.24%" cy="51.34%" r="0.90" opacity="0.72" style="animation-delay:0.05s;animation-duration:4.64s"/><circle cx="78.17%" cy="1.87%" r="1.21" opacity="0.59" style="animation-delay:2.09s;animation-duration:2.62s"/><circle cx="84.48%" cy="97.53%" r="1.31" opacity="0.47" style="animation-delay:0.57s;animation-duration:3.56s"/><circle cx="47.55%" cy="99.81%" r="1.18" opacity="0.58" style="animation-delay:0.63s;animation-duration:4.07s"/><circle cx="60.43%" cy="99.32%" r="0.78" opacity="0.39" style="animation-delay:1.58s;animation-duration:5.10s"/><circle cx="83.26%" cy="7.17%" r="1.02" opacity="0.71" style="animation-delay:2.92s;animation-duration:3.90s"/><circle cx="36.40%" cy="18.25%" r="1.32" opacity="0.68" style="animation-delay:0.47s;animation-duration:4.04s"/><circle cx="34.39%" cy="64.22%" r="1.26" opacity="0.36" style="animation-delay:1.91s;animation-duration:4.87s"/><circle cx="80.79%" cy="77.19%" r="0.64" opacity="0.46" style="animation-delay:2.54s;animation-duration:4.61s"/><circle cx="9.66%" cy="71.71%" r="1.26" opacity="0.54" style="animation-delay:1.17s;animation-duration:3.91s"/><circle cx="19.51%" cy="8.30%" r="0.97" opacity="0.75" style="animation-delay:3.34s;animation-duration:3.98s"/><circle cx="95.38%" cy="88.30%" r="0.83" opacity="0.80" style="animation-delay:1.61s;animation-duration:4.32s"/><circle cx="69.65%" cy="83.70%" r="0.63" opacity="0.79" style="animation-delay:0.06s;animation-duration:3.45s"/><circle cx="99.03%" cy="68.96%" r="1.34" opacity="0.74" style="animation-delay:0.02s;animation-duration:2.63s"/><circle cx="50.69%" cy="0.07%" r="0.96" opacity="0.65" style="animation-delay:1.73s;animation-duration:3.86s"/><circle cx="25.79%" cy="20.06%" r="1.22" opacity="0.41" style="animation-delay:0.14s;animation-duration:4.94s"/><circle cx="40.41%" cy="92.53%" r="0.82" opacity="0.52" style="animation-delay:3.03s;animation-duration:3.32s"/><circle cx="47.38%" cy="42.30%" r="0.76" opacity="0.83" style="animation-delay:2.09s;animation-duration:2.92s"/><circle cx="54.55%" cy="62.25%" r="1.08" opacity="0.40" style="animation-delay:0.45s;animation-duration:2.92s"/><circle cx="11.01%" cy="81.56%" r="1.12" opacity="0.36" style="animation-delay:1.70s;animation-duration:3.59s"/></svg>
   <div class="wrap">
-    <div class="eyebrow reveal" style="margin-bottom:40px;">
-      <span style="color:var(--accent-ink)">●</span>&nbsp;&nbsp;For Amazon-first brands
-    </div>
-
-    <h1 class="hero-head reveal">
-      The Amazon back office, on <em>rails</em>.
-    </h1>
-
-    <div class="hero-sub" style="margin-top: 72px;">
-      <div class="hero-sub-left reveal">
-        Reporting, listings, wholesale data, inventory. Built for one seller at a time, then quietly maintained.
+    <nav class="dusk-nav" aria-label="Main">
+      <a class="lockup" href="/" aria-label="Holzman AI &amp; Automations home"><img src="/logo-reverse.svg" alt="Holzman AI &amp; Automations" width="276" height="38"></a>
+      <div class="links">
+        <a class="nav-lo" href="/#how">How we work</a>
+        <a href="/examples">Examples</a>
+        <a href="/amazon-sellers" aria-current="page">Amazon sellers</a>
+        <a href="/ledgerly">Ledgerly</a>
+        <a class="nav-lo" href="/#about">About</a>
+        <a class="btn btn-white btn-sm" href="/#contact">Start a conversation</a>
       </div>
-      <div class="hero-sub-right reveal">
-        <p>
-          Most Amazon brands run the back office on spreadsheets and whoever is free that day. We replace the parts that repeat with systems that run on their own and tell you what moved and why. You keep the judgment. The machine does the rest.
-        </p>
-        <div class="hero-cta-row">
-          <a href="#teardown" class="btn-primary">
-            Send me one ASIN <span class="arrow">→</span>
-          </a>
-          <span class="secondary-note"><b>Free.</b> One page back, no call attached.</span>
-        </div>
+    </nav>
+    <div class="dusk-copy">
+      <h1 class="h-hero">The Amazon back office, on rails.</h1>
+      <p class="lead">Reporting, listings, wholesale data, inventory. Built for one seller at a time, then quietly maintained.</p>
+      <div class="dusk-ctas">
+        <a class="btn btn-white" href="#teardown">Send me one ASIN <span class="arr" aria-hidden="true">→</span></a>
       </div>
+      <p class="hero-note"><b>Free.</b> One page back, no call attached.</p>
     </div>
   </div>
+  <svg class="hills" viewBox="0 0 1440 190" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 96C110 70 210 52 330 70S560 118 700 86S940 40 1080 66S1320 108 1440 78V190H0Z" fill="#6E6FC9" opacity=".55"/><path d="M0 128C150 100 290 106 420 124S650 156 820 122S1100 98 1260 120S1400 140 1440 132V190H0Z" fill="#A894D8" opacity=".7"/><path d="M0 158C200 140 420 148 640 164S1000 156 1200 146S1380 154 1440 150V190H0Z" fill="#F7F7F7"/></svg>
 </header>
 
-<!-- WHAT WE BUILD -->
-<section id="build">
-  <div class="wrap">
-    <div class="sec-label"><span class="num">01</span> · What we build for sellers</div>
-
-    <div class="build-header">
-      <h2 class="reveal">Four things that<br/>stop being someone's job.</h2>
-      <p class="reveal">
-        Each of these runs today for a real seller. They are built one brand at a time, against your data and your tools, not resold as a template.
-      </p>
-    </div>
-
-    <div class="build-list">
-      <div class="build-row reveal">
-        <div class="idx">01</div>
-        <div>
-          <h3>Reporting and P&amp;L</h3>
-          <div class="desc">
-            Monthly and weekly reports that go past the numbers. They say <em>why</em> a number moved, in plain English, and what we would do about it next — so the report is a decision, not a spreadsheet to interpret. You can see a demo of it here: <a href="/amazon-pnl#demo">MarginStory</a>.
-            <div class="examples"><span>Weekly &amp; monthly</span><span>Plain English</span><span>What to do next</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="build-row reveal">
-        <div class="idx">02</div>
-        <div>
-          <h3>Listing drafting</h3>
-          <div class="desc">
-            Drafted the way your account manager already works — their approach, their priorities, the patterns in the listings they have already written and approved — inside Amazon's limits. They review and accept in minutes instead of starting from a blank field.
-            <div class="examples"><span>Your manager's approach</span><span>Amazon's limits</span><span>Human accept</span></div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="build-row reveal">
-        <div class="idx">03</div>
-        <div>
-          <h3>Wholesale and B2B data</h3>
-          <div class="desc">
-            Order lines from SellerCloud or your ERP joined to Amazon, so one SKU has one cost, one margin, and one answer. Queryable in chat.
-            <div class="examples"><span>SellerCloud</span><span>Postgres</span><span>Chat</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="build-row reveal">
-        <div class="idx">04</div>
-        <div>
-          <h3>Inventory snapshots</h3>
-          <div class="desc">
-            Daily stock levels per SKU across FBA and your own warehouses, kept as history — and you ask it a question in chat instead of opening a spreadsheet. "What is under two weeks of cover?" You get the answer back, not a report to read.
-            <div class="examples"><span>FBA</span><span>3PL</span><span>Ask in chat</span></div>
-          </div>
-        </div>
+<main id="main">
+  <div class="over-dusk wrap">
+    <div class="float">
+      <div class="float-in intro">
+        <h2>For Amazon-first brands</h2>
+        <p>Most Amazon brands run the back office on spreadsheets and whoever is free that day. We replace the parts that repeat with systems that run on their own and tell you what moved and why. You keep the judgment. The machine does the rest.</p>
       </div>
     </div>
   </div>
-</section>
 
-<!-- TEARDOWN -->
-<section class="teardown" id="teardown">
-  <div class="wrap">
-    <div class="sec-label"><span class="num">02</span> · The free teardown</div>
+  <section class="sec" id="build" aria-labelledby="build-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="h-sec" id="build-h">What we build for sellers</h2>
+        <p class="lead-strong">Four things that stop being someone's job.</p>
+        <p>Each of these runs today for a real seller. They are built one brand at a time, against your data and your tools, not resold as a template.</p>
+      </div>
+      <div class="build">
+        <article class="card lift reveal">
+          <div class="titled"><span class="tile t-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v16h16"/><path d="m8 14 3.5-3.5 3 3L20 8"/></svg></span><h3>Reporting and P&amp;L</h3></div>
+          <p>Monthly and weekly reports that go past the numbers. They say <em>why</em> a number moved, in plain English, and what we would do about it next — so the report is a decision, not a spreadsheet to interpret. You can see a demo of it here: <a href="/amazon-pnl#demo">MarginStory</a>.</p>
+          <ul class="tags"><li class="chip chip-neutral">Weekly &amp; monthly</li><li class="chip chip-neutral">Plain English</li><li class="chip chip-neutral">What to do next</li></ul>
+        </article>
+        <article class="card lift reveal d1">
+          <div class="titled"><span class="tile t-violet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><h3>Listing drafting</h3></div>
+          <p>Drafted the way your account manager already works — their approach, their priorities, the patterns in the listings they have already written and approved — inside Amazon's limits. They review and accept in minutes instead of starting from a blank field.</p>
+          <ul class="tags"><li class="chip chip-neutral">Your manager's approach</li><li class="chip chip-neutral">Amazon's limits</li><li class="chip chip-neutral">Human accept</li></ul>
+        </article>
+        <article class="card lift reveal">
+          <div class="titled"><span class="tile t-green"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13"/><path d="M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg></span><h3>Wholesale and B2B data</h3></div>
+          <p>Order lines from Sellercloud or your ERP joined to Amazon, so one SKU has one cost, one margin, and one answer. Queryable in chat.</p>
+          <ul class="tags"><li class="chip chip-neutral">Sellercloud</li><li class="chip chip-neutral">Postgres</li><li class="chip chip-neutral">Chat</li></ul>
+        </article>
+        <article class="card lift reveal d1">
+          <div class="titled"><span class="tile t-amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span><h3>Inventory snapshots</h3></div>
+          <p>Daily stock levels per SKU across FBA and your own warehouses, kept as history — and you ask it a question in chat instead of opening a spreadsheet. "What is under two weeks of cover?" You get the answer back, not a report to read.</p>
+          <ul class="tags"><li class="chip chip-neutral">FBA</li><li class="chip chip-neutral">3PL</li><li class="chip chip-neutral">Ask in chat</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    <div class="tear-grid">
+  <section class="sec" id="teardown" aria-labelledby="teardown-h">
+    <div class="wrap tear">
       <div>
-        <h2 class="tear-head reveal">Send me one ASIN.<br/>Get back what a <em>stranger</em> sees.</h2>
-        <p class="tear-lead reveal">
-          Within a few days you get a one-page read of that product: what the negative reviews cluster around and roughly what it costs you a month, where the listing is missing for its own keyword, and one thing in the listing itself.
-        </p>
-        <div class="hero-cta-row reveal">
-          <a class="btn-primary" href="mailto:shmuel@holzman.ai?subject=Teardown%20request&amp;body=ASIN%3A%20%0ABrand%3A%20%0AAnything%20specific%20you%27re%20wondering%20about%3A%20">
-            Email one ASIN <span class="arrow">→</span>
-          </a>
-          <span class="secondary-note">Or write to <b>shmuel@holzman.ai</b> with the ASIN in the subject.</span>
+        <div class="sec-head reveal">
+          <h2 class="h-sec" id="teardown-h">The free teardown</h2>
+          <p class="lead-strong">Send me one ASIN. Get back what a stranger sees.</p>
+          <p>Within a few days you get a one-page read of that product: what the negative reviews cluster around and roughly what it costs you a month, where the listing is missing for its own keyword, and one thing in the listing itself.</p>
+        </div>
+        <div class="tear-cta">
+          <a class="btn btn-primary" href="mailto:shmuel@holzman.ai?subject=Teardown%20request&amp;body=ASIN%3A%20%0ABrand%3A%20%0AAnything%20specific%20you%27re%20wondering%20about%3A%20">Email one ASIN <span class="arr" aria-hidden="true">→</span></a>
+          <span class="note">Or write to <b>shmuel@holzman.ai</b> with the ASIN in the subject.</span>
         </div>
       </div>
-      <aside class="tear-aside reveal">
-        <h4>What I look at</h4>
+      <aside class="card look reveal d1" aria-labelledby="look-h">
+        <div class="titled"><span class="tile t-pink"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></span><h3 id="look-h">What I look at</h3></div>
         <ul>
-          <li>Public review attributes across the full rating corpus, not a sample.</li>
-          <li>Logged-out search results for the product's own keywords.</li>
-          <li>The listing exactly as a shopper sees it.</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Public review attributes across the full rating corpus, not a sample.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Logged-out search results for the product's own keywords.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>The listing exactly as a shopper sees it.</span></li>
         </ul>
         <p class="fine">Nothing needs your login.</p>
       </aside>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ENGAGEMENT -->
-<section id="engage">
-  <div class="wrap">
-    <div class="sec-label"><span class="num">03</span> · If we go further</div>
-
-    <div class="pricing-note reveal" style="margin-top:0;">
-      <div>
-        <div class="label">The model</div>
-        <h4>Same shape as every engagement. No surprise line items.</h4>
+  <section class="sec" id="engage" aria-labelledby="engage-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="h-sec" id="engage-h">If we go further</h2>
       </div>
-      <div class="split three">
-        <div class="item">
-          <div class="t">Discovery</div>
-          <div class="d">Paid, always first. We sit with the workflow until it's understood from the inside. Output: a written scope with a price.</div>
+      <div class="card-flat model reveal">
+        <div>
+          <h3>The model</h3>
+          <p class="lead-strong">Same shape as every engagement. No surprise line items.</p>
         </div>
-        <div class="item">
-          <div class="t">Build</div>
-          <div class="d">Quoted up front, paid on delivery. You watch it run on real data before it replaces anything.</div>
+        <div>
+          <div class="titled"><span class="tile t-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></span><div class="t">Discovery</div></div>
+          <p class="d">Paid, always first. We sit with the workflow until it's understood from the inside. Output: a written scope with a price.</p>
         </div>
-        <div class="item">
-          <div class="t">Maintain</div>
-          <div class="d">A small monthly retainer covers monitoring, fixes when Amazon changes something, and someone to call.</div>
+        <div>
+          <div class="titled"><span class="tile t-green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.7 6.3 3 3L7 20H4v-3L14.7 6.3Z"/><path d="m13 8 3 3"/></svg></span><div class="t">Build</div></div>
+          <p class="d">Quoted up front, paid on delivery. You watch it run on real data before it replaces anything.</p>
+        </div>
+        <div>
+          <div class="titled"><span class="tile t-amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.4 3 8.3 7 9.5 4-1.2 7-5.1 7-9.5V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></span><div class="t">Maintain</div></div>
+          <p class="d">A small monthly retainer covers monitoring, fixes when Amazon changes something, and someone to call.</p>
         </div>
       </div>
+      <p class="more"><a class="btn btn-quiet" href="/#how">Read the full engagement model on the home page <span class="arr" aria-hidden="true">→</span></a></p>
     </div>
+  </section>
+</main>
 
-    <p class="engage-link reveal"><a href="/#how">Read the full engagement model on the home page →</a></p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap foot">
-    <span class="brand-small">Holzman AI & Automations</span>
-    <span><a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/accessibility">Accessibility</a> &nbsp;·&nbsp; <a href="/privacy">Ledgerly Privacy</a> &nbsp;·&nbsp; <a href="/terms">Ledgerly Terms</a></span>
-    <span>© 2026 · Shmuel Holzman</span>
+<footer class="site-foot">
+  <div class="wrap row">
+    <a class="lockup" href="/" aria-label="Holzman AI &amp; Automations home"><img src="/logo.svg" alt="Holzman AI &amp; Automations" width="247" height="34"></a>
+    <nav aria-label="Legal"><a href="/privacy-policy">Privacy Policy</a><a href="/accessibility">Accessibility</a><a href="/privacy">Ledgerly Privacy</a><a href="/terms">Ledgerly Terms</a></nav>
+    <button class="motion-toggle" type="button" hidden>Pause animations</button>
+    <span class="copy">© 2026 · Shmuel Holzman</span>
+    <p class="tm">Product names are trademarks of their respective owners. Listing them doesn't imply endorsement or partnership.</p>
   </div>
 </footer>
 
-<script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
-  });
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+<script src="/dusk.js?v=2026-10" defer></script>
 </body>
 </html>
