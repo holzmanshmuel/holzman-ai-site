@@ -1,6 +1,6 @@
 # Holzman AI & Automations
 
-> A boutique automation studio that designs, builds, and quietly maintains the
+> An AI and automation consultancy that designs, builds, and maintains the
 > custom automations, AI-assisted tools, and integrations that run a business in
 > the background. Based in Jerusalem, Israel; works with clients remotely.
 
