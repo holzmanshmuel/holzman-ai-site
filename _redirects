@@ -8,3 +8,10 @@
 # Typing the product's own name should still land somewhere. (HOLZMAN-137)
 /marginstory      /amazon-pnl  301
 /marginstory/*    /amazon-pnl  301
+
+# Booking a call: ONE stable link for emails, the email signature and this site.
+# It points at the Google Calendar booking page "Meeting with Shmuel Holzman"
+# (shmuel@holzman.ai). If that page ever changes, change this line only.
+# 302, not 301, so browsers never cache the target.
+/book    https://calendar.google.com/calendar/appointments/schedules/AcZssZ3jp0Iqjvn-nD2oloqk91MVjGF-4hCDI3EFa17XPtfcZUl2kXJauO7TecOAV8AgNiid3Niy8STu  302
+/book/   https://calendar.google.com/calendar/appointments/schedules/AcZssZ3jp0Iqjvn-nD2oloqk91MVjGF-4hCDI3EFa17XPtfcZUl2kXJauO7TecOAV8AgNiid3Niy8STu  302
