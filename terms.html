@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/dusk.css?v=2026-10">
+<link rel="stylesheet" href="/dusk.css?v=2026-10-13">
 <style>
   /* legal page only; the system lives in /dusk.css */
   .dusk.mini .dusk-copy h1 { font-weight: 800; font-size: clamp(34px, 4.4vw, 48px); line-height: 1.08; letter-spacing: -.03em; }
@@ -47,8 +47,7 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="dusk mini" id="top">
-  <svg class="stars" aria-hidden="true" focusable="false"><circle cx="0.03%" cy="39.30%" r="1.38" opacity="0.75" style="animation-delay:2.87s;animation-duration:5.14s"/><circle cx="92.88%" cy="83.35%" r="1.27" opacity="0.51" style="animation-delay:2.46s;animation-duration:3.37s"/><circle cx="6.96%" cy="41.75%" r="0.67" opacity="0.71" style="animation-delay:1.76s;animation-duration:3.42s"/><circle cx="72.00%" cy="74.05%" r="0.61" opacity="0.43" style="animation-delay:0.50s;animation-duration:2.98s"/><circle cx="69.28%" cy="60.41%" r="1.19" opacity="0.76" style="animation-delay:0.19s;animation-duration:4.55s"/><circle cx="32.32%" cy="25.01%" r="1.18" opacity="0.82" style="animation-delay:0.61s;animation-duration:3.79s"/><circle cx="93.82%" cy="1.28%" r="1.07" opacity="0.84" style="animation-delay:0.44s;animation-duration:3.34s"/><circle cx="62.91%" cy="88.76%" r="1.14" opacity="0.84" style="animation-delay:3.05s;animation-duration:3.31s"/><circle cx="18.11%" cy="89.29%" r="0.88" opacity="0.64" style="animation-delay:2.55s;animation-duration:3.31s"/><circle cx="72.99%" cy="82.68%" r="1.35" opacity="0.75" style="animation-delay:0.94s;animation-duration:3.86s"/><circle cx="9.08%" cy="68.54%" r="0.65" opacity="0.39" style="animation-delay:1.54s;animation-duration:3.26s"/><circle cx="91.19%" cy="72.00%" r="1.27" opacity="0.36" style="animation-delay:1.80s;animation-duration:4.55s"/><circle cx="36.04%" cy="46.65%" r="1.15" opacity="0.37" style="animation-delay:1.97s;animation-duration:2.74s"/><circle cx="22.21%" cy="57.84%" r="1.35" opacity="0.42" style="animation-delay:2.21s;animation-duration:3.19s"/><circle cx="59.81%" cy="81.13%" r="0.67" opacity="0.72" style="animation-delay:3.32s;animation-duration:3.72s"/><circle cx="56.10%" cy="55.92%" r="0.85" opacity="0.37" style="animation-delay:0.80s;animation-duration:4.38s"/><circle cx="89.53%" cy="50.19%" r="0.54" opacity="0.37" style="animation-delay:0.10s;animation-duration:3.08s"/><circle cx="77.57%" cy="31.14%" r="0.77" opacity="0.57" style="animation-delay:3.06s;animation-duration:3.52s"/><circle cx="91.24%" cy="43.77%" r="0.65" opacity="0.69" style="animation-delay:2.51s;animation-duration:3.95s"/><circle cx="61.88%" cy="52.36%" r="1.00" opacity="0.71" style="animation-delay:1.03s;animation-duration:3.50s"/><circle cx="73.06%" cy="25.81%" r="0.61" opacity="0.84" style="animation-delay:0.35s;animation-duration:2.87s"/><circle cx="45.38%" cy="83.63%" r="0.88" opacity="0.36" style="animation-delay:1.25s;animation-duration:4.51s"/><circle cx="16.37%" cy="93.52%" r="1.24" opacity="0.80" style="animation-delay:1.66s;animation-duration:2.73s"/><circle cx="7.47%" cy="66.86%" r="0.68" opacity="0.44" style="animation-delay:2.73s;animation-duration:2.79s"/><circle cx="31.55%" cy="75.94%" r="1.23" opacity="0.43" style="animation-delay:1.15s;animation-duration:2.68s"/><circle cx="2.53%" cy="40.49%" r="0.65" opacity="0.45" style="animation-delay:0.30s;animation-duration:4.68s"/><circle cx="19.52%" cy="70.14%" r="0.94" opacity="0.81" style="animation-delay:0.55s;animation-duration:3.99s"/><circle cx="96.19%" cy="33.33%" r="0.65" opacity="0.83" style="animation-delay:1.65s;animation-duration:4.74s"/><circle cx="84.70%" cy="82.28%" r="0.84" opacity="0.51" style="animation-delay:2.65s;animation-duration:4.29s"/><circle cx="91.36%" cy="97.89%" r="0.84" opacity="0.62" style="animation-delay:0.37s;animation-duration:4.34s"/><circle cx="33.05%" cy="54.43%" r="0.65" opacity="0.45" style="animation-delay:2.44s;animation-duration:4.75s"/><circle cx="86.33%" cy="26.58%" r="0.73" opacity="0.50" style="animation-delay:1.09s;animation-duration:4.53s"/></svg>
+<header class="site-bar">
   <div class="wrap">
     <nav class="dusk-nav" aria-label="Main">
       <a class="lockup" href="/" aria-label="Holzman AI &amp; Automations home"><img src="/logo-reverse.svg" alt="Holzman AI &amp; Automations" width="276" height="38"></a>
@@ -59,16 +58,23 @@
         <a href="/ledgerly">Ledgerly</a>
         <a class="nav-lo" href="/#about">About</a>
         <a href="/book">Book a call</a>
-        <a class="btn btn-white btn-sm" href="/#contact">Start a conversation</a>
+        <a class="btn btn-white btn-sm nav-wide" href="/#contact">Start a conversation</a>
+        <a class="btn btn-white btn-sm nav-narrow" href="/book">Book a call</a>
       </div>
     </nav>
+  </div>
+</header>
+
+<div class="dusk mini" id="top">
+  <svg class="stars" aria-hidden="true" focusable="false"><circle cx="0.03%" cy="39.30%" r="1.38" opacity="0.75" style="animation-delay:2.87s;animation-duration:5.14s"/><circle cx="92.88%" cy="83.35%" r="1.27" opacity="0.51" style="animation-delay:2.46s;animation-duration:3.37s"/><circle cx="6.96%" cy="41.75%" r="0.67" opacity="0.71" style="animation-delay:1.76s;animation-duration:3.42s"/><circle cx="72.00%" cy="74.05%" r="0.61" opacity="0.43" style="animation-delay:0.50s;animation-duration:2.98s"/><circle cx="69.28%" cy="60.41%" r="1.19" opacity="0.76" style="animation-delay:0.19s;animation-duration:4.55s"/><circle cx="32.32%" cy="25.01%" r="1.18" opacity="0.82" style="animation-delay:0.61s;animation-duration:3.79s"/><circle cx="93.82%" cy="1.28%" r="1.07" opacity="0.84" style="animation-delay:0.44s;animation-duration:3.34s"/><circle cx="62.91%" cy="88.76%" r="1.14" opacity="0.84" style="animation-delay:3.05s;animation-duration:3.31s"/><circle cx="18.11%" cy="89.29%" r="0.88" opacity="0.64" style="animation-delay:2.55s;animation-duration:3.31s"/><circle cx="72.99%" cy="82.68%" r="1.35" opacity="0.75" style="animation-delay:0.94s;animation-duration:3.86s"/><circle cx="9.08%" cy="68.54%" r="0.65" opacity="0.39" style="animation-delay:1.54s;animation-duration:3.26s"/><circle cx="91.19%" cy="72.00%" r="1.27" opacity="0.36" style="animation-delay:1.80s;animation-duration:4.55s"/><circle cx="36.04%" cy="46.65%" r="1.15" opacity="0.37" style="animation-delay:1.97s;animation-duration:2.74s"/><circle cx="22.21%" cy="57.84%" r="1.35" opacity="0.42" style="animation-delay:2.21s;animation-duration:3.19s"/><circle cx="59.81%" cy="81.13%" r="0.67" opacity="0.72" style="animation-delay:3.32s;animation-duration:3.72s"/><circle cx="56.10%" cy="55.92%" r="0.85" opacity="0.37" style="animation-delay:0.80s;animation-duration:4.38s"/><circle cx="89.53%" cy="50.19%" r="0.54" opacity="0.37" style="animation-delay:0.10s;animation-duration:3.08s"/><circle cx="77.57%" cy="31.14%" r="0.77" opacity="0.57" style="animation-delay:3.06s;animation-duration:3.52s"/><circle cx="91.24%" cy="43.77%" r="0.65" opacity="0.69" style="animation-delay:2.51s;animation-duration:3.95s"/><circle cx="61.88%" cy="52.36%" r="1.00" opacity="0.71" style="animation-delay:1.03s;animation-duration:3.50s"/><circle cx="73.06%" cy="25.81%" r="0.61" opacity="0.84" style="animation-delay:0.35s;animation-duration:2.87s"/><circle cx="45.38%" cy="83.63%" r="0.88" opacity="0.36" style="animation-delay:1.25s;animation-duration:4.51s"/><circle cx="16.37%" cy="93.52%" r="1.24" opacity="0.80" style="animation-delay:1.66s;animation-duration:2.73s"/><circle cx="7.47%" cy="66.86%" r="0.68" opacity="0.44" style="animation-delay:2.73s;animation-duration:2.79s"/><circle cx="31.55%" cy="75.94%" r="1.23" opacity="0.43" style="animation-delay:1.15s;animation-duration:2.68s"/><circle cx="2.53%" cy="40.49%" r="0.65" opacity="0.45" style="animation-delay:0.30s;animation-duration:4.68s"/><circle cx="19.52%" cy="70.14%" r="0.94" opacity="0.81" style="animation-delay:0.55s;animation-duration:3.99s"/><circle cx="96.19%" cy="33.33%" r="0.65" opacity="0.83" style="animation-delay:1.65s;animation-duration:4.74s"/><circle cx="84.70%" cy="82.28%" r="0.84" opacity="0.51" style="animation-delay:2.65s;animation-duration:4.29s"/><circle cx="91.36%" cy="97.89%" r="0.84" opacity="0.62" style="animation-delay:0.37s;animation-duration:4.34s"/><circle cx="33.05%" cy="54.43%" r="0.65" opacity="0.45" style="animation-delay:2.44s;animation-duration:4.75s"/><circle cx="86.33%" cy="26.58%" r="0.73" opacity="0.50" style="animation-delay:1.09s;animation-duration:4.53s"/></svg>
+  <div class="wrap">
     <div class="dusk-copy">
       <h1>Terms of Service.</h1>
       <p class="meta"><span>Ledgerly</span><span>Effective: June 15, 2026</span><span>Last updated: June 15, 2026</span></p>
     </div>
   </div>
   <svg class="hills" viewBox="0 0 1440 190" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 96C110 70 210 52 330 70S560 118 700 86S940 40 1080 66S1320 108 1440 78V190H0Z" fill="#6E6FC9" opacity=".55"/><path d="M0 128C150 100 290 106 420 124S650 156 820 122S1100 98 1260 120S1400 140 1440 132V190H0Z" fill="#A894D8" opacity=".7"/><path d="M0 158C200 140 420 148 640 164S1000 156 1200 146S1380 154 1440 150V190H0Z" fill="#F7F7F7"/></svg>
-</header>
+</div>
 
 <main id="main">
   <div class="wrap legal">
@@ -201,6 +207,6 @@
   </div>
 </footer>
 
-<script src="/dusk.js?v=2026-10" defer></script>
+<script src="/dusk.js?v=2026-10-13" defer></script>
 </body>
 </html>
