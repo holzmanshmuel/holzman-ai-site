@@ -133,7 +133,6 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 .dusk-nav .lockup { min-width: 0; }
 .dusk-nav .lockup img { max-width: 100%; height: auto; max-height: 38px; }
 /* under 360px the logo gets the row to itself; the same button sits in the hero just below */
-@media (max-width: 359px) { .dusk-nav .btn { display: none; } }
 /* 901–1099px: the two lowest-priority links step aside so the menu stays on one row at full logo size */
 @media (max-width: 1099px) { .dusk-nav .links .nav-lo { display: none; } }
 .dusk-copy { position: relative; z-index: 2; text-align: center; max-width: 840px; margin: 0 auto; padding-top: 64px; }
@@ -147,6 +146,22 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 .dusk.mini { --pb: 140px; padding-bottom: var(--pb); }
 .dusk.mini .dusk-copy { padding-top: 24px; text-align: left; max-width: none; }
 .dusk.mini .hills { height: 104px; }
+/* ---------- site bar: the menu stays at the top while the page scrolls ----------
+   Fixed, with its space reserved at the top of the sky, so nothing jumps. Over the top of the
+   sky it is see-through (the sky starts at the same colour); once the page moves it is solid
+   with a soft shadow. Without the page script it is simply solid. Anchors land below it. */
+:root { --bar-h: 72px; }
+@media (max-width: 520px) { :root { --bar-h: 64px; } }
+html { scroll-padding-top: calc(var(--bar-h) + env(safe-area-inset-top, 0px) + 16px); }
+.site-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 30; padding-top: env(safe-area-inset-top, 0px); background-color: var(--dusk-deep); transition: background-color .25s ease, box-shadow .25s ease; }
+.site-bar.at-top { background-color: transparent; }
+.site-bar.scrolled { box-shadow: 0 1px 0 rgba(255, 255, 255, .08), 0 8px 24px rgba(17, 17, 17, .16); }
+.site-bar .dusk-nav { height: var(--bar-h); padding-block: 0; }
+.site-bar + .dusk { padding-top: calc(var(--bar-h) + env(safe-area-inset-top, 0px)); }
+/* one header button: "Start a conversation" on wide screens, "Book a call" on phones (text links are hidden there) */
+.dusk-nav .nav-narrow { display: none; }
+@media (max-width: 900px) { .dusk-nav .nav-wide { display: none; } .dusk-nav .nav-narrow { display: inline-flex; } }
+
 .over-dusk { position: relative; z-index: 4; margin-top: -170px; }
 .dusk.compact + .over-dusk, .dusk.compact + main > .over-dusk:first-child { margin-top: -110px; }
 @media (max-width: 900px) {
@@ -250,6 +265,8 @@ html.still *, html.still *::before, html.still *::after { animation-play-state: 
   .btn:active { transform: none; }
 }
 @media print {
+  .site-bar { position: static; background: none; box-shadow: none; }
+  .site-bar + .dusk { padding-top: 0; }
   .dusk { background: #fff; color: var(--ink); padding-bottom: 0; }
   .dusk .stars, .dusk .hills, .dusk-nav .links { display: none; }
   .dusk-copy h1, .dusk-copy .lead { color: var(--ink); }

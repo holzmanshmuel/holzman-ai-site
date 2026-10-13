@@ -36,7 +36,8 @@
         var range = document.createRange(); range.selectNodeContents(el);
         [].push.apply(boxes, [].slice.call(range.getClientRects()));
       });
-      [].forEach.call(sky.querySelectorAll('.dusk-copy .btn, .dusk-nav a'), function (el) { boxes.push(el.getBoundingClientRect()); });
+      [].forEach.call(sky.querySelectorAll('.dusk-copy .btn'), function (el) { boxes.push(el.getBoundingClientRect()); });
+      [].forEach.call(document.querySelectorAll('.site-bar .dusk-nav a'), function (el) { boxes.push(el.getBoundingClientRect()); });
       [].forEach.call(sky.querySelectorAll('.stars circle'), function (c) {
         var r = c.getBoundingClientRect();
         var hit = boxes.some(function (b) { return r.right > b.left - 8 && r.left < b.right + 8 && r.bottom > b.top - 6 && r.top < b.bottom + 6; });
@@ -49,6 +50,21 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(clearStars);
     var starTimer;
     window.addEventListener('resize', function () { clearTimeout(starTimer); starTimer = setTimeout(clearStars, 150); });
+  }
+  // Site bar: see-through over the top of the sky, solid with a soft shadow once the page moves.
+  var bar = document.querySelector('.site-bar');
+  if (bar) {
+    var barQueued = false;
+    var setBar = function () {
+      barQueued = false;
+      var atTop = (window.scrollY || window.pageYOffset || 0) < 4;
+      bar.classList.toggle('at-top', atTop);
+      bar.classList.toggle('scrolled', !atTop);
+    };
+    setBar();
+    window.addEventListener('scroll', function () {
+      if (!barQueued) { barQueued = true; window.requestAnimationFrame(setBar); }
+    }, { passive: true });
   }
   // WCAG 2.2.2 (Pause, Stop, Hide): one switch in the footer pauses every looping animation.
   // The label names the action (no aria-pressed, which would contradict a changing label).
