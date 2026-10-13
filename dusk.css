@@ -155,7 +155,12 @@ h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: var(--display); text
 html { scroll-padding-top: calc(var(--bar-h) + env(safe-area-inset-top, 0px) + 16px); }
 .site-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 30; padding-top: env(safe-area-inset-top, 0px); background-color: var(--dusk-deep); transition: background-color .25s ease, box-shadow .25s ease; }
 .site-bar.at-top { background-color: transparent; }
-.site-bar.scrolled { box-shadow: 0 1px 0 rgba(255, 255, 255, .08), 0 8px 24px rgba(17, 17, 17, .16); }
+/* scrolled: frosted glass, so the page shows faintly through (Shmuel, 2026-10-13). At .8 the menu text
+   keeps AA contrast even over a plain white page; a solid bar where blur is unsupported or the visitor
+   asks for less transparency. */
+.site-bar.scrolled { background-color: rgba(34, 56, 154, .8); -webkit-backdrop-filter: blur(6px) saturate(140%); backdrop-filter: blur(6px) saturate(140%); box-shadow: 0 1px 0 rgba(255, 255, 255, .08), 0 8px 24px rgba(17, 17, 17, .16); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .site-bar.scrolled { background-color: rgba(34, 56, 154, .96); } }
+@media (prefers-reduced-transparency: reduce) { .site-bar.scrolled { background-color: var(--dusk-deep); -webkit-backdrop-filter: none; backdrop-filter: none; } }
 .site-bar .dusk-nav { height: var(--bar-h); padding-block: 0; }
 .site-bar + .dusk { padding-top: calc(var(--bar-h) + env(safe-area-inset-top, 0px)); }
 /* one header button: "Start a conversation" on wide screens, "Book a call" on phones (text links are hidden there) */
