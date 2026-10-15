@@ -5,6 +5,12 @@
   // The Worker only answers POST /api/contact (the homepage form); every other
   // request is served from the static assets below, as before.
   "main": "worker/index.js",
+  // No Version (preview) URLs. Every push to a non-main branch is built into a
+  // version, and with Version URLs on, each one is publicly reachable at a
+  // *.workers.dev address, branch work included. Setting this here (rather than
+  // only in the dashboard) keeps it on record and in force for every deploy.
+  // Production on holzman.ai and the workers.dev route are unaffected.
+  "preview_urls": false,
   "observability": {
     "enabled": true
   },
