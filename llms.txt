@@ -44,6 +44,11 @@ items.
   Amazon sellers who have outgrown manual operations — listings, orders,
   pricing, buyer messages, and account health. Ledgerly is also the name of the
   Amazon Selling Partner API application that underpins this work.
+- [Prime GroupX case study](https://holzman.ai/prime-groupx): how a firm that
+  runs Amazon seller operations for its clients got its team's time back since
+  March 2026 — repetitive work automated, every internal tool behind one
+  sign-in, staff trained by short videos, failures that alert the builder
+  rather than the team — with the CEO's own words.
 
 ## Try it
 
