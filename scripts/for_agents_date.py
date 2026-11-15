@@ -15,7 +15,8 @@ four places, and they must always agree:
                        than the UTC day of that change: the last commit that
                        touched the page, or today for uncommitted edits.
 
-CI runs `check --base <the PR base>` on every pull request and push to main.
+CI runs `check --base <the PR base>` on every pull request, and plain `check`
+(the four places agree, nothing in the future) on every push to main.
 The house merge gate merges only on green CI, so the page cannot change without
 its date changing too. (GitHub's own ruleset does not require this check.)
 """
@@ -139,7 +140,7 @@ def cmd_check(args) -> int:
             # The content changed (or the page is new). Its date must be no earlier than
             # the day that change was made: the UTC date of the last commit touching the
             # page, or today if the page has uncommitted edits. No wall-clock slack, so a
-            # late CI run (after UTC midnight) still passes, and an old date left in
+            # late PR run (after UTC midnight) still passes, and an old date left in
             # place fails. A second change on the same day may keep that day's date.
             changed_on = last_change_date()
             if d < changed_on:
