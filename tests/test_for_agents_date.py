@@ -36,9 +36,15 @@ class Repo:
     def git(self, *a):
         return subprocess.run(["git", "-C", str(self.dir), *a], check=True, capture_output=True, text=True).stdout.strip()
 
-    def commit(self):
+    def commit(self, when=None):
+        """Commit everything; `when` = ISO UTC timestamp for the committer date."""
         self.git("add", "-A")
-        self.git("commit", "-q", "-m", "x", "--allow-empty")
+        env = None
+        if when:
+            import os
+            env = dict(os.environ, GIT_COMMITTER_DATE=when, GIT_AUTHOR_DATE=when)
+        subprocess.run(["git", "-C", str(self.dir), "commit", "-q", "-m", "x", "--allow-empty"],
+                       check=True, capture_output=True, text=True, env=env)
         return self.git("rev-parse", "HEAD")
 
     def run(self, *a):
@@ -153,7 +159,7 @@ class ForAgentsDate(unittest.TestCase):
     def test_content_change_without_new_date_fails(self):
         self.r.stamp(days(-3)); base = self.r.commit()
         self.r.edit_content()
-        self.bad("check", "--base", base, says="did not move forward")
+        self.bad("check", "--base", base, says="says current as of")
 
     def test_content_change_with_new_date_passes(self):
         self.r.stamp(days(-3)); base = self.r.commit()
@@ -168,7 +174,19 @@ class ForAgentsDate(unittest.TestCase):
     def test_same_old_date_two_days_ago_fails(self):
         self.r.stamp(days(-2)); base = self.r.commit()
         self.r.edit_content()
-        self.bad("check", "--base", base, says="did not move forward")
+        self.bad("check", "--base", base, says="says current as of")
+
+    def test_late_ci_run_on_old_commit_passes(self):
+        # CI runs days after the commit (or just after UTC midnight): judged by the commit day.
+        self.r.stamp(days(-5)); base = self.r.commit(days(-5) + "T12:00:00Z")
+        self.r.edit_content(); self.r.stamp(days(-2)); self.r.commit(days(-2) + "T23:50:00Z")
+        self.ok("check", "--base", base)
+
+    def test_yesterdays_date_on_todays_change_fails(self):
+        # Round-2 review case: base stamped yesterday, content changed today, no re-stamp.
+        self.r.stamp(days(-1)); base = self.r.commit(days(-1) + "T12:00:00Z")
+        self.r.edit_content(); self.r.commit(days(0) + "T00:30:00Z")
+        self.bad("check", "--base", base, says="says current as of")
 
     def test_restamp_only_passes(self):
         self.r.stamp(days(-3)); base = self.r.commit()
@@ -179,15 +197,15 @@ class ForAgentsDate(unittest.TestCase):
         self.r.stamp(days(-90)); base = self.r.commit()
         self.ok("check", "--base", base)
 
-    def test_stale_new_date_fails(self):
+    def test_backdated_stamp_fails(self):
         self.r.stamp(days(-30)); base = self.r.commit()
         self.r.edit_content(); self.r.stamp(days(-20))
-        self.bad("check", "--base", base, says="more than 14 days old")
+        self.bad("check", "--base", base, says="says current as of")
 
     def test_date_moved_backwards_fails(self):
         self.r.stamp(days(-1)); base = self.r.commit()
         self.r.edit_content(); self.r.stamp(days(-5))
-        self.bad("check", "--base", base, says="did not move forward")
+        self.bad("check", "--base", base, says="says current as of")
 
     def test_new_page_fresh_passes_and_stale_fails(self):
         r = Repo(with_page=False)
@@ -200,7 +218,7 @@ class ForAgentsDate(unittest.TestCase):
             r.stamp(days(-20))
             res = r.run("check", "--base", base)
             self.assertNotEqual(res.returncode, 0)
-            self.assertIn("more than 14 days old", res.stderr)
+            self.assertIn("says current as of", res.stderr)
         finally:
             r.close()
 

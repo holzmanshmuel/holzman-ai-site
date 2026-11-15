@@ -11,14 +11,13 @@ four places, and they must always agree:
   stamp [YYYY-MM-DD]   set all four to the given date (default: today, UTC).
   check [--base REF]   fail if they disagree or the date is in the future.
                        With --base, also fail when the page's content changed
-                       since REF but the date did not move forward (a second
-                       change on the same day may keep today's date), or the
-                       new date is more than STALE_DAYS old (re-stamp first).
+                       since REF (or the page is new) and the date is earlier
+                       than the UTC day of that change: the last commit that
+                       touched the page, or today for uncommitted edits.
 
 CI runs `check --base <the PR base>` on every pull request and push to main.
 The house merge gate merges only on green CI, so the page cannot change without
-its date changing too. (GitHub's own ruleset does not require this check, and
-the staleness rule is judged when CI runs, not at merge time.)
+its date changing too. (GitHub's own ruleset does not require this check.)
 """
 import argparse
 import datetime as dt
@@ -31,7 +30,6 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 PAGE = "for-agents.html"
 SITEMAP = "sitemap.xml"
 PAGE_URL = "https://holzman.ai/for-agents"
-STALE_DAYS = 14
 
 TIME_RE = re.compile(r'<time id="current-as-of" datetime="(\d{4}-\d{2}-\d{2})">([^<]*)</time>')
 LD_RE = re.compile(r'"dateModified": "(\d{4}-\d{2}-\d{2})"')
@@ -96,6 +94,19 @@ def git_show(ref: str, path: str):
     return r.stdout if r.returncode == 0 else None
 
 
+def last_change_date() -> dt.date:
+    """UTC date the page's content last changed: today if it has uncommitted edits,
+    else the committer date of the last commit that touched it."""
+    dirty = subprocess.run(["git", "-C", str(ROOT), "diff", "--quiet", "HEAD", "--", PAGE])
+    if dirty.returncode != 0:
+        return today()
+    r = subprocess.run(["git", "-C", str(ROOT), "log", "-1", "--format=%ct", "--", PAGE],
+                       capture_output=True, text=True)
+    if r.returncode != 0 or not r.stdout.strip():
+        return today()
+    return dt.datetime.fromtimestamp(int(r.stdout.strip()), dt.timezone.utc).date()
+
+
 def cmd_stamp(args) -> int:
     d = parse(args.date) if args.date else today()
     page_p, sm_p = ROOT / PAGE, ROOT / SITEMAP
@@ -124,21 +135,17 @@ def cmd_check(args) -> int:
             errors.append(f"the date {d} is in the future")
     if not errors and args.base:
         old = git_show(args.base, PAGE)
-        if old is None:
-            if d < today() - dt.timedelta(days=STALE_DAYS):
-                errors.append(f"new page, but its date {d} is more than {STALE_DAYS} days old: run `python3 scripts/for_agents_date.py stamp`")
-        elif normalized(old) != normalized(page):
-            m = TIME_RE.search(old)
-            old_d = parse(m.group(1)) if m else None
-            # A second change on the same day keeps the same (still true) date, so equal
-            # is fine when that date is today (1 day of slack for Jerusalem vs UTC).
-            # Otherwise the date must move forward: an old date left in place is the lie.
-            same_day_ok = old_d is not None and d == old_d and d >= today() - dt.timedelta(days=1)
-            if old_d is not None and d <= old_d and not same_day_ok:
-                errors.append(f"{PAGE} changed since {args.base} but its date did not move forward ({old_d} -> {d}): "
+        if old is None or normalized(old) != normalized(page):
+            # The content changed (or the page is new). Its date must be no earlier than
+            # the day that change was made: the UTC date of the last commit touching the
+            # page, or today if the page has uncommitted edits. No wall-clock slack, so a
+            # late CI run (after UTC midnight) still passes, and an old date left in
+            # place fails. A second change on the same day may keep that day's date.
+            changed_on = last_change_date()
+            if d < changed_on:
+                what = "is new" if old is None else f"changed since {args.base}"
+                errors.append(f"{PAGE} {what} on {changed_on} but says current as of {d}: "
                               "run `python3 scripts/for_agents_date.py stamp` and commit")
-            elif d < today() - dt.timedelta(days=STALE_DAYS):
-                errors.append(f"{PAGE} changed, but its date {d} is more than {STALE_DAYS} days old: re-stamp before merging")
     if errors:
         for e in errors:
             print("FAIL: " + e, file=sys.stderr)
