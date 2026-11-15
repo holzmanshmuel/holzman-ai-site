@@ -9,3 +9,7 @@ wrangler.jsonc
 worker
 .dev.vars*
 .env*
+# repo tooling, never served (HOLZMAN-312)
+.github
+scripts
+tests
