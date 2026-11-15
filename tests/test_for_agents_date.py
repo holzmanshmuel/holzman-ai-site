@@ -160,6 +160,16 @@ class ForAgentsDate(unittest.TestCase):
         self.r.edit_content(); self.r.stamp(days(0))
         self.ok("check", "--base", base)
 
+    def test_second_change_same_day_keeps_date(self):
+        self.r.stamp(days(0)); base = self.r.commit()
+        self.r.edit_content()
+        self.ok("check", "--base", base)
+
+    def test_same_old_date_two_days_ago_fails(self):
+        self.r.stamp(days(-2)); base = self.r.commit()
+        self.r.edit_content()
+        self.bad("check", "--base", base, says="did not move forward")
+
     def test_restamp_only_passes(self):
         self.r.stamp(days(-3)); base = self.r.commit()
         self.r.stamp(days(0))

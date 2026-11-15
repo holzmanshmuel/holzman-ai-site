@@ -11,11 +11,14 @@ four places, and they must always agree:
   stamp [YYYY-MM-DD]   set all four to the given date (default: today, UTC).
   check [--base REF]   fail if they disagree or the date is in the future.
                        With --base, also fail when the page's content changed
-                       since REF but the date did not move forward, or the new
-                       date is more than STALE_DAYS old (re-stamp before merge).
+                       since REF but the date did not move forward (a second
+                       change on the same day may keep today's date), or the
+                       new date is more than STALE_DAYS old (re-stamp first).
 
-CI runs `check --base <the PR base>` on every pull request, so the page cannot
-change without its date changing too. Nobody has to remember: CI says no.
+CI runs `check --base <the PR base>` on every pull request and push to main.
+The house merge gate merges only on green CI, so the page cannot change without
+its date changing too. (GitHub's own ruleset does not require this check, and
+the staleness rule is judged when CI runs, not at merge time.)
 """
 import argparse
 import datetime as dt
@@ -127,7 +130,11 @@ def cmd_check(args) -> int:
         elif normalized(old) != normalized(page):
             m = TIME_RE.search(old)
             old_d = parse(m.group(1)) if m else None
-            if old_d is not None and d <= old_d:
+            # A second change on the same day keeps the same (still true) date, so equal
+            # is fine when that date is today (1 day of slack for Jerusalem vs UTC).
+            # Otherwise the date must move forward: an old date left in place is the lie.
+            same_day_ok = old_d is not None and d == old_d and d >= today() - dt.timedelta(days=1)
+            if old_d is not None and d <= old_d and not same_day_ok:
                 errors.append(f"{PAGE} changed since {args.base} but its date did not move forward ({old_d} -> {d}): "
                               "run `python3 scripts/for_agents_date.py stamp` and commit")
             elif d < today() - dt.timedelta(days=STALE_DAYS):
