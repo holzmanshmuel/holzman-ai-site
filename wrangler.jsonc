@@ -16,7 +16,10 @@
   },
   "assets": {
     "directory": ".",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // An address with no matching file gets /404.html (with a 404 status) instead of
+    // an empty page.
+    "not_found_handling": "404-page"
   },
   "compatibility_flags": [
     "nodejs_compat"
