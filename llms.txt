@@ -2,7 +2,7 @@
 
 > An AI and automation consultancy that designs, builds, and maintains the
 > custom automations, AI-assisted tools, and integrations that run a business in
-> the background. Based in Jerusalem, Israel; works with clients remotely.
+> the background.
 
 The clients are growing businesses whose operations run on software
 they already use, and whose bottleneck is that the work between those systems is
@@ -19,8 +19,9 @@ before it replaces anything; output is a live automation), and **Maintain**
 business shifts).
 
 Commercial model: a one-time build fee, scoped and quoted up front and **paid on
-delivery, not on kick-off**, with optional ongoing maintenance. No surprise line
-items.
+delivery, not on kick-off**, plus a required monthly retainer, billed from
+delivery, that keeps it running (hosting, monitoring, fixes, small updates). No
+surprise line items.
 
 ## Pages
 
@@ -31,7 +32,7 @@ items.
 - [Home](https://holzman.ai/): what the studio does, the three-phase
   engagement model, who it's for, and how the commercial terms work.
 - [Examples](https://holzman.ai/examples): 32 plain-English examples of what
-  the studio automates for small businesses, grouped by sales and customers,
+  the studio automates for growing businesses, grouped by sales and customers,
   money and admin, operations and team, content and marketing, type of
   business, and AI training. Contact by WhatsApp or email; no form.
 - [For Amazon sellers](https://holzman.ai/amazon-sellers): operations
