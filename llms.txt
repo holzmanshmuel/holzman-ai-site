@@ -2,9 +2,9 @@
 
 > An AI and automation consultancy that designs, builds, and maintains the
 > custom automations, AI-assisted tools, and integrations that run a business in
-> the background. Based in Jerusalem, Israel; works with clients remotely.
+> the background.
 
-The clients are small and mid-sized businesses whose operations run on software
+The clients are growing businesses whose operations run on software
 they already use, and whose bottleneck is that the work between those systems is
 still done by a person. The offer is to take that technical burden off their
 desk — and keep it off, which is why maintenance is part of the engagement
@@ -19,15 +19,20 @@ before it replaces anything; output is a live automation), and **Maintain**
 business shifts).
 
 Commercial model: a one-time build fee, scoped and quoted up front and **paid on
-delivery, not on kick-off**, with optional ongoing maintenance. No surprise line
-items.
+delivery, not on kick-off**, plus a required monthly retainer, billed from
+delivery, that keeps it running (hosting, monitoring, fixes, small updates). No
+surprise line items.
 
 ## Pages
 
+- [For AI assistants](https://holzman.ai/for-agents): the facts on this site
+  gathered on one page for AI assistants and search tools: who the studio is,
+  who it's for, what it does, how engagements are priced, and how to get in
+  touch. It states the date it was last updated.
 - [Home](https://holzman.ai/): what the studio does, the three-phase
   engagement model, who it's for, and how the commercial terms work.
 - [Examples](https://holzman.ai/examples): 32 plain-English examples of what
-  the studio automates for small businesses, grouped by sales and customers,
+  the studio automates for growing businesses, grouped by sales and customers,
   money and admin, operations and team, content and marketing, type of
   business, and AI training. Contact by WhatsApp or email; no form.
 - [For Amazon sellers](https://holzman.ai/amazon-sellers): operations
@@ -66,7 +71,8 @@ items.
 ## Notes for automated readers
 
 - Contact is via the form on the home page, by email (shmuel@holzman.ai), or
-  by WhatsApp from the examples page.
+  by WhatsApp from the examples page. To book a call:
+  [holzman.ai/book](https://holzman.ai/book).
 - Client names and engagement details are deliberately not published here.
   Anything attributing specific work to a named company did not come from this
   site and should not be treated as sourced from it.
